@@ -1,0 +1,152 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Menu`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Menu` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Menu` (
+  `idMenu` INT NOT NULL AUTO_INCREMENT,
+  `navn` VARCHAR(45) NULL,
+  `pris` INT NULL,
+  PRIMARY KEY (`idMenu`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Bruker`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Bruker` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Bruker` (
+  `epost` VARCHAR(120) NOT NULL,
+  `password` VARCHAR(45) NULL,
+  PRIMARY KEY (`epost`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Kaffekort`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Kaffekort` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Kaffekort` (
+)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Kaffekort`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Kaffekort` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Kaffekort` (
+)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Åpningstider`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Åpningstider` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Åpningstider` (
+  `idÅpningstider` INT NOT NULL AUTO_INCREMENT,
+  `startid` TIME NULL,
+  `sluttid` TIME NULL,
+  `dag` VARCHAR(45) NULL,
+  `uke` VARCHAR(45) NULL,
+  PRIMARY KEY (`idÅpningstider`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`DRmeny`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`DRmeny` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`DRmeny` (
+  `idDRmeny` INT NOT NULL AUTO_INCREMENT,
+  `navn` VARCHAR(45) NULL,
+  `pris` INT NULL,
+  `serveringstidStart` TIME NULL,
+  `serveringstidSlutt` TIME NULL,
+  `dag` VARCHAR(45) NULL,
+  PRIMARY KEY (`idDRmeny`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Allergier`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Allergier` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Allergier` (
+  `idAlergier` INT NOT NULL AUTO_INCREMENT,
+  `navn` VARCHAR(45) NULL,
+  PRIMARY KEY (`idAlergier`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`almeny`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`almeny` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`almeny` (
+  `allergier_idAlergier` INT NOT NULL,
+  `drmeny_idDRmeny` INT NOT NULL,
+  PRIMARY KEY (`allergier_idAlergier`, `drmeny_idDRmeny`),
+  INDEX `fk_almeny_DRmeny1_idx` (`drmeny_idDRmeny` ASC),
+  CONSTRAINT `fk_almeny_Allergier1`
+    FOREIGN KEY (`allergier_idAlergier`)
+    REFERENCES `mydb`.`Allergier` (`idAlergier`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_almeny_DRmeny1`
+    FOREIGN KEY (`drmeny_idDRmeny`)
+    REFERENCES `mydb`.`DRmeny` (`idDRmeny`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Allergier_has_Menu`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Allergier_has_Menu` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Allergier_has_Menu` (
+  `allergier_idAlergier` INT NOT NULL,
+  `menu_idMenu` INT NOT NULL,
+  PRIMARY KEY (`allergier_idAlergier`, `menu_idMenu`),
+  INDEX `fk_Allergier_has_Menu_Menu1_idx` (`menu_idMenu` ASC),
+  INDEX `fk_Allergier_has_Menu_Allergier1_idx` (`allergier_idAlergier` ASC),
+  CONSTRAINT `fk_Allergier_has_Menu_Allergier1`
+    FOREIGN KEY (`allergier_idAlergier`)
+    REFERENCES `mydb`.`Allergier` (`idAlergier`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Allergier_has_Menu_Menu1`
+    FOREIGN KEY (`menu_idMenu`)
+    REFERENCES `mydb`.`Menu` (`idMenu`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
