@@ -12,6 +12,7 @@ public class Kontroll {
     ArrayList<Varer> varer = new ArrayList<Varer>();
     ArrayList<Dagens> dagens = new ArrayList<Dagens>();
 
+    //test fra Laupet 123
 
     public void addNyttKaffeKort(){
 
