@@ -2,17 +2,14 @@ package com.hfda.LunchApp;
 
 import java.util.ArrayList;
 
-/**
- * Created by remi_ on 28.03.2017.
- */
 
 public class Kontroll {
 
     Bruker bruker;
-    ArrayList<Varer> varer = new ArrayList<Varer>();
-    ArrayList<Dagens> dagens = new ArrayList<Dagens>();
+    ArrayList<Varer> varer = new ArrayList<>();
+    ArrayList<Dagens> dagens = new ArrayList<>();
 
-    //test fra Laupet 123
+    //test fra Laupet 123 321
 
     public void addNyttKaffeKort(){
 
@@ -29,4 +26,6 @@ public class Kontroll {
     public ArrayList<Varer> getVarer(){
         return null;
     }
+
+
 }
