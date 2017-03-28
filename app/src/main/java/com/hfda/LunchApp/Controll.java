@@ -3,11 +3,11 @@ package com.hfda.LunchApp;
 import java.util.ArrayList;
 
 
-public class Kontroll {
+public class Controll {
 
-    Bruker bruker;
-    ArrayList<Varer> varer = new ArrayList<>();
-    ArrayList<Dagens> dagens = new ArrayList<>();
+    User user;
+    ArrayList<Items> items = new ArrayList<>();
+    ArrayList<Today> todays = new ArrayList<>();
 
     //test fra Laupet 123 321
 
@@ -19,11 +19,11 @@ public class Kontroll {
         return 0;
     }
 
-    public Object getDagens(){
+    public Object getTodays(){
         return null;
     }
 
-    public ArrayList<Varer> getVarer(){
+    public ArrayList<Items> getItems(){
         return null;
     }
 
