@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
-        Button btnRegister = (Button) findViewById(R.id.btnRegister);
+        Button btnRegister = (Button) findViewById(R.id.btnNewUser);
 
         Log.d("Loggg", "loginActivity done");
 
@@ -26,18 +26,29 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    // Login button Click Event
-    btnLogin.setOnClickListener(new View.OnClickListener() {
+        // Login button Click Event
+        btnLogin.setOnClickListener(new View.OnClickListener() {
 
-        public void onClick(View view) {
+            public void onClick(View view) {
 
-            //Add inputcheck!!!
+                //:TODO Add input checks
+                //:TODO Add loginfunction
+
+                //Go to next intent
+                loginClick();
+            }
+        });
 
 
-            //Go to next intent
-            loginClick();
-        }
-    });
+
+        // Register button Click Event
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                //Go to next intent
+                registerClick();
+            }
+        });
 
 
 
@@ -48,10 +59,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void loginClick(){
-        Log.d("Loggg", "LoginClicked");
+        Log.d("Laupet", "LoginClicked");
         Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(loginIntent);
         //finish(); Should we use this???
+    }
+
+    public void registerClick(){
+        Log.d("Laupet", "RegisterClicked");
+        Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(registerIntent);
+        //finish(); Should we use this??
     }
 
 
