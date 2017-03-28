@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         public void onClick(View view) {
 
-            //Add inputcheck!
+            //Add inputcheck!!!
 
 
             //Go to next intent
