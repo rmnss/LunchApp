@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private SessionManager session;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +22,22 @@ public class LoginActivity extends AppCompatActivity {
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         Button btnRegister = (Button) findViewById(R.id.btnNewUser);
 
-        Log.d("Loggg", "loginActivity done");
+        //:TODO add checks if the user is already logged in
+
+        session = new SessionManager(getApplicationContext());
 
 
+        //setting loggedin info
+        session.setLogin(true);
 
+        if (session.isLoggedIn()){
+            Log.d("Laupet", "User is logged in");
+
+            //:TODO Send user to the correct activity
+
+        }else{
+            Log.d("Laupet", "User is not logged in");
+        }
 
 
 
