@@ -23,9 +23,8 @@ public class Controll {
         return null;
     }
 
-    public ArrayList<Items> getItems(){
-        return null;
-    }
+K
+
 
 
 }
