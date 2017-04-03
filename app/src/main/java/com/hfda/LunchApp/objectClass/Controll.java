@@ -1,4 +1,4 @@
-package com.hfda.LunchApp;
+package com.hfda.LunchApp.objectClass;
 
 import java.util.ArrayList;
 

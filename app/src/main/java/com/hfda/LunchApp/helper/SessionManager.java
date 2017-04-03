@@ -1,4 +1,4 @@
-package com.hfda.LunchApp;
+package com.hfda.LunchApp.helper;
 
 
 import android.content.Context;
@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 public class SessionManager {
-
-
 
     SharedPreferences sharedPref;
     Context _context;
