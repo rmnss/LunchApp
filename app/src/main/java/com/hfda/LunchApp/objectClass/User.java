@@ -1,4 +1,4 @@
-package com.hfda.LunchApp;
+package com.hfda.LunchApp.objectClass;
 
 public class User {
     String email;

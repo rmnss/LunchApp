@@ -1,13 +1,13 @@
-package com.hfda.LunchApp;
+package com.hfda.LunchApp.objectClass;
 
 import java.util.ArrayList;
 
-public class Items {
+public class Today {
     String name;
     Integer price;
     ArrayList<String> allergy = new ArrayList<>();
 
-    public Items(String name, Integer price, ArrayList<String> allergy) {
+    public Today(String name, Integer price, ArrayList<String> allergy) {
         this.name = name;
         this.price = price;
         this.allergy = allergy;
