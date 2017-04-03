@@ -3,12 +3,12 @@ package com.hfda.LunchApp;
 public class User {
     String email;
     String password;
-    Integer coffeNumber;
+    Integer coffeeNumber;
 
-    public User(String email, String password, Integer coffeNumber) {
+    public User(String email, String password, Integer coffeeNumber) {
         this.email = email;
         this.password = password;
-        this.coffeNumber = coffeNumber;
+        this.coffeeNumber = coffeeNumber;
     }
 
     public String getEmail() {
@@ -19,7 +19,7 @@ public class User {
         return password;
     }
 
-    public Integer getCoffeNumber() {
-        return coffeNumber;
+    public Integer getCoffeeNumber() {
+        return coffeeNumber;
     }
 }
