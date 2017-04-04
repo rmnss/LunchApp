@@ -40,6 +40,4 @@ public class SessionManager {
         Log.d("Laupet", "Key: " + sharedPref.getBoolean(KEY_IS_LOGGED_IN, false));
         return sharedPref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
-
-
 }

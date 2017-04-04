@@ -19,13 +19,25 @@ public class Controll {
         return 0;
     }
 
-    public Object getTodays(){
-        return null;
+    public String[] getMenu() {
+
+
+
+        ArrayList<Integer> menu = new ArrayList<>();
+        ArrayList<Integer> allergi = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
+
+
+        for (int i : menu) {
+            if (menu.get(i) = allergi.get(i)) {
+                for (int y : allergi) {
+                    result .add(allergi.get(y));
+                }
+            }
+        }
+        return allergi;
     }
 
-    public ArrayList<Items> getItems(){
-        return null;
-    }
 
 
 }
