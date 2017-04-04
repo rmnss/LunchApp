@@ -10,23 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hfda.LunchApp.activity.MainActivity">
 
-    <Button
-        android:text="Log out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:id="@+id/btnLogOut"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Main Activity"
+        android:textStyle="normal|bold"
+        android:textSize="24sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textStyle="normal|bold"
-        android:textSize="24sp" />
+        android:layout_marginTop="32dp" />
 
     <Button
         android:text="Coffee Activity"
@@ -34,7 +26,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnQR"
-        android:layout_alignParentTop="true"
+        android:layout_marginBottom="108dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Log out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogOut"
+        android:layout_marginBottom="29dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
