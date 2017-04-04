@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.QRActivity"></activity>
+        <activity android:name=".activity.QRActivity" />
+        <activity android:name=".activity.CoffeeActivity"></activity>
     </application>
 
 </manifest>

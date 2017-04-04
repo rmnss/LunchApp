@@ -19,16 +19,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="QR-Leser"
-        android:onClick="onClickQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnQR"
-        android:layout_above="@+id/btnLogOut"
-        android:layout_alignStart="@+id/btnLogOut"
-        android:layout_marginBottom="118dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,22 +28,13 @@
         android:textStyle="normal|bold"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:text="Coffee Activity"
+        android:onClick="onClickCoffee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnQR"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="22dp"
-        android:text="TextView" />
+        android:id="@+id/btnQR"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

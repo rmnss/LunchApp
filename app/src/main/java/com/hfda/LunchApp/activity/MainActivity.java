@@ -37,17 +37,9 @@ public class MainActivity extends AppCompatActivity {
     //Må være i første acitivity
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
-    //Må være før qr-scanneren
-    private static final int SECOND_ACTIVITY_RESULT_CODE = 0;
-
     private SessionManager session;
     private LunchDBhelper db;
     private Button btnLogout;
-
-    private String klipp = "cOFD87zuFbrYdRfKwz5m";
-    private Integer klippNR = 0;
-    private String nyttKort = "4YzY3vyBEl0gPoxuvCAB";
-    private Integer kortNr = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,55 +83,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    public void onClickQR(View v) {
-        if (checkRequestPermission()) {
-            //Intent i = new Intent(getApplicationContext(), QRActivity.class);
-            //startActivity(i);
-            Intent intent = new Intent(this, QRActivity.class);
-            startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
-        } else
-            Toast.makeText(this, "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == SECOND_ACTIVITY_RESULT_CODE) {
-            if (resultCode == RESULT_OK) {
-
-                String returnString = data.getStringExtra("keyName");
-
-                if (returnString.equals(klipp)) {
-                    klippNR += 1;
-                    TextView textView = (TextView) findViewById(R.id.textView);
-                    textView.setText(klippNR.toString());
-                } else if (returnString.equals(nyttKort)) {
-                    kortNr += 1;
-                    TextView textView2 = (TextView) findViewById(R.id.textView2);
-                    textView2.setText((kortNr.toString()));
-                } else Toast.makeText(this, "Feil kode!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //Get menu from mySQL
@@ -202,7 +145,11 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    public void onClickCoffee(View v) {
+        Intent i = new Intent(getApplicationContext(), CoffeeActivity.class);
+        startActivity(i);
 
+    }
 
 
 
