@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        getMenu();
+        //Funcion for getting the menu
+        //getMenu();
 
 
         // Logout button Click Event
@@ -85,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+
+
+
+
+
+
     //Get menu from mySQL
     private void getMenu() {
         // Tag used to cancel the request
@@ -95,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                //Log.d("Laupet", "Login Response: " + response.toString());
+                Log.d("Laupet", "Login Response: " + response.toString());
 
                 try {
                     JSONArray jObj = new JSONArray(response);
@@ -145,6 +156,13 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+
+
+
+
+
+
+    //CLickevent for coffee
     public void onClickCoffee(View v) {
         Intent i = new Intent(getApplicationContext(), CoffeeActivity.class);
         startActivity(i);
