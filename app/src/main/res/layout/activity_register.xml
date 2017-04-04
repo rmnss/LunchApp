@@ -18,4 +18,39 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="78dp"
         android:id="@+id/btnRegister" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="31dp"
+        android:id="@+id/txtNewEmail"
+        android:layout_below="@+id/txtNewName"
+        android:layout_alignStart="@+id/txtNewName"
+        android:hint="Enter email"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="34dp"
+        android:id="@+id/txtNewPassword"
+        android:layout_below="@+id/txtNewEmail"
+        android:layout_alignStart="@+id/txtNewEmail"
+        android:hint="Enter password"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtNewName"
+        android:hint="Enter name"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
