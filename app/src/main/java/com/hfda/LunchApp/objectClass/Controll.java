@@ -19,6 +19,8 @@ public class Controll {
         return 0;
     }
 
+
+    /*
     public String[] getMenu() {
 
 
@@ -36,7 +38,12 @@ public class Controll {
             }
         }
         return allergi;
+
+
+
     }
+  */
+
 
 
 

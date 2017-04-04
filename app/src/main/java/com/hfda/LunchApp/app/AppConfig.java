@@ -8,4 +8,7 @@ public class AppConfig {
 
     // Server user register url
     public static String URL_REGISTER = "https://home.hbv.no/884670/android_login_api/register.php";
+
+    // Server user login url
+    public static String URL_MENU = "https://home.hbv.no/884670/android/menu2.php";
 }
