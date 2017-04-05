@@ -14,4 +14,8 @@ public class AppConfig {
 
     // Server user login url
     public static String URL_DR_MENU = "https://home.hbv.no/884670/android/dr_menu.php";
+
+    public static String URL_ALLERGI_MENU = "https://home.hbv.no/884670/android/allergy.php";
+
+    public static String URL_DR_MENU_ALLERGI = "https://home.hbv.no/884670/android/drmenuallergy.php";
 }
