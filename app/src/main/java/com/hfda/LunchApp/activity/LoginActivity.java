@@ -146,16 +146,16 @@ public class LoginActivity extends Activity {
                         String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
-                        //String name = user.getString("name");
                         String email = user.getString("email");
-                        //String created_at = user.getString("created_at");
+                        Integer coffee = user.getInt("coffee");
+                        Integer student = user.getInt("student");
+
 
                         // Inserting row in users table
-                        db.addUser(email, uid);
+                        db.addUser(email, uid, coffee, student);
 
                         // Launch main activity
-                        Intent intent = new Intent(LoginActivity.this,
-                                MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -197,7 +197,6 @@ public class LoginActivity extends Activity {
         // Adding request to request queue
         Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-        Log.d("Laupet", "Den kræsja");
     }
 
     private void showDialog() {

@@ -136,9 +136,9 @@ public class MainActivity extends Activity {
                         //Log.d("Laupet", "ansattPris: " + row.getString("ansattPris"));
                         //Log.d("Laupet", "ALERGIER - GETALLERGI FRA DATABASEN");
 
-                        Log.d("Laupet", "-----------");
-                        Log.d("Laupet", r);
-                        Log.d("Laupet", "-----------");
+                        //Log.d("Laupet", "-----------");
+                        //Log.d("Laupet", r);
+                        //Log.d("Laupet", "-----------");
 
 
                         menyListe.setText(r);

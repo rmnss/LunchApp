@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import java.util.Map;
 public class RegisterActivity extends Activity {
 
     private Button btnRegister;
+    private CheckBox chkStudent;
     private EditText txtName;
     private EditText txtEmail;
     private EditText txtPassword;
@@ -45,7 +47,7 @@ public class RegisterActivity extends Activity {
         txtName = (EditText) findViewById(R.id.txtNewName);
         txtEmail = (EditText) findViewById(R.id.txtNewEmail);
         txtPassword = (EditText) findViewById(R.id.txtNewPassword);
-
+        chkStudent = (CheckBox) findViewById(R.id.chkStudent);
 
         //creates session manager
         session = new SessionManager(getApplicationContext());
@@ -67,9 +69,18 @@ public class RegisterActivity extends Activity {
                 String name = txtName.getText().toString().trim();
                 String email = txtEmail.getText().toString().trim();
                 String password = txtPassword.getText().toString().trim();
+                boolean student = chkStudent.isChecked();
+                Integer intStudent;
+
+                if (student){
+                    intStudent = 1;
+                }else{
+                    intStudent = 0;
+                }
+
 
                 if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    newUser(name, email, password);
+                    newUser(name, email, password, intStudent);
                 }else{
                     Toast.makeText(getApplicationContext(),
                             "Please enter all information above", Toast.LENGTH_LONG).show();
@@ -80,7 +91,7 @@ public class RegisterActivity extends Activity {
 
 
 
-    public void newUser(final String name, final String email, final String password){
+    public void newUser(final String name, final String email, final String password, final Integer student){
 
         // Tag used to cancel the request
         String tag_string_req = "req_register";
@@ -133,6 +144,8 @@ public class RegisterActivity extends Activity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("student", String.valueOf(student));
+                Log.d("Laupet", "student: " + String.valueOf(student));
 
                 return params;
             }

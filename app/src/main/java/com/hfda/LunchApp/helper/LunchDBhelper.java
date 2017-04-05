@@ -10,7 +10,7 @@ import android.util.Log;
 public class LunchDBhelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "android_api";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     public LunchDBhelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -25,8 +25,10 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         //Creating database
         String sqlCreateUserTable = "CREATE TABLE user(" +
                 " id INTEGER PRIMARY KEY, "
-                + "email TEXT UNIQUE, "
-                + "uid TEXT)";
+                + "email TEXT, "
+                + "uid TEXT UNIQUE, "
+                + "coffee INTEGER, "
+                + "student INTEGER)";
 
         db.execSQL(sqlCreateUserTable);
 
@@ -46,14 +48,14 @@ public class LunchDBhelper extends SQLiteOpenHelper {
     }
 
 
-    public void addUser(String email, String uid) {
+    public void addUser(String email, String uid, Integer coffee, Integer student) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        //values.put("name", name);
         values.put("email", email);
         values.put("uid", uid);
-        //values.put("created_at", created_at);
+        values.put("coffee", coffee);
+        values.put("student", student);
 
         // Inserting Row
         long id = db.insert("user", null, values);

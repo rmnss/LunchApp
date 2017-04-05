@@ -55,12 +55,12 @@
         android:layout_centerHorizontal="true" />
 
     <CheckBox
-        android:text="CheckBox"
+        android:text="Student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
-        android:id="@+id/checkBox"
-        android:layout_above="@+id/btnRegister"
+        android:id="@+id/chkStudent"
+        android:layout_marginEnd="25dp"
+        android:layout_below="@+id/txtNewPassword"
         android:layout_alignEnd="@+id/btnRegister"
-        android:layout_marginEnd="25dp" />
+        android:layout_marginTop="51dp" />
 </RelativeLayout>
