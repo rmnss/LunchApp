@@ -141,6 +141,7 @@ public class LoginActivity extends Activity {
                         // Create login session
                         session.setLogin(true);
 
+
                         // Now store the user in SQLite
                         String uid = jObj.getString("uid");
 
