@@ -26,7 +26,7 @@ dependencies {
     })
 
     //kan oppdateres til 25.3.0
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.0.+'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
     testCompile 'junit:junit:4.12'

@@ -1,6 +1,7 @@
 package com.hfda.LunchApp.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -18,7 +19,7 @@ import java.util.List;
 
 import static com.hfda.LunchApp.activity.MainActivity.MY_PERMISSIONS_REQUEST_CAMERA;
 
-public class CoffeeActivity extends AppCompatActivity {
+public class CoffeeActivity extends Activity {
 
     //Må være før qr-scanneren
     private static final int SECOND_ACTIVITY_RESULT_CODE = 0;

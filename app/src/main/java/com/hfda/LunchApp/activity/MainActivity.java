@@ -1,6 +1,7 @@
 package com.hfda.LunchApp.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -33,7 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     //Må være i første acitivity
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
