@@ -26,7 +26,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         String sqlCreateUserTable = "CREATE TABLE user(" +
                 " id INTEGER PRIMARY KEY, "
                 + "email TEXT UNIQUE, "
-                + "uid TEXT,)";
+                + "uid TEXT)";
 
         db.execSQL(sqlCreateUserTable);
 
