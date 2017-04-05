@@ -9,10 +9,10 @@ public class AppConfig {
     // Server user register url
     public static String URL_REGISTER = "https://home.hbv.no/884670/android/register.php";
 
-    // Server user login url
+    // Server user menu url
     public static String URL_MENU = "https://home.hbv.no/884670/android/menu.php";
 
-    // Server user login url
+    // Server user drmenu url
     public static String URL_DR_MENU = "https://home.hbv.no/884670/android/dr_menu.php";
 
     public static String URL_ALLERGI_MENU = "https://home.hbv.no/884670/android/allergy.php";

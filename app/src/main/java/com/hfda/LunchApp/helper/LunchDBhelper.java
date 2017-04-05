@@ -17,6 +17,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
     }
 
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("Laupet", "onCreate Database method was called ");
@@ -24,10 +25,8 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         //Creating database
         String sqlCreateUserTable = "CREATE TABLE user(" +
                 " id INTEGER PRIMARY KEY, "
-                + "name TEXT, "
                 + "email TEXT UNIQUE, "
-                + "uid TEXT, "
-                + "created_at TEXT )";
+                + "uid TEXT,)";
 
         db.execSQL(sqlCreateUserTable);
 
@@ -47,14 +46,14 @@ public class LunchDBhelper extends SQLiteOpenHelper {
     }
 
 
-    public void addUser(String name, String email, String uid, String created_at) {
+    public void addUser(String email, String uid) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("name", name);
+        //values.put("name", name);
         values.put("email", email);
         values.put("uid", uid);
-        values.put("created_at", created_at);
+        //values.put("created_at", created_at);
 
         // Inserting Row
         long id = db.insert("user", null, values);
