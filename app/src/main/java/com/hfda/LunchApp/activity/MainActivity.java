@@ -126,7 +126,6 @@ public class MainActivity extends Activity {
                         r += "merke: " + row.getString("merke") + "\n " +
                                 "type: " + row.getString("type") + "\n " +
                                 "studentPris: " + row.getString("studentPris") + "\n " +
-                                "ansattPris: " + row.getString("ansattPris") + "\n " +
                                 "Allergi: \n\n";
 
                         //Log.d("Laupet", "id: " + row.getInt("idMenu"));
