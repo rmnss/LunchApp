@@ -42,6 +42,8 @@ public class MainActivity extends Activity {
     private LunchDBhelper db;
     private Button btnLogout;
 
+    //
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,8 @@ public class MainActivity extends Activity {
 
 
         //Funcion for getting the menu
-        //getMenu();
+        Log.d("Laupet", "Kaller getMenu");
+        getMenu();
 
 
         // Logout button Click Event
@@ -107,21 +110,38 @@ public class MainActivity extends Activity {
 
             @Override
             public void onResponse(String response) {
-                Log.d("Laupet", "Login Response: " + response.toString());
+                Log.d("Laupet", "Menu Response: " + response.toString());
+                String r = "";
+
+
 
                 try {
-                    JSONArray jObj = new JSONArray(response);
 
+                    TextView menyListe = (TextView)findViewById(R.id.lstView);
+                    JSONArray jObj = new JSONArray(response);
 
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject row = jObj.getJSONObject(i);
-                        Log.d("Laupet", "id: " + row.getInt("idMenu"));
-                        Log.d("Laupet", "merke: " + row.getString("merke"));
-                        Log.d("Laupet", "type: " + row.getString("type"));
-                        Log.d("Laupet", "studentPris: " + row.getString("studentPris"));
-                        Log.d("Laupet", "ansattPris: " + row.getString("ansattPris"));
-                        Log.d("Laupet", "ALERGIER - GETALLERGI FRA DATABASEN");
+
+                        r += "merke: " + row.getString("merke") + "\n " +
+                                "type: " + row.getString("type") + "\n " +
+                                "studentPris: " + row.getString("studentPris") + "\n " +
+                                "ansattPris: " + row.getString("ansattPris") + "\n " +
+                                "Allergi: \n\n";
+
+                        //Log.d("Laupet", "id: " + row.getInt("idMenu"));
+                        //Log.d("Laupet", "merke: " + row.getString("merke"));
+                        //Log.d("Laupet", "type: " + row.getString("type"));
+                        //Log.d("Laupet", "studentPris: " + row.getString("studentPris"));
+                        //Log.d("Laupet", "ansattPris: " + row.getString("ansattPris"));
+                        //Log.d("Laupet", "ALERGIER - GETALLERGI FRA DATABASEN");
+
                         Log.d("Laupet", "-----------");
+                        Log.d("Laupet", r);
+                        Log.d("Laupet", "-----------");
+
+
+                        menyListe.setText(r);
                     }
 
                 } catch (JSONException e) {
@@ -135,7 +155,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Laupet", "Login Error: " + error.getMessage());
+                Log.e("Laupet", "menu Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -157,21 +177,12 @@ public class MainActivity extends Activity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-
-
-
-
-
-
     //CLickevent for coffee
     public void onClickCoffee(View v) {
         Intent i = new Intent(getApplicationContext(), CoffeeActivity.class);
         startActivity(i);
 
     }
-
-
-
 
     private void logoutUser() {
         session.setLogin(false);

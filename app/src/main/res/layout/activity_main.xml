@@ -18,7 +18,16 @@
         android:textSize="24sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:id="@+id/tvMain" />
+
+    <Button
+        android:text="Log out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogOut"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Coffee Activity"
@@ -26,17 +35,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnQR"
-        android:layout_marginBottom="108dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Log out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogOut"
-        android:layout_marginBottom="29dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvMain"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnLogOut">
+
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="73dp"
+            android:gravity="center"/>
+    </ScrollView>
 
 </RelativeLayout>
