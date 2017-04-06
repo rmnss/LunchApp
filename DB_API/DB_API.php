@@ -350,12 +350,16 @@ function setCoffee($coffee, $uuid){
 }
      
 
-    
+//*****************************************************//
+//                        DIV                          //
+//*****************************************************//  
 
+    
+    
     
   //DIV  
 function getOpeningHours() {
-    $sql = "SELECT åpningstider, dag, announcement FROM Åpningstider;";
+    $sql = "select openingHours, day, announcement from OpeningHours;";
     $result = mysqli_query($this->dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
