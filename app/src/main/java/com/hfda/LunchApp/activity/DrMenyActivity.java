@@ -66,8 +66,8 @@ public class DrMenyActivity extends Activity {
                         menu += "merke: " + row.getString("navn") + "\n " +
                                 "Dagens rett: " + row.getString("serveringstid") + "\n " +
                                 "studentPris: " + row.getString("studentPris") + "\n " +
-                                "Dag: " + row.getString("dag") + "\n " +
-                                "Allergi: \n\n";
+                                "Dag: " + row.getString("dag") + "\n \n" +
+                                "Allergi: \n";
 
 
 
