@@ -63,10 +63,9 @@ public class DrMenyActivity extends Activity {
                         JSONObject row = jObj.getJSONObject(i);
 
 
-                        menu += "merke: " + row.getString("navn") + "\n " +
-                                "Dagens rett: " + row.getString("serveringstid") + "\n " +
-                                "studentPris: " + row.getString("studentPris") + "\n " +
-                                "Dag: " + row.getString("dag") + "\n \n" +
+                        menu += "Dagens rett: " + row.getString("navn") + "\n " +
+                                "Serveres klokken: " + row.getString("serveringstid") + "\n " +
+                                "Student pris: " + row.getString("studentPris") + "\n\n " +
                                 "Allergi: \n";
 
 
