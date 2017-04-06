@@ -83,7 +83,56 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         return coffee;
     }
 
+    public void takeCoffee(Integer coffee){
 
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("coffee",coffee); //These Fields should be your String values of actual column names
+
+
+
+        db.update("users", cv, null, null);
+            Log.d("Laupet" ,"Take coddee");
+
+/*
+
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor2 = db.rawQuery("UPDATE user SET coffee = 10 WHERE condition;", null);
+
+        //int coffee = 0;
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            coffee = cursor2.getInt(0);
+
+            cursor2.close();
+        }
+        return coffee;
+        */
+    }
+
+
+
+    public String getUuid(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor2 = db.rawQuery("SELECT uid from user", null);
+
+        String uuid = "";
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            uuid = cursor2.getString(0);
+
+            cursor2.close();
+        }
+        return uuid;
+    }
 
 
     //deleting user from sqlLite DB. this happens when the user logs out
