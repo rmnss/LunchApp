@@ -3,6 +3,7 @@ package com.hfda.LunchApp.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -63,6 +64,26 @@ public class LunchDBhelper extends SQLiteOpenHelper {
 
         Log.d("Laupet", "New user inserted into sqlite: " + id);
     }
+
+
+    public Integer getCoffee(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor2 = db.rawQuery("SELECT coffee from user", null);
+
+        int coffee = 0;
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            coffee = cursor2.getInt(0);
+
+            cursor2.close();
+        }
+        return coffee;
+    }
+
+
 
 
     //deleting user from sqlLite DB. this happens when the user logs out

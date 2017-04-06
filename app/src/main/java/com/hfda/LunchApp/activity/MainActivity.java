@@ -83,6 +83,9 @@ public class MainActivity extends Activity {
         return true;
     }
 
+
+
+
     //Get menu from mySQL
     private void getMenu() {
         // Tag used to cancel the request
@@ -129,23 +132,21 @@ public class MainActivity extends Activity {
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
             }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("email", "test");
-                params.put("password", "test");
-
-                return params;
-            }
-        };
+        })
+        ;
 
         // Adding request to request queue
         Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
+
+
+
+
+
+
+
+
 
     //CLickevent for coffee
     public void onClickCoffee(View v) {
