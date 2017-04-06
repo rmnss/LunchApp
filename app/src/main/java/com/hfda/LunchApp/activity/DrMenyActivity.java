@@ -61,7 +61,7 @@ public class DrMenyActivity extends Activity {
                                 "studentPris: " + row.getString("studentPris") + "\n " +
                                 "Dag: " + row.getString("dag") + "\n " +
                                 "Allergi: \n\n";
-                                id = row.getString("idDrmeny");
+                                //id = row.getString("idDrmeny");
 
                         menyListe.setText(r);
                     }
