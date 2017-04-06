@@ -153,7 +153,7 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
-    //onclickevent for dagens
+    //Clickevent for DailyMenu
     public void dagensClick(View v){
         Log.d("Laupet", "dagensClick");
         Intent intent = new Intent(MainActivity.this, DrMenyActivity.class);
