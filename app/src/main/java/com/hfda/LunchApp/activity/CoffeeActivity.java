@@ -26,8 +26,9 @@ public class CoffeeActivity extends Activity {
 
     //private String klipp = "cOFD87zuFbrYdRfKwz5m";
     //private String nyttKort = "4YzY3vyBEl0gPoxuvCAB";
-    private String klipp =;
+    private String klipp;
     private String nyttKort;
+
 
     private Integer klippNR = 0;
     private Integer kortNr = 0;
