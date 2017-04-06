@@ -105,6 +105,7 @@ public class CoffeeActivity extends Activity {
 
 
 
+    //QRscanner returns code
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -114,6 +115,9 @@ public class CoffeeActivity extends Activity {
 
                 String returnString = data.getStringExtra("keyName");
 
+                Toast.makeText(this, "KODE: "+ returnString, Toast.LENGTH_LONG).show();
+
+/*
                 if (returnString.equals(klipp)) {
                     klippNR += 1;
                     TextView textView = (TextView) findViewById(R.id.txtCoffeeNr);
@@ -122,7 +126,9 @@ public class CoffeeActivity extends Activity {
                     kortNr += 1;
                     //TextView textView2 = (TextView) findViewById(R.id.textView2);
                     //textView2.setText((kortNr.toString()));
-                } else Toast.makeText(this, "Feil kode!", Toast.LENGTH_LONG).show();
+                }
+
+                */
             }
         }
     }
