@@ -42,8 +42,6 @@ public class MainActivity extends Activity {
     private LunchDBhelper db;
     private Button btnLogout;
 
-    //
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +55,9 @@ public class MainActivity extends Activity {
         //Creates database handler
         db = new LunchDBhelper(getApplicationContext());
 
-
-
         //Funcion for getting the menu
         Log.d("Laupet", "Kaller getMenu");
         getMenu();
-
 
         // Logout button Click Event
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +67,6 @@ public class MainActivity extends Activity {
             }
         });
     }
-
 
     //sjekker kameratillatelser, hvis kameraet ikke er tillat vil den spørre om det
     private boolean checkRequestPermission() {
@@ -88,17 +82,6 @@ public class MainActivity extends Activity {
         }
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
 
     //Get menu from mySQL
     private void getMenu() {
@@ -127,18 +110,6 @@ public class MainActivity extends Activity {
                                 "type: " + row.getString("type") + "\n " +
                                 "studentPris: " + row.getString("studentPris") + "\n " +
                                 "Allergi: \n\n";
-
-                        //Log.d("Laupet", "id: " + row.getInt("idMenu"));
-                        //Log.d("Laupet", "merke: " + row.getString("merke"));
-                        //Log.d("Laupet", "type: " + row.getString("type"));
-                        //Log.d("Laupet", "studentPris: " + row.getString("studentPris"));
-                        //Log.d("Laupet", "ansattPris: " + row.getString("ansattPris"));
-                        //Log.d("Laupet", "ALERGIER - GETALLERGI FRA DATABASEN");
-
-                        //Log.d("Laupet", "-----------");
-                        //Log.d("Laupet", r);
-                        //Log.d("Laupet", "-----------");
-
 
                         menyListe.setText(r);
                     }
@@ -180,7 +151,13 @@ public class MainActivity extends Activity {
     public void onClickCoffee(View v) {
         Intent i = new Intent(getApplicationContext(), CoffeeActivity.class);
         startActivity(i);
+    }
 
+    //Clickevent for DailyMenu
+    public void dagensClick(View v){
+        Log.d("Laupet", "dagensClick");
+        Intent intent = new Intent(MainActivity.this, DrMenyActivity.class);
+        startActivity(intent);
     }
 
     private void logoutUser() {

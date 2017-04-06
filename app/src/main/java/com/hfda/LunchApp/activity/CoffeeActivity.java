@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,17 +23,40 @@ public class CoffeeActivity extends Activity {
     //Må være før qr-scanneren
     private static final int SECOND_ACTIVITY_RESULT_CODE = 0;
 
-    private String klipp = "cOFD87zuFbrYdRfKwz5m";
+
+    //private String klipp = "cOFD87zuFbrYdRfKwz5m";
+    //private String nyttKort = "4YzY3vyBEl0gPoxuvCAB";
+    private String klipp;
+    private String nyttKort;
+
+
     private Integer klippNR = 0;
-    private String nyttKort = "4YzY3vyBEl0gPoxuvCAB";
     private Integer kortNr = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coffee);
         checkRequestPermission();
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     //sjekker kameratillatelser, hvis kameraet ikke er tillat vil den spørre om det
     private boolean checkRequestPermission() {
@@ -51,14 +73,19 @@ public class CoffeeActivity extends Activity {
         return true;
     }
 
+
+
+
+    //Onclickevent for qrscanner
     public void onClickQR(View v) {
         if (checkRequestPermission()) {
             Intent intent = new Intent(this, QRActivity.class);
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
             Toast.makeText(this, "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
-
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

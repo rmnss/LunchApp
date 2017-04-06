@@ -19,4 +19,10 @@ public class AppConfig {
 
     public static String URL_DR_MENU_ALLERGI = "https://home.hbv.no/884670/android/drmenuallergy.php";
 
+    public static String URL_REFILL_COFFEE = "https://home.hbv.no/884670/android/drmenuallergy.php";
+
+    public static String URL_BUY_COFFEE = "https://home.hbv.no/884670/android/drmenuallergy.php";
+
+
+
 }

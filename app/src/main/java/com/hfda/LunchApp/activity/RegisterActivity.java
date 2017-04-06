@@ -44,7 +44,6 @@ public class RegisterActivity extends Activity {
 
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
-        txtName = (EditText) findViewById(R.id.txtNewName);
         txtEmail = (EditText) findViewById(R.id.txtNewEmail);
         txtPassword = (EditText) findViewById(R.id.txtNewPassword);
         chkStudent = (CheckBox) findViewById(R.id.chkStudent);
@@ -66,7 +65,7 @@ public class RegisterActivity extends Activity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                String name = txtName.getText().toString().trim();
+                //String name = txtName.getText().toString().trim();
                 String email = txtEmail.getText().toString().trim();
                 String password = txtPassword.getText().toString().trim();
                 boolean student = chkStudent.isChecked();
@@ -79,8 +78,8 @@ public class RegisterActivity extends Activity {
                 }
 
 
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    newUser(name, email, password, intStudent);
+                if (!email.isEmpty() && !password.isEmpty()) {
+                    newUser(email, password, intStudent);
                 }else{
                     Toast.makeText(getApplicationContext(),
                             "Please enter all information above", Toast.LENGTH_LONG).show();
@@ -91,7 +90,7 @@ public class RegisterActivity extends Activity {
 
 
 
-    public void newUser(final String name, final String email, final String password, final Integer student){
+    public void newUser(final String email, final String password, final Integer student){
 
         // Tag used to cancel the request
         String tag_string_req = "req_register";
@@ -141,7 +140,6 @@ public class RegisterActivity extends Activity {
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
                 params.put("student", String.valueOf(student));
