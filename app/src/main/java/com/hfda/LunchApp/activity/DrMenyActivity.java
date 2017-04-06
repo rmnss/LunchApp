@@ -25,7 +25,6 @@ import java.util.Map;
 public class DrMenyActivity extends Activity {
 
 
-
     String allergi;
     String menu;
 
