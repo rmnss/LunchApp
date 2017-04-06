@@ -24,9 +24,9 @@ function __construct($username){
     
     
     
-                                                    //************************//
-                                                    //  FUNctions n queries   //
-                                                    //************************//
+//************************//
+//  FUNctions n queries   //
+//************************//
 
     
     
@@ -40,7 +40,7 @@ function __construct($username){
     
     
     
-function storeUser($email, $password) {
+function storeUser($email, $password, $student) {
     $uuid = uniqid('', true);
     $hash = $this->hashSSHA($password);
     
@@ -49,11 +49,11 @@ function storeUser($email, $password) {
     
     
     
-    $sql = "INSERT INTO users(unique_id, email, encrypted_password, salt, coffee) VALUES(?, ?, ?, ?, 0)";
+    $sql = "INSERT INTO users(unique_id, email, encrypted_password, salt, student, coffee) VALUES(?, ?, ?, ?, ?, 0)";
     
     if ($stmt = mysqli_prepare($this->dbConnection, $sql)) {
         //bind parameters for markers
-        mysqli_stmt_bind_param($stmt, "ssss", $uuid, $email, $encrypted_password, $salt);
+        mysqli_stmt_bind_param($stmt, "sssss", $uuid, $email, $encrypted_password, $salt, $student);
 
         //execute query
         $result = mysqli_stmt_execute($stmt);
@@ -200,6 +200,10 @@ function getDrMenyEmployee() {
 }    
     
 
+
+    
+
+
     
     
     
@@ -216,10 +220,10 @@ function getMenuAllergier($id) {
     $sql = "SELECT Allergier.navn FROM Allergier, Allergier_has_Menu where allergier_idAlergier = idAlergier AND menu_iDMenu = ?";
     
     if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
-    mysqli_stmt_bind_param($stmt, "s" ,$id);
-    mysqli_stmt_execute($stmt);
-    $result = $stmt->get_result();
-    $data = array();
+        mysqli_stmt_bind_param($stmt, "s" ,$id);
+        mysqli_stmt_execute($stmt);
+        $result = $stmt->get_result();
+        $data = array();
         
         while ($row = $result->fetch_array(MYSQLI_ASSOC)){
             $data[] = $row;   
@@ -252,7 +256,104 @@ function getDrMenyAllergier($id) {
 
 }
     
+
+
     
+    
+    
+    
+//*****************************************************//
+//          Queries for QR functionality               //
+//*****************************************************//  
+    
+function checkRefillQR($qrString, $pin){
+    
+    $sql = "SELECT *
+            FROM Coffee
+            WHERE qrString = ? AND pin = ? AND description = 'refill'";
+    
+    if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
+        mysqli_stmt_bind_param($stmt, "ss" ,$qrString, $pin);
+        mysqli_stmt_execute($stmt);
+        $result = $stmt->get_result();
+        $data = array();
+        
+        while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+            return $row;   
+        }
+    }
+}
+    
+function checkBuyQR($qrString){
+    
+    $sql = "SELECT * 
+            FROM Coffee 
+            WHERE description = 'buy' AND qrString= ?";
+    
+    if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
+        mysqli_stmt_bind_param($stmt, "s" ,$qrString);
+        mysqli_stmt_execute($stmt);
+        $result = $stmt->get_result();
+        $data = array();
+        
+        while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+            return $row;   
+        }
+    }
+}
+    
+function checkCoffee($uuid){
+    
+    $sql = "SELECT coffee 
+            FROM users
+            WHERE unique_id = ?";
+    
+    if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
+        mysqli_stmt_bind_param($stmt, "s" ,$uuid);
+        mysqli_stmt_execute($stmt);
+        $result = $stmt->get_result();
+        $data = array();
+        
+        while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+            return $row;   
+        }
+    }
+}
+    
+    
+function setCoffee($coffee, $uuid){
+    
+    $sql = "UPDATE users
+            SET coffee = ?
+            WHERE unique_id = ?";
+    
+    if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
+        mysqli_stmt_bind_param($stmt, "ss" ,$coffee, $uuid);
+        
+        //execute query
+        $result = mysqli_stmt_execute($stmt);
+        
+        
+        // check for successful store
+        $sql = "SELECT coffee 
+                FROM users 
+                WHERE unique_id = ?";
+        
+        $stmt = $this->dbConnection->prepare($sql);
+        $stmt->bind_param("s", $uuid);
+        $stmt->execute();
+        $user = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        return $user;
+    }
+}
+     
+
+    
+
+    
+  //DIV  
 function getOpeningHours() {
     $sql = "SELECT åpningstider, dag, announcement FROM Åpningstider;";
     $result = mysqli_query($this->dbConnection, $sql);
@@ -266,10 +367,6 @@ function getOpeningHours() {
     
     
     
-
-
-
-
 }
     
 ?>
