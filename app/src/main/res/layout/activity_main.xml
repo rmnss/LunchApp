@@ -43,7 +43,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tvMain"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnLogOut">
+        android:layout_above="@+id/btnLogOut"
+        android:id="@+id/scrollView2">
 
 
         <TextView
@@ -55,5 +56,14 @@
             android:layout_marginTop="73dp"
             android:gravity="center"/>
     </ScrollView>
+
+    <Button
+        android:text="Dagens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView2"
+        android:layout_alignEnd="@+id/tvMain"
+        android:id="@+id/btnDR"
+        android:onClick="dagensClick"/>
 
 </RelativeLayout>
