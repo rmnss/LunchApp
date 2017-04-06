@@ -218,7 +218,7 @@ function getDrMenyEmployee() {
 //get allergies on menu
 function getMenuAllergier($id) {
     
-    $sql = "SELECT Allergier.navn FROM Allergier, Allergier_has_Menu where allergier_idAlergier = idAlergier AND menu_iDMenu = ?";
+    $sql = "SELECT Allergier.allergi FROM Allergier, Allergier_has_Menu where allergier_idAlergier = idAlergier AND menu_iDMenu = ?";
     
     if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
         mysqli_stmt_bind_param($stmt, "s" ,$id);
@@ -240,7 +240,7 @@ function getMenuAllergier($id) {
 //get allergies for dailymenu
 function getDrMenyAllergier($id) {
     
-    $sql = "SELECT Allergier.navn FROM Allergier, Allergier_has_DrMeny where allergier_idAlergier = idAlergier AND drmeny_idDRmeny = ?";
+    $sql = "SELECT Allergier.allergi FROM Allergier, Allergier_has_DrMeny where allergier_idAlergier = idAlergier AND drmeny_idDRmeny = ?";
     
     if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
     mysqli_stmt_bind_param($stmt, "s" ,$id);
