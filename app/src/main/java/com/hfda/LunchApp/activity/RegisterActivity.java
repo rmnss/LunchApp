@@ -44,7 +44,6 @@ public class RegisterActivity extends Activity {
 
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
-        txtName = (EditText) findViewById(R.id.txtNewName);
         txtEmail = (EditText) findViewById(R.id.txtNewEmail);
         txtPassword = (EditText) findViewById(R.id.txtNewPassword);
         chkStudent = (CheckBox) findViewById(R.id.chkStudent);

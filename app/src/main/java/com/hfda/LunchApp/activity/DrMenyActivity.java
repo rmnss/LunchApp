@@ -1,11 +1,12 @@
 package com.hfda.LunchApp.activity;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.hfda.LunchApp.R;
 
-public class DrMenyActivity extends AppCompatActivity {
+public class DrMenyActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

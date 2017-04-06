@@ -153,8 +153,8 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
-    //IADFKDKNLDLKSSDLKFLKSDHLKFDSLKHFDSLKHFDSLKHFDSHLKFDSHLKDSFHLKDFSHLKDSFKHFDSLDSLKHF
-    public void dagensClick(){
+    //onclickevent for dagens
+    public void dagensClick(View v){
         Log.d("Laupet", "dagensClick");
         Intent intent = new Intent(MainActivity.this, DrMenyActivity.class);
         startActivity(intent);
