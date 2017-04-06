@@ -158,7 +158,8 @@ function getMenu() {
     
 //======Fetching DrMeny students======
 function getDrMenu() {
-    $sql = "SELECT idDRmeny,navn, serveringstid,studentPris,dag FROM DrMeny";
+    $sql = "SELECT idDRmeny, navn, serveringstid, studentPris, dag FROM DrMeny WHERE dag = DAYNAME(NOW());";
+    
     $result = mysqli_query($this->dbConnection, $sql);
 
     $data = array();
@@ -173,7 +174,7 @@ function getDrMenu() {
     
  //======Fetching Menu employees======
 function getMenuEmployee() {
-    $sql = "SELECT idDRmeny,navn, serveringstid,ansattPris,dag FROM DrMeny";
+    $sql = "SELECT idDRmeny, navn, serveringstid, ansattPris, dag FROM DrMeny WHERE dag = DAYNAME(NOW());";
     $result = mysqli_query($this->dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -350,16 +351,12 @@ function setCoffee($coffee, $uuid){
 }
      
 
-//*****************************************************//
-//                        DIV                          //
-//*****************************************************//  
+    
 
-    
-    
     
   //DIV  
 function getOpeningHours() {
-    $sql = "select openingHours, day, announcement from OpeningHours;";
+    $sql = "SELECT åpningstider, dag, announcement FROM Åpningstider;";
     $result = mysqli_query($this->dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
