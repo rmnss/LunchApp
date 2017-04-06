@@ -1,8 +1,8 @@
 <?php
 
-    $mysql_hostname = "XXXXXXXXX";
-    $mysql_user     = "XXXXXXXXX";
-    $mysql_password = "**************";
-    $mysql_database = "XXXXXXXXX";
+    $mysql_hostname = "ekeberg.mysql.domeneshop.no";
+    $mysql_user     = "ekeberg";
+    $mysql_password = "rf4Das3YPMR3zb5";
+    $mysql_database = "ekeberg";
     
 ?>

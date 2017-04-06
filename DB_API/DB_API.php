@@ -24,9 +24,9 @@ function __construct($username){
     
     
     
-                                        //************************//
-                                        //  FUNctions n queries   //
-                                        //************************//
+                                                    //************************//
+                                                    //  FUNctions n queries   //
+                                                    //************************//
 
     
     
@@ -40,7 +40,7 @@ function __construct($username){
     
     
     
-function storeUser($email, $password, $student) {
+function storeUser($email, $password) {
     $uuid = uniqid('', true);
     $hash = $this->hashSSHA($password);
     
@@ -49,11 +49,11 @@ function storeUser($email, $password, $student) {
     
     
     
-    $sql = "INSERT INTO users(unique_id, email, encrypted_password, salt, student, coffee) VALUES(?, ?, ?, ?, ?, 0)";
+    $sql = "INSERT INTO users(unique_id, email, encrypted_password, salt, coffee) VALUES(?, ?, ?, ?, 0)";
     
     if ($stmt = mysqli_prepare($this->dbConnection, $sql)) {
         //bind parameters for markers
-        mysqli_stmt_bind_param($stmt, "sssss", $uuid, $email, $encrypted_password, $salt, $student);
+        mysqli_stmt_bind_param($stmt, "ssss", $uuid, $email, $encrypted_password, $salt);
 
         //execute query
         $result = mysqli_stmt_execute($stmt);
@@ -251,6 +251,20 @@ function getDrMenyAllergier($id) {
     } 
 
 }
+    
+    
+function getOpeningHours() {
+    $sql = "SELECT åpningstider, dag, announcement FROM Åpningstider;";
+    $result = mysqli_query($this->dbConnection, $sql);
+    $data = array();
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+        $data[] = $row;
+    }
+    //Returnerer en array med spørring.
+    return $data;
+}
+    
+    
     
 
 
