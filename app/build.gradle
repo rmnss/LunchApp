@@ -19,6 +19,12 @@ android {
     }
 }
 
+
+
+
+
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -26,9 +32,10 @@ dependencies {
     })
 
     //kan oppdateres til 25.3.0
-    compile 'com.android.support:appcompat-v7:25.0.+'
-    compile 'com.android.support:design:25.0.+'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
+    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
 }

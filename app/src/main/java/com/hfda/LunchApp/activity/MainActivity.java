@@ -5,12 +5,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -34,9 +44,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     //Må være i første acitivity
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+
+    ListView lv;
+    Fragment fragment;
+
+    DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle abDrawerToggle;
+
+
 
     private SessionManager session;
     private LunchDBhelper db;
@@ -47,26 +66,84 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        lv = (ListView) findViewById(R.id.drawerleft);
+        lv.setOnItemClickListener(this);
+
+        // find the drawer layout from view
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        abDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open_drawer, R.string.close_drawer){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                supportInvalidateOptionsMenu();
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                supportInvalidateOptionsMenu();
+                super.onDrawerClosed(drawerView);
+            }
+        };
+
+        drawerLayout.addDrawerListener(abDrawerToggle);
+
         checkRequestPermission();
 
-        btnLogout = (Button) findViewById(R.id.btnLogOut);
         session = new SessionManager(getApplicationContext());
 
         //Creates database handler
         db = new LunchDBhelper(getApplicationContext());
 
-        //Funcion for getting the menu
-        Log.d("Laupet", "Kaller getMenu");
-        getMenu();
-
-        // Logout button Click Event
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-                logoutUser();
-            }
-        });
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Fragment fragment;
+        switch(position){
+            case 1:
+                fragment = new MenyFragment();
+                break;
+
+            case 2:
+
+                fragment = new DagensFragment();
+                break;
+
+            case 3:
+                fragment = new KaffeFragment();
+                break;
+
+            case 4:
+
+                fragment = new LoggFragment();
+                break;
+
+            default:
+                fragment = new HjemFragment();
+
+
+        }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main_content,fragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+
+        getSupportActionBar().setTitle(getResources().getStringArray(R.array.meny)[position]);
+
+        Toast.makeText(this, "YOu clicked position: "+ position , Toast.LENGTH_LONG).show();
+
+        selectItem(position);
+
+    }
+
+    public void selectItem( int position){
+        drawerLayout.closeDrawer(Gravity.START);
+    }
+
 
     //sjekker kameratillatelser, hvis kameraet ikke er tillat vil den spørre om det
     private boolean checkRequestPermission() {
@@ -83,82 +160,8 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    //Get menu from mySQL
-    private void getMenu() {
-        // Tag used to cancel the request
-        String tag_string_req = "req_menu";
 
-
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_MENU, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                Log.d("Laupet", "Menu Response: " + response.toString());
-                String r = "";
-
-
-
-                try {
-
-                    TextView menyListe = (TextView)findViewById(R.id.lstView);
-                    JSONArray jObj = new JSONArray(response);
-
-                    for (int i = 0; i < jObj.length(); i++) {
-                        JSONObject row = jObj.getJSONObject(i);
-
-                        r += "merke: " + row.getString("merke") + "\n " +
-                                "type: " + row.getString("type") + "\n " +
-                                "studentPris: " + row.getString("studentPris") + "\n " +
-                                "Allergi: \n\n";
-
-                        menyListe.setText(r);
-                    }
-
-                } catch (JSONException e) {
-                    // JSON error
-                    e.printStackTrace();
-                    Log.d("Laupet", "JSONEXception" + e.getMessage());
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Laupet", "menu Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("email", "test");
-                params.put("password", "test");
-
-                return params;
-            }
-        };
-
-        // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }
-
-    //CLickevent for coffee
-    public void onClickCoffee(View v) {
-        Intent i = new Intent(getApplicationContext(), CoffeeActivity.class);
-        startActivity(i);
-    }
-
-    //Clickevent for DailyMenu
-    public void dagensClick(View v){
-        Log.d("Laupet", "dagensClick");
-        Intent intent = new Intent(MainActivity.this, DrMenyActivity.class);
-        startActivity(intent);
-    }
+/*
 
     private void logoutUser() {
         session.setLogin(false);
@@ -169,5 +172,5 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }

@@ -1,71 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/drawer_layout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.hfda.LunchApp.activity.MainActivity">
+
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.hfda.LunchApp.activity.MainActivity">
+    android:background="#dddddd"
+    android:id="@+id/main_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"
-        android:textStyle="normal|bold"
-        android:textSize="24sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:id="@+id/tvMain" />
+</FrameLayout>
 
+<ListView
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:id="@+id/drawerleft"
+    android:layout_gravity="start"
+    android:entries="@array/meny"
+    android:background="#228877"
+    >
 
+</ListView>
 
-    <Button
-        android:text="Log out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogOut"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+<!--
+<ListView
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:id="@+id/drawerright"
+    android:layout_gravity="right"
+    android:entries="@array/festivals"
+    android:background="#228877"
+    >
 
-    <Button
-        android:text="Coffee Activity"
-        android:onClick="onClickCoffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnQR"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+</ListView>
+-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tvMain"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnLogOut"
-        android:id="@+id/scrollView2">
-
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lstView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="73dp"
-            android:gravity="center"/>
-    </ScrollView>
-
-    <Button
-        android:text="Dagens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scrollView2"
-        android:layout_alignEnd="@+id/tvMain"
-        android:id="@+id/btnDR"
-        android:onClick="dagensClick"/>
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
