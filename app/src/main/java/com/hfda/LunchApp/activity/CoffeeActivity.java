@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class CoffeeActivity extends Activity {
     private String scanType;
     private EditText etPin;
     private String qrString;
-
+    private ImageView imgResponse;
 
 
 
@@ -65,12 +66,9 @@ public class CoffeeActivity extends Activity {
         //Checks permissions on camera
         checkRequestPermission();
 
-        //gets number of coffee the user has
+        //gets number of coffee the user has and prints to screen
         int coffee = db.getCoffee();
-
         coffeNr.setText(Integer.toString(coffee));
-
-
 
 
 
@@ -92,6 +90,7 @@ public class CoffeeActivity extends Activity {
     }
 
 
+    //function for pin edit text field.
     public void enableSubmitIfReady() {
         boolean isReady =etPin.getText().toString().length()>3;
         if (isReady){
@@ -110,10 +109,8 @@ public class CoffeeActivity extends Activity {
 
             //starting refill coffee card process
             refillCoffee(uuid, qrString, pin);
-
         }
     }
-
 
 
     //checking camera permissions. Asking for permission if necessary
@@ -130,6 +127,7 @@ public class CoffeeActivity extends Activity {
         }
         return true;
     }
+
 
     //Onclickevent for qr buy coffee
     public void onClickBuyCoffee(View v) {
@@ -171,7 +169,6 @@ public class CoffeeActivity extends Activity {
                 qrString = data.getStringExtra("keyName");
                 scanType = data.getStringExtra("scanType");
 
-
                 //checking if the user want to buy a coffee or refill the coffee punch card
                 if (scanType.equals("buy")){
 
@@ -184,24 +181,12 @@ public class CoffeeActivity extends Activity {
 
                 }else if (scanType.equals("refill")){
 
-                    Log.d("Laupet", "Starting refillcoffee method");
-                    //Starting the process for refill coffee
-
-                    etPin.setVisibility(View.VISIBLE);
-
-
                     //Makes pin edit text visible and forces keyboard to open
+                    etPin.setVisibility(View.VISIBLE);
                     etPin.requestFocus();
                     InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
                     imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
-
-
                 }
-
-
-                //Updates the sqlLite DB with correct coffeenumber
-                Log.d("Laupet", "Kaffe i sqlite: " + db.getCoffee().toString());
-
             }
         }
     }
@@ -231,6 +216,8 @@ public class CoffeeActivity extends Activity {
                         db.setCoffee(coffee);
 
                         coffeNr.setText(Integer.toString(coffee));
+
+                        Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
                     }else{
                         // Error when buying coffee. Get the error message
@@ -270,8 +257,6 @@ public class CoffeeActivity extends Activity {
     }
 
 
-
-
     //Sending request to backend for refilling coffe punch card
     private void refillCoffee(final String uuid, final String qr, final String pin) {
         // Tag used to cancel the request
@@ -296,6 +281,9 @@ public class CoffeeActivity extends Activity {
 
                         coffeNr.setText(Integer.toString(coffee));
 
+                        Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
+
+
                     }else{
                         // Error when refilling coffee card Get the error message
                         String errorMsg = obj.getString("error_msg");
@@ -314,8 +302,7 @@ public class CoffeeActivity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Laupet", "menu Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 
