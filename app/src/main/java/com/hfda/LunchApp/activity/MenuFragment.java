@@ -21,7 +21,6 @@ import com.hfda.LunchApp.app.AppController;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,10 +28,10 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenyFragment extends Fragment {
+public class MenuFragment extends Fragment {
 
 
-    public MenyFragment() {
+    public MenuFragment() {
         // Required empty public constructor
     }
 
@@ -41,7 +40,7 @@ public class MenyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_meny, container, false);
+        View view= inflater.inflate(R.layout.fragment_menu, container, false);
         getMenu();
         return view;
     }
@@ -71,10 +70,9 @@ public class MenyFragment extends Fragment {
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject row = jObj.getJSONObject(i);
 
-                        r += "merke: " + row.getString("merke") + "\n " +
-                                "type: " + row.getString("type") + "\n " +
-                                "studentPris: " + row.getString("studentPris") + "\n " +
-                                "Allergi: \n\n";
+                        r += "Merke: " + row.getString("merke") + "\n" +
+                                "Type: " + row.getString("type") + "\n" +
+                                "Studentpris: " + row.getString("studentPris") + "\n\n";
 
                         tvMeny.setText(r);
                     }

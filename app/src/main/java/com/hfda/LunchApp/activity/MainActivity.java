@@ -1,48 +1,30 @@
 package com.hfda.LunchApp.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.hfda.LunchApp.app.AppConfig;
-import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.LunchDBhelper;
 import com.hfda.LunchApp.helper.SessionManager;
 
 import com.hfda.LunchApp.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
@@ -95,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Creates database handler
         db = new LunchDBhelper(getApplicationContext());
 
+        Fragment fragment;
+        fragment = new HomeFragment();
+        fragmentTransaction(0, fragment);
     }
 
     @Override
@@ -103,29 +88,38 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Fragment fragment;
         switch(position){
             case 1:
-                fragment = new MenyFragment();
+                fragment = new MenuFragment();
+                fragmentTransaction(position, fragment);
                 break;
 
             case 2:
 
-                fragment = new DagensFragment();
+                fragment = new SpecialFragment();
+                fragmentTransaction(position, fragment);
                 break;
 
             case 3:
-                fragment = new KaffeFragment();
+                fragment = new CoffeeFragment();
+                fragmentTransaction(position, fragment);
                 break;
 
             case 4:
 
-                fragment = new LoggFragment();
+                logoutUser();
                 break;
 
             default:
-                fragment = new HjemFragment();
+                fragment = new HomeFragment();
+                fragmentTransaction(position, fragment);
 
 
         }
 
+
+
+    }
+
+    public void fragmentTransaction(int position, Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main_content,fragment);
         ft.addToBackStack(null);
@@ -134,10 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         getSupportActionBar().setTitle(getResources().getStringArray(R.array.meny)[position]);
 
-        Toast.makeText(this, "YOu clicked position: "+ position , Toast.LENGTH_LONG).show();
-
         selectItem(position);
-
     }
 
     public void selectItem( int position){
@@ -161,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-/*
+
 
     private void logoutUser() {
         session.setLogin(false);
@@ -172,5 +163,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
-    }*/
+    }
 }

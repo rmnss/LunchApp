@@ -12,10 +12,10 @@ import com.hfda.LunchApp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KaffeFragment extends Fragment {
+public class CoffeeFragment extends Fragment {
 
 
-    public KaffeFragment() {
+    public CoffeeFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class KaffeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kaffe, container, false);
+        return inflater.inflate(R.layout.fragment_coffee, container, false);
     }
 
 }

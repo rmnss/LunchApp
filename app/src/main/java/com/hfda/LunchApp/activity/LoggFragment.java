@@ -1,6 +1,7 @@
 package com.hfda.LunchApp.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,5 +27,6 @@ public class LoggFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_logg, container, false);
     }
+
 
 }
