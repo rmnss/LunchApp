@@ -83,7 +83,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         return coffee;
     }
 
-    public void takeCoffee(Integer coffee){
+    public void setCoffee(Integer coffee){
 
         SQLiteDatabase db = this.getWritableDatabase();
 

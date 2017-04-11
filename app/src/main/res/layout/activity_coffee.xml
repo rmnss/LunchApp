@@ -58,4 +58,18 @@
         android:layout_below="@+id/btnQR"
         android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:layout_below="@+id/txtCoffeeNr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:id="@+id/etPin"
+        android:hint="Please enter Pin"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        />
+
 </RelativeLayout>
