@@ -40,7 +40,7 @@
 
     <Button
         android:text="Buy Coffee"
-        android:onClick="onClickQR"
+        android:onClick="onClickBuyCoffee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnQR"
@@ -50,7 +50,7 @@
 
     <Button
         android:text="Refill punch card"
-        android:onClick="onClickQR"
+        android:onClick="onClickRefillPunch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"

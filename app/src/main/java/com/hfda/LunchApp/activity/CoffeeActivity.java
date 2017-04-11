@@ -38,14 +38,10 @@ public class CoffeeActivity extends Activity {
     private static final int SECOND_ACTIVITY_RESULT_CODE = 0;
 
     private TextView coffeNr;
-    //private String klipp = "cOFD87zuFbrYdRfKwz5m";
-    //private String nyttKort = "4YzY3vyBEl0gPoxuvCAB";
-    private String klipp;
-    private String nyttKort;
     private LunchDBhelper db;
+    private String scanType;
 
-    private Integer klippNR = 0;
-    private Integer kortNr = 0;
+
 
 
 
@@ -56,11 +52,8 @@ public class CoffeeActivity extends Activity {
 
         coffeNr = (TextView) findViewById(R.id.txtCoffeeNr);
 
-
-
         //Creates database handler
         db = new LunchDBhelper(getApplicationContext());
-
 
         //Checks permissions on camera
         checkRequestPermission();
@@ -69,9 +62,6 @@ public class CoffeeActivity extends Activity {
         int coffee = db.getCoffee();
 
         coffeNr.setText(Integer.toString(coffee));
-
-
-
 
     }
 
@@ -82,13 +72,7 @@ public class CoffeeActivity extends Activity {
 
 
 
-
-
-
-
-
-
-    //sjekker kameratillatelser, hvis kameraet ikke er tillat vil den spørre om det
+    //checking camera permissions. Asking for permission if necessary
     private boolean checkRequestPermission() {
         int camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();
@@ -103,13 +87,27 @@ public class CoffeeActivity extends Activity {
         return true;
     }
 
-
-
-
-    //Onclickevent for qrscanner
-    public void onClickQR(View v) {
+    //Onclickevent for qr buy coffee
+    public void onClickBuyCoffee(View v) {
+        Log.d("Laupet", "ClickEvent for buyCoffee");
         if (checkRequestPermission()) {
             Intent intent = new Intent(this, QRActivity.class);
+            intent.putExtra("scanType","buy");
+            startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
+        } else
+            Toast.makeText(this, "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
+
+
+    }
+
+    //Onclickevent for qr refill coffee card
+    public void onClickRefillPunch(View v) {
+        Log.d("Laupet", "ClickEvent for refillCoffee");
+
+        if (checkRequestPermission()) {
+            Intent intent = new Intent(this, QRActivity.class);
+            intent.putExtra("scanType","refill");
+
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
             Toast.makeText(this, "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
@@ -126,109 +124,62 @@ public class CoffeeActivity extends Activity {
             if (resultCode == RESULT_OK) {
 
                 String returnString = data.getStringExtra("keyName");
+                scanType = data.getStringExtra("scanType");
 
-
-
-                //BUY COFFEE
-                //cOFD87zuFbrYdRfKwz5m
-
-                //Refill
-                //4YzY3vyBEl0gPoxuvCAB
-                //db.getUuid()
-                Log.d("Laupet", "Nu kjører vi");
-
+                //Gets the users uuid from sqlLite
                 String uuid = db.getUuid();
-                Log.d("Laupet", "Nu kjører vi");
 
-                buyCoffee(uuid, returnString);
-                Log.d("Laupet", "Nu kjører vi");
+                //checking if the user want to buy a coffee or refill the coffee punch card
+                if (scanType.equals("buy")){
 
-                //db.takeCoffee(20);
-                Log.d("Laupet", "Nu kjører vi");
+                    //Starting the process for buying a coffee
+                    buyCoffee(uuid, returnString);
 
-                Integer nrCoffee = db.getCoffee();
+                }else if (scanType.equals("refill")){
 
-                //coffeNr.setText(Integer.toString(nrCoffee));
-                Log.d("Laupet", "Text updated");
-
-
-/*
-                if (returnString.equals(klipp)) {
-                    klippNR += 1;
-                    TextView textView = (TextView) findViewById(R.id.txtCoffeeNr);
-                    textView.setText(klippNR.toString());
-                } else if (returnString.equals(nyttKort)) {
-                    kortNr += 1;
-                    //TextView textView2 = (TextView) findViewById(R.id.textView2);
-                    //textView2.setText((kortNr.toString()));
+                    //Starting the process for refill coffee
+                    buyCoffee(uuid, returnString);
                 }
 
-                */
+
+                //Updates the sqlLite DB with correct coffeenumber
+                Log.d("Laupet", "Kaffe i sqlite: " + db.getCoffee().toString());
+
             }
         }
     }
 
 
 
-
-
-
-
-    //Get menu from mySQL
+    //Sending request to backend for buying coffee
     private void buyCoffee(final String uuid, final String qr) {
         // Tag used to cancel the request
-        String tag_string_req = "req_menu";
-
-
+        String tag_string_req = "buy_coffee";
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_BUY_COFFEE, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d("Laupet", "BUY Coffee Response: " + response.toString());
-                String r = "";
-
-
+                Log.d("Laupet", "BUY Coffee Response: " + response);
 
                 try {
-
-                    //TextView menyListe = (TextView)findViewById(R.id.lstView);
-                    //JSONArray jObj = new JSONArray(response);
-
                     JSONObject obj = new JSONObject(response);
 
+                    boolean error = obj.getBoolean("error");
 
+                    // Check for error node in json
+                    if (!error) {
+                        //:TODO Give visual feedback if OK. Green screen? Big V?
+                        //Buying coffee is OK
+                        int coffee = obj.getInt("coffee");
+                        db.takeCoffee(coffee);
 
-                    coffeNr.setText(obj.getString("coffee"));
+                        coffeNr.setText(Integer.toString(coffee));
 
-
-                    //JSONObject nrCoffee1 = obj.getString("coffee");
-
-                    //Log.d("Laupet", nrCoffee1.getString("coffee"))
-
-
-                        //Log.d("Laupet", "STRING: " + obj.getString("coffee"));
-
-                   // for (int i = 0; i < jObj.length(); i++) {
-                      //  JSONObject row = jObj.getJSONObject(i);
-
-
-
-
-
-
-                        //Log.d("Laupet", "Coffenr: " + row.getString("coffee"));
-
-                        //coffeNr.setText(row.getString("coffee"));
-
-/*
-                        r += "merke: " + row.getString("merke") + "\n " +
-                                "type: " + row.getString("type") + "\n " +
-                                "studentPris: " + row.getString("studentPris") + "\n " +
-                                "Allergi: \n\n";
-
-                        menyListe.setText(r);
-                        */
-                    //}
+                    }else{
+                        // Error when buying coffee. Get the error message
+                        String errorMsg = obj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
 
                 } catch (JSONException e) {
                     // JSON error
@@ -258,7 +209,6 @@ public class CoffeeActivity extends Activity {
         };
 
         // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
