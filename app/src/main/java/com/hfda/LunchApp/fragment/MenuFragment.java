@@ -1,4 +1,4 @@
-package com.hfda.LunchApp.activity;
+package com.hfda.LunchApp.fragment;
 
 
 import android.os.Bundle;

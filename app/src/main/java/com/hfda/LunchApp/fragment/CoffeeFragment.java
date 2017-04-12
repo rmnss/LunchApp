@@ -1,4 +1,4 @@
-package com.hfda.LunchApp.activity;
+package com.hfda.LunchApp.fragment;
 
 
 import android.Manifest;
@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hfda.LunchApp.R;
+import com.hfda.LunchApp.activity.QRActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.LunchDBhelper;
