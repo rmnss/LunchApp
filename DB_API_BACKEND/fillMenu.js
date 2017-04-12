@@ -1,6 +1,11 @@
 $(function (){
-    
 
+    /*=========================================================
+
+                    Populerer listen "liste"
+                        
+=========================================================*/
+    
     //Sender forespørsel om data til API'et.
     //Hvis den blir success kalles funksjonen fillTable som populerer den faktiske tabellen
    $.ajax({
@@ -8,7 +13,7 @@ $(function (){
        url: 'DB_API_BACKEND.php',
        data: { 'action' : 'getMenu' },
        success: function(data) {
-           console.log('success', data); //Enable denne for debuging
+           //console.log('success', data); //Enable denne for debuging
            fillTable(data);
        },
        error: function(xhr, desc, err) {
@@ -16,6 +21,9 @@ $(function (){
             console.log("Details: " + desc + "\nError:" + err);
         }
    });
+    
+    
+    
     
     
     //Populerer tabellen
@@ -29,19 +37,16 @@ $(function (){
             //#Liste: ID på tabellen som skal fylles
             //id og Navn er kolonnenavn fra databasen
            $("#liste").append(
-            '<tr id="' + object[index]["idMenu"] + '">' +
-                '<td contenteditable="true">' + object[index]["idMenu"] + '</td>' +
+            '<tr  id="' + object[index]["idMenu"] + '" class="rad">' +
+                '<td>' + object[index]["idMenu"] + '</td>' +
                 '<td contenteditable="true">' + object[index]["kategori"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["merke"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["type"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["studentPris"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["ansattPris"] + '</td>' +  
     '<td>' +
-               '<span class="table-remove glyphicon glyphicon-remove"></span>' +
-    '</td>' +
-    '<td>' + 
-               '<span class="table-up glyphicon glyphicon-arrow-up"></span>' +
-               '<span class="table-down glyphicon glyphicon-arrow-down"></span>' +
+               '<span id ="'+ object[index]["idMenu"] +'" class="table-remove glyphicon glyphicon-remove delete-row">'+
+               '</span>' +
     '</td>' +
                
             '</tr>');
