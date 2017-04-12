@@ -18,7 +18,10 @@ elseif ($_POST['action'] == "getToday"){
   
     delRow($dbConnection, $_POST['id']);   
 
- 
+    
+ }elseif ($_POST['action'] == "delRowSpecial"){
+  
+    delRowSpecial($dbConnection, $_POST['id']);  
 
 }else{
     echo("Error: POST matchet ikke en funksjon");
@@ -70,6 +73,21 @@ function getToday($dbConnection) {
 
 
 function delRow($dbConnection, $id) {
+    
+    if ($stmt = mysqli_prepare($dbConnection, "DELETE FROM Menu WHERE idMenu = ?")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
+
+function delRowSpecial($dbConnection, $id) {
     
     if ($stmt = mysqli_prepare($dbConnection, "DELETE FROM Menu WHERE idMenu = ?")) {
         //bind parameters for markers

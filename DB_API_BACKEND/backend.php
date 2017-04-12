@@ -50,7 +50,7 @@
       
       <!-- This is our clonable table line -->
       <tr class="hide">
-        <td contenteditable="true">idMenu</td>
+        <td> </td>
         <td contenteditable="true">kategori</td>
           <td contenteditable="true">merke</td>
         <td contenteditable="true">type</td>
@@ -59,6 +59,10 @@
         <td>
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
+          <td>
+               <span id = new class= "table-up glyphicon glyphicon glyphicon-floppy-disk save-row">
+               </span>
+    </td>
       </tr>
         </tbody>
     </table>

@@ -10,6 +10,55 @@ var $EXPORT = $('#export');
     
 
     
+/*=========================================================
+
+                    Save edited row
+                        
+=========================================================*/
+    
+     $(document).on('click','.save-row',function(){
+        //alert(document.getElementById(".save-row").rows[1].cells[2].innerHTML);
+        
+        $id = this.id;
+         
+         
+         
+         
+var t = document.getElementById("table");
+var trs = t.getElementsByTagName("tr");
+var tds = null;
+
+
+    
+           
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveRow', id: $id},
+                success: function(data) {
+                    
+                    alert($id);
+                    
+                    
+                  
+                    
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+               
+    });
+    
+    
+    
+
+    
+    
     
 
     
@@ -39,12 +88,51 @@ $('.table-add').click(function () {
         
         
         $id = this.id;
+        
+        
+        //sletter tr taggen. går i hierarki  td -> tr
+        var elementDelete = $(this).parent().parent();
+        elementDelete.remove();
+       
     
            
             $.ajax({
                 type: 'POST',
                 url: 'DB_API_BACKEND.php',
                 data: {action: 'delRow', id: $id},
+                success: function(data) {
+                    
+                   
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+               
+    });
+    
+    
+    
+    /*----------------------
+    
+    Deleting todays special
+    
+    ------------------------*/
+    
+     $(document).on('click','.delete-row-special',function(){
+        
+        
+        $id = this.id;
+    
+           
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'delRowSpecial', id: $id},
                 success: function(data) {
                     
                     alert($id);
