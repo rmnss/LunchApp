@@ -68,9 +68,9 @@ public class CoffeeFragment extends Fragment {
 
         Log.d("Laupet","1");
         Log.d("Laupet","2");
-        EditText etPin = (EditText) getView().findViewById(R.id.etPin);
+        EditText etPin = (EditText) view.findViewById(R.id.etPin);
         Log.d("Laupet","3");
-        TextView coffeNr = (TextView)getView().findViewById(R.id.txtCoffeeNr);
+        TextView coffeNr = (TextView)view.findViewById(R.id.txtCoffeeNr);
 
         //TextView tvMeny = (TextView)getView().findViewById(R.id.tvMeny);
         //Creates database handler
