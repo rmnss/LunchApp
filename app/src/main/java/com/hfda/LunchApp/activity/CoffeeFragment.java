@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,22 +56,24 @@ public class CoffeeFragment extends Fragment {
     //private EditText etPin;
     private String qrString;
     private ImageView imgResponse;
-
-
+    EditText etPin;
+    TextView coffeNr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view= inflater.inflate(R.layout.fragment_coffee , container, false);
+        View view = inflater.inflate(R.layout.fragment_coffee, container, false);
+
+        etPin = (EditText) view.findViewById(R.id.etPin);
 
 
-        Log.d("Laupet","1");
-        Log.d("Laupet","2");
+        Log.d("Laupet", "2");
         EditText etPin = (EditText) view.findViewById(R.id.etPin);
-        Log.d("Laupet","3");
-        TextView coffeNr = (TextView)view.findViewById(R.id.txtCoffeeNr);
+        Log.d("Laupet", "3");
+        TextView coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
+        Log.d("Laupet", "4");
 
         //TextView tvMeny = (TextView)getView().findViewById(R.id.tvMeny);
         //Creates database handler
@@ -79,36 +82,89 @@ public class CoffeeFragment extends Fragment {
         //Checks permissions on camera
         checkRequestPermission();
 
-        //gets number of coffee the user has and prints to screen
+
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d("Laupet", "On View Created");
+
+        //view.findViewById(R.id.yourId).setOnClickListener(this);
+        //or
+        //getActivity().findViewById(R.id.yourId).setOnClickListener(this);
+
+
+        //coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
+        coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
+        //TextView coffeNr = (TextView)view.findViewById(R.id.txtCoffeeNr);
         int coffee = db.getCoffee();
         coffeNr.setText(Integer.toString(coffee));
+        //coffeNr.setText("test");
+
+        //EditText etPin = (EditText) view.findViewById(R.id.etPin);
 
 
+        //gets number of coffee the user has and prints to screen
 
+
+        // Displaying the user details on the screen
+        //coffeNr.setText("kjhbguhjg");
+
+
+        Log.d("Laupet", "5");
         // listner for pin EditText. This to automatically submit when 4 numbers have been written
         etPin.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
                 enableSubmitIfReady();
+                Log.d("Laupet", "6");
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
 
-        return view;
+
+        coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
+        final Button btnBuy = (Button) view.findViewById(R.id.btnQR);
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                onClickBuyCoffe1();
+
+                // Perform action on click
+            }
+        });
+
+        final Button btnRefill = (Button) view.findViewById(R.id.btnRefill);
+        btnRefill.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+    Log.d("Laupet","12");
+                onClickRefillPunch();
+
+                // Perform action on click
+            }
+        });
+
+
     }
+
 
     //function for pin edit text field.
     public void enableSubmitIfReady() {
 
         EditText etPin = (EditText) getView().findViewById(R.id.etPin);
 
-        boolean isReady =etPin.getText().toString().length()>3;
-        if (isReady){
+        boolean isReady = etPin.getText().toString().length() > 3;
+        if (isReady) {
 
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(etPin.getWindowToken(), 0);
@@ -147,11 +203,11 @@ public class CoffeeFragment extends Fragment {
 
 
     //Onclickevent for qr buy coffee
-    public void onClickBuyCoffee(View v) {
+    public void onClickBuyCoffe1() {
         Log.d("Laupet", "ClickEvent for buyCoffee");
         if (checkRequestPermission()) {
             Intent intent = new Intent(getActivity(), QRActivity.class);
-            intent.putExtra("scanType","buy");
+            intent.putExtra("scanType", "buy");
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
             Toast.makeText(getActivity(), "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
@@ -160,18 +216,17 @@ public class CoffeeFragment extends Fragment {
     }
 
     //Onclickevent for qr refill coffee card
-    public void onClickRefillPunch(View v) {
+    public void onClickRefillPunch() {
         Log.d("Laupet", "ClickEvent for refillCoffee");
 
         if (checkRequestPermission()) {
             Intent intent = new Intent(getActivity(), QRActivity.class);
-            intent.putExtra("scanType","refill");
+            intent.putExtra("scanType", "refill");
 
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
             Toast.makeText(getActivity(), "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
     }
-
 
 
     //QRscanner returns code
@@ -190,7 +245,7 @@ public class CoffeeFragment extends Fragment {
                 scanType = data.getStringExtra("scanType");
 
                 //checking if the user want to buy a coffee or refill the coffee punch card
-                if (scanType.equals("buy")){
+                if (scanType.equals("buy")) {
 
                     //Gets the users uuid from sqlLite
                     String uuid = db.getUuid();
@@ -199,18 +254,17 @@ public class CoffeeFragment extends Fragment {
                     buyCoffee(uuid, qrString);
                     etPin.setVisibility(View.INVISIBLE);
 
-                }else if (scanType.equals("refill")){
+                } else if (scanType.equals("refill")) {
 
                     //Makes pin edit text visible and forces keyboard to open
                     etPin.setVisibility(View.VISIBLE);
                     etPin.requestFocus();
-                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
                 }
             }
         }
     }
-
 
 
     //Sending request to backend for buying coffee
@@ -222,7 +276,7 @@ public class CoffeeFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 Log.d("Laupet", "BUY Coffee Response: " + response);
-                TextView coffeNr = (TextView)getView().findViewById(R.id.txtCoffeeNr);
+                TextView coffeNr = (TextView) getView().findViewById(R.id.txtCoffeeNr);
 
 
                 try {
@@ -241,7 +295,7 @@ public class CoffeeFragment extends Fragment {
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
-                    }else{
+                    } else {
                         // Error when buying coffee. Get the error message
                         String errorMsg = obj.getString("error_msg");
                         Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
@@ -287,7 +341,7 @@ public class CoffeeFragment extends Fragment {
 
             @Override
             public void onResponse(String response) {
-                TextView coffeNr = (TextView)getView().findViewById(R.id.txtCoffeeNr);
+                TextView coffeNr = (TextView) getView().findViewById(R.id.txtCoffeeNr);
 
                 Log.d("Laupet", "refill Coffee punch card: " + response);
 
@@ -308,7 +362,7 @@ public class CoffeeFragment extends Fragment {
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
 
-                    }else{
+                    } else {
                         // Error when refilling coffee card Get the error message
                         String errorMsg = obj.getString("error_msg");
                         Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
@@ -326,7 +380,7 @@ public class CoffeeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Laupet", "menu Error: " + error.getMessage());
-                Toast.makeText(getActivity().getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 
