@@ -80,11 +80,10 @@ public class HomeFragment extends Fragment {
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject row = jObj.getJSONObject(i);
 
-                        r += "Day: " + row.getString("day") + "\n" +
-                                "Opening Hours: " + row.getString("openingHours") + "\n\n";
+                        r +=  row.getString("day").substring(0,1).toUpperCase() + row.getString("day").substring(1).toLowerCase() + "\n" + row.getString("openingHours") + "\n\n";
 
                         Log.d("Laupet", r);
-                        tvOpening.setText(r);
+                        tvOpening.setText("Opening hours" + "\n\n" + r);
                     }
 
                 } catch (JSONException e) {
