@@ -15,8 +15,8 @@
  
   
   <ul>
-    <li>An editable table that exports a hash array. Dynamically compiles rows from headers</li> 
-    <li>Simple / powerful features such as add row, remove row, move row up/down.</li>
+    <li>Trykk på cellene for å redigere, enkelte celler vil ikke være mulig å redigere grunnet sikkerhet</li>
+      <li>Press a cell for editing options, some cells may not be changed for security reasons</li> 
   </ul>
   
     
