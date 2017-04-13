@@ -50,7 +50,7 @@ $(function (){
     '</td>' +
                
     '<td>' +
-               '<span id ="'+ object[index]["idMenu"] +'-d" class="table-save glyphicon glyphicon glyphicon-floppy-disk save-row">'+
+               '<span id ="'+ object[index]["idMenu"] +'-d" class="table-save glyphicon glyphicon glyphicon-floppy-disk save-row-today">'+
                '</span>' +
     '</td>' +
                

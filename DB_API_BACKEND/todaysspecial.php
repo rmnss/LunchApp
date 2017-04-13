@@ -24,7 +24,7 @@
     
     
   <div id="table" class="table-editable">
-    <table class="table table-hover table-responsive">
+    <table class="table table-hover table-responsive" id ="liste">
         <thead>
       <tr>
         <th>idDRmeny</th>
@@ -37,7 +37,7 @@
         <th></th>
       </tr>
         </thead>
-        <tbody id="liste">
+        <tbody id="listeBody">
       
       <!-- This is our clonable table line -->
       <tr class="hide">
@@ -61,6 +61,7 @@
     
 
     
+
 
 
     
