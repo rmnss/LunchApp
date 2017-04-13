@@ -36,15 +36,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     ListView lv;
     Fragment fragment;
-
-    DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle abDrawerToggle;
-
-
-
     private SessionManager session;
     private LunchDBhelper db;
     private Button btnLogout;
+
+
+    private ActionBarDrawerToggle abDrawerToggle;//Toggle
+    DrawerLayout drawerLayout;//Layout
+    private String mActivityTitle;//String that will update the title in the Action Bar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +53,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lv = (ListView) findViewById(R.id.drawerleft);
         lv.setOnItemClickListener(this);
 
-        // find the drawer layout from view
+        //Add hamburger menu icons
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
+        // find the drawer layout from view
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        abDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open_drawer, R.string.close_drawer){
+
+
+
+        abDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+            }
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+            }
+        };
+        /*abDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open_drawer, R.string.close_drawer){
             @Override
             public void onDrawerOpened(View drawerView) {
                 supportInvalidateOptionsMenu();
@@ -69,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 supportInvalidateOptionsMenu();
                 super.onDrawerClosed(drawerView);
             }
-        };
+        };*/
 
         drawerLayout.addDrawerListener(abDrawerToggle);
 
@@ -79,47 +95,43 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //Creates database handler
         db = new LunchDBhelper(getApplicationContext());
-
         Fragment fragment;
         fragment = new HomeFragment();
         fragmentTransaction(0, fragment);
+
+        setupDrawer();
     }
 
+    //helper method that we will call from onCreate() after the drawer items have been set up
+    private void setupDrawer() {
+        abDrawerToggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.setDrawerListener(abDrawerToggle);
+    }
+
+    //Makes a case for each button in the navigation drawer:
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         Fragment fragment;
         switch(position){
             case 1:
                 fragment = new MenuFragment();
                 fragmentTransaction(position, fragment);
                 break;
-
             case 2:
-
                 fragment = new SpecialFragment();
                 fragmentTransaction(position, fragment);
                 break;
-
             case 3:
                 fragment = new CoffeeFragment();
                 fragmentTransaction(position, fragment);
                 break;
-
             case 4:
-
                 logoutUser();
                 break;
-
             default:
                 fragment = new HomeFragment();
                 fragmentTransaction(position, fragment);
-
-
         }
-
-
-
     }
 
     public void fragmentTransaction(int position, Fragment fragment){
@@ -130,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ft.commit();
 
         getSupportActionBar().setTitle(getResources().getStringArray(R.array.meny)[position]);
-
         selectItem(position);
     }
 
@@ -154,14 +165,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
-
-
-
     private void logoutUser() {
         session.setLogin(false);
-
         db.deleteUsers();
-
         // Launching the login activity
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);

@@ -13,6 +13,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class QRActivity extends Activity implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
+
     private String scanType;
 
     @Override
