@@ -33,7 +33,7 @@
     
   <div id="table" class="table-editable">
     <span class="table-add glyphicon glyphicon-plus"></span>
-    <table class="table table-hover table-responsive">
+    <table class="table table-hover table-responsive" id ="listeMenu">
         <thead>
       <tr>
         <th>idMenu</th>
@@ -46,11 +46,11 @@
         <th></th>
       </tr>
         </thead>
-        <tbody id="liste">
+        <tbody id="listeBody">
       
       <!-- This is our clonable table line -->
       <tr class="hide">
-        <td> </td>
+        <td> new </td>
         <td contenteditable="true">kategori</td>
           <td contenteditable="true">merke</td>
         <td contenteditable="true">type</td>
@@ -60,7 +60,7 @@
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
           <td>
-               <span id = new class= "table-up glyphicon glyphicon glyphicon-floppy-disk save-row-today">
+               <span id = 101010 class= "table-save glyphicon glyphicon-floppy-disk save-row-menu-new">
                </span>
     </td>
       </tr>

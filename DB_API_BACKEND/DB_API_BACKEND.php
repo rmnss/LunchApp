@@ -19,6 +19,10 @@ elseif ($_POST['action'] == "getToday"){
     delRow($dbConnection, $_POST['id']);   
 
     
+    
+      /*-----------------------
+        Today's special
+    -----------------------*/
  }elseif ($_POST['action'] == "delRowSpecial"){
   
     delRowSpecial($dbConnection, $_POST['id']);  
@@ -34,11 +38,46 @@ elseif ($_POST['action'] == "getToday"){
     
     
     saveRow($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $ansattpris, $dag); 
+    
+    
+    /*-----------------------
+            Menu elements
+    -----------------------*/
+    }elseif ($_POST['action'] == "saveRowMenu"){
+  
+    $idmenu = $_POST['idmenu'];
+    $kategori = $_POST['kategori'];  
+    $merke = $_POST['merke'];  
+    $type = $_POST['type'];  
+    $studentPris = $_POST['studentPris'];  
+    $ansattPris = $_POST['ansattPris'];
+    
+    
+    saveRowMenu($dbConnection, $idmenu, $kategori, $merke, $type, $studentPris, $ansattPris); 
+    
+    
+    /*---------------------------------------------------------------------
+    Creating new row in DB -> for use of innerHTML in JS
+    ---------------------------------------------------------------------*/
+    }elseif ($_POST['action'] == "saveRowMenuCreateRow"){
+  
+
+    $kategori = $_POST['kategori'];  
+    $merke = $_POST['merke'];  
+    $type = $_POST['type'];  
+    $studentPris = $_POST['studentPris'];  
+    $ansattPris = $_POST['ansattPris'];
+    
+    
+    saveRowMenuCreateRow($dbConnection, $kategori, $merke, $type, $studentPris, $ansattPris); 
+    
    
 
 }else{
     echo("Error: POST matchet ikke en funksjon");
 }
+
+
 
 
 
@@ -116,12 +155,14 @@ function delRowSpecial($dbConnection, $id) {
 
 /*=========================================================
 
-                        Insert
+                        Update statements
                         
 =========================================================*/
 
 
-
+/*-----------------------
+        Today's special
+    -----------------------*/
 function saveRow ($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $ansattpris, $dag){
     
  if ($stmt = mysqli_prepare($dbConnection, "UPDATE DrMeny SET navn= ?, serveringstid= ?, studentPris= ?, ansattPris=? WHERE idDRmeny= ?;")) {
@@ -134,6 +175,53 @@ function saveRow ($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $
         
     }
 }
+
+
+
+/*-----------------------
+        Menu
+    -----------------------*/
+function saveRowMenu ($dbConnection, $idmenu, $kategori, $merke, $type, $studentPris, $ansattPris){
+    
+ if ($stmt = mysqli_prepare($dbConnection, "UPDATE Menu SET kategori= ?, merke= ?, type= ?, studentPris=?, ansattPris=? WHERE idMenu= ?;")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "ssssss", $kategori, $merke, $type, $studentPris, $ansattPris, $idmenu);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
+
+
+/*=========================================================
+
+                        Insert statements
+                        
+=========================================================*/
+
+
+/*--------------------------------------------------------------------------------------------
+    TODO: Fikse elementer som ikke har id fra før av. (Sette ID fra $ID på TR??? med JS)
+--------------------------------------------------------------------------------------------*/
+
+function saveRowMenuCreateRow ($dbConnection, $kategori, $merke, $type, $studentPris, $ansattPris){
+    
+ if ($stmt = mysqli_prepare($dbConnection, "INSERT INTO Menu (merke, type, studentPris, ansattPris, kategori) values (?, ?, ?, ?, ?);")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "sssss", $merke, $type, $studentPris, $ansattPris, $kategori);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
 
 
 

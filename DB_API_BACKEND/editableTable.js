@@ -33,13 +33,7 @@ var td = tr.getElementsByTagName("td");
         var ansattpris = td[4].innerHTML
         var dag = td[5].innerHTML
         
-        alert(idmenu);
-        alert(navn);
-        alert(serveringstid);
-        alert(studentpris);
-        alert(ansattpris);
-        alert(dag);
-        
+       
 
            
             $.ajax({
@@ -51,8 +45,6 @@ var td = tr.getElementsByTagName("td");
                 success: function(data) {
                     
                 
-                   // alert($valgtRad);
-                    
                     
                   
                     
@@ -68,7 +60,128 @@ var td = tr.getElementsByTagName("td");
      
                
     });
+    
+    
+    
+    
+     /*--------------------------------------------
+    
+                        Saving Menu
+    
+    ----------------------------------------------*/
+    
+    
+    
+      
+     $(document).on('click','.save-row-menu',function(){
 
+        $id = this.id;
+           
+         
+      
+var tr = document.getElementById($id);
+var td = tr.getElementsByTagName("td");
+         
+         
+        var idmenu = td[0].innerHTML
+        var kategori = td[1].innerHTML
+        var merke = td[2].innerHTML
+        var type = td[3].innerHTML
+        var studentPris = td[4].innerHTML
+        var ansattPris = td[5].innerHTML
+        
+        
+       
+
+        
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveRowMenu', idmenu, kategori, merke, type, studentPris, ansattPris},
+             
+                
+                success: function(data) {
+                    
+
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+           
+     
+               
+    });
+    
+    
+    
+  /*--------------------------------------------
+    
+            Saving a new menu row
+    
+    ----------------------------------------------*/
+    
+    $(document).on('click','.save-row-menu-new',function(){
+
+        $id = this.id;
+         alert($id);
+            
+         
+      
+var tr = document.getElementById($id);
+var td = tr.getElementsByTagName("td");
+         
+         
+        //var idmenu = td[0].innerHTML
+        
+        alert(td[1]);
+        var kategori = td[1].innerHTML
+        var merke = td[2].innerHTML
+        var type = td[3].innerHTML
+        var studentPris = td[4].innerHTML
+        var ansattPris = td[5].innerHTML
+        
+        
+        //alert(idmenu);
+         alert(kategori);
+         alert(merke);
+         alert(type);
+         alert(studentPris);
+         alert(ansattPris);
+       
+/*
+        
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveRowMenu', idmenu, kategori, merke, type, studentPris, ansattPris},
+             
+                
+                success: function(data) {
+                    
+
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            */
+           
+     
+               
+    });
+    
+    
+    
+    
+    
+    
 
     
     
@@ -83,8 +196,49 @@ var td = tr.getElementsByTagName("td");
         
 
 $('.table-add').click(function () {
+    
+    
+//Kloner TD fra klassen "Hide".    
   var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
   $TABLE.find('table').append($clone);
+    
+
+    
+    
+      
+      //legger til statiske kategorier for å kunne bruke innerHTML funksjonen i JS.
+        
+        var kategori = "kategori";
+        var merke = "merke";
+        var type = "type";
+        var studentPris = "1";
+        var ansattPris = "1";
+    
+
+       
+
+        
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveRowMenuCreateRow', kategori, merke, type, studentPris, ansattPris},
+             
+                
+                success: function(data) {
+                    
+                        window.location.reload();
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+    
+    
+    
 });
     
 
@@ -132,7 +286,7 @@ $('.table-add').click(function () {
     
     /*----------------------
     
-    Deleting todays special
+    Deleting today's special
     
     ------------------------*/
     
