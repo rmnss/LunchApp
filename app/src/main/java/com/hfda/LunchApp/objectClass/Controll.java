@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Controll {
 
     User user;
-    ArrayList<Items> items = new ArrayList<>();
+    ArrayList<Menu> items = new ArrayList<>();
     ArrayList<Today> todays = new ArrayList<>();
 
     //test fra Laupet 123 321
