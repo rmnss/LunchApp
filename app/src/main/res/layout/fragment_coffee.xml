@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,70 +13,87 @@
         android:layout_height="match_parent">
 
 
+
+
+
         <TextView
-            android:id="@+id/textView2"
+            android:text="Coffe punch card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
-            android:text="Coffe punch card"
-            android:textSize="24sp"
-            android:textStyle="normal|bold" />
+            android:id="@+id/textView2"
+            android:textStyle="normal|bold"
+            android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:text="Coffee:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textStyle="normal|bold"
+            android:textSize="24sp"
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
-            android:text="Coffee:"
-            android:textSize="24sp"
-            android:textStyle="normal|bold" />
+            android:layout_marginTop="24dp" />
 
         <TextView
             android:id="@+id/txtCoffeeNr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="17dp"
             android:text="000"
+            android:textStyle="normal|bold"
             android:textSize="18sp"
-            android:textStyle="normal|bold" />
-
-        <Button
-            android:id="@+id/btnQR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtCoffeeNr"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="142dp"
-            android:text="Buy Coffee" />
-
-        <Button
-            android:id="@+id/btnRefill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnQR"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
-            android:text="Refill punch card" />
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
 
         <EditText
-            android:id="@+id/etPin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="numberPassword"
+            android:ems="10"
             android:layout_below="@+id/txtCoffeeNr"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="57dp"
-            android:ems="10"
+            android:id="@+id/etPin"
             android:hint="Please enter Pin"
-            android:inputType="numberPassword"
             android:textAlignment="center"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            />
 
+        <Button
+            android:text="Refill punch card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnRefill"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="33dp" />
+
+        <Button
+            android:text="Buy Coffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnQR"
+            android:layout_above="@+id/btnRefill"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/succsess"
+            android:id="@+id/imgTest"
+
+            android:maxWidth="200dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/btnQR"
+            android:layout_marginBottom="20dp"
+            android:visibility="invisible"
+            />
 
     </RelativeLayout>
 

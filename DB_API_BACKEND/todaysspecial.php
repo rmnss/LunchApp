@@ -19,29 +19,20 @@
     <li>Simple / powerful features such as add row, remove row, move row up/down.</li>
   </ul>
   
-    
-    
-    
-    
 
     
     
     
-    
-    
-    
-    
   <div id="table" class="table-editable">
-    <span class="table-add glyphicon glyphicon-plus"></span>
     <table class="table table-hover table-responsive">
         <thead>
       <tr>
-        <th>idMenu</th>
-        <th>kategori</th>
-        <th>merke</th>
-          <th>type</th>
+        <th>idDRmeny</th>
+        <th>navn</th>
+        <th>serveringstid</th>
           <th>studentPris</th>
           <th>ansattPris</th>
+          <th>dag</th>
         <th></th>
         <th></th>
       </tr>
@@ -50,7 +41,7 @@
       
       <!-- This is our clonable table line -->
       <tr class="hide">
-        <td> </td>
+        <td contenteditable="true">idMenu</td>
         <td contenteditable="true">kategori</td>
           <td contenteditable="true">merke</td>
         <td contenteditable="true">type</td>
@@ -59,10 +50,6 @@
         <td>
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
-          <td>
-               <span id = new class= "table-up glyphicon glyphicon glyphicon-floppy-disk save-row">
-               </span>
-    </td>
       </tr>
         </tbody>
     </table>
@@ -87,7 +74,7 @@
     
     
 <script src="editableTable.js"></script>
-<script src="fillMenu.js"></script>
+<script src="fillSpecial.JS"></script>
 
     
     

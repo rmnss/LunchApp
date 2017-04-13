@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,88 +43,57 @@ import java.util.List;
 import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.hfda.LunchApp.activity.MainActivity.MY_PERMISSIONS_REQUEST_CAMERA;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
+
 public class CoffeeFragment extends Fragment {
 
-    //Må være før qr-scanneren
-    private static final int SECOND_ACTIVITY_RESULT_CODE = 0;
-
-    //private TextView coffeNr;
     private LunchDBhelper db;
     private String scanType;
-    //private EditText etPin;
     private String qrString;
-    private ImageView imgResponse;
-    EditText etPin;
-    TextView coffeNr;
+    private EditText etPin;
+    private TextView coffeNr;
+    private ImageView imgTest;
+
+    //Used by QR scacnner
+    private static final int SECOND_ACTIVITY_RESULT_CODE = 0;
+
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_coffee, container, false);
 
+        coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
         etPin = (EditText) view.findViewById(R.id.etPin);
+        imgTest = (ImageView) view.findViewById(R.id.imgTest);
 
 
-        Log.d("Laupet", "2");
-        EditText etPin = (EditText) view.findViewById(R.id.etPin);
-        Log.d("Laupet", "3");
-        TextView coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
-        Log.d("Laupet", "4");
-
-        //TextView tvMeny = (TextView)getView().findViewById(R.id.tvMeny);
         //Creates database handler
         db = new LunchDBhelper(getActivity().getApplicationContext());
 
         //Checks permissions on camera
         checkRequestPermission();
 
-
         return view;
     }
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("Laupet", "On View Created");
 
-        //view.findViewById(R.id.yourId).setOnClickListener(this);
-        //or
-        //getActivity().findViewById(R.id.yourId).setOnClickListener(this);
-
-
-        //coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
-        coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
-        //TextView coffeNr = (TextView)view.findViewById(R.id.txtCoffeeNr);
+        //Setting number of coffee to the screen
         int coffee = db.getCoffee();
         coffeNr.setText(Integer.toString(coffee));
-        //coffeNr.setText("test");
 
-        //EditText etPin = (EditText) view.findViewById(R.id.etPin);
-
-
-        //gets number of coffee the user has and prints to screen
-
-
-        // Displaying the user details on the screen
-        //coffeNr.setText("kjhbguhjg");
-
-
-        Log.d("Laupet", "5");
         // listner for pin EditText. This to automatically submit when 4 numbers have been written
         etPin.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
                 enableSubmitIfReady();
-                Log.d("Laupet", "6");
             }
 
             @Override
@@ -134,35 +106,26 @@ public class CoffeeFragment extends Fragment {
         });
 
 
-        coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
+        //Clickevent for button refill
         final Button btnBuy = (Button) view.findViewById(R.id.btnQR);
         btnBuy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 onClickBuyCoffe1();
-
-                // Perform action on click
             }
         });
 
+        //Clickevent for button refill
         final Button btnRefill = (Button) view.findViewById(R.id.btnRefill);
         btnRefill.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-    Log.d("Laupet","12");
                 onClickRefillPunch();
-
-                // Perform action on click
             }
         });
-
-
     }
 
 
-    //function for pin edit text field.
+    //function for pin edit text field. Automaticly submit when 4 numbers have been entered
     public void enableSubmitIfReady() {
-
-        EditText etPin = (EditText) getView().findViewById(R.id.etPin);
 
         boolean isReady = etPin.getText().toString().length() > 3;
         if (isReady) {
@@ -205,20 +168,17 @@ public class CoffeeFragment extends Fragment {
 
     //Onclickevent for qr buy coffee
     public void onClickBuyCoffe1() {
-        Log.d("Laupet", "ClickEvent for buyCoffee");
+
         if (checkRequestPermission()) {
             Intent intent = new Intent(getActivity(), QRActivity.class);
             intent.putExtra("scanType", "buy");
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
             Toast.makeText(getActivity(), "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
-
-
     }
 
     //Onclickevent for qr refill coffee card
     public void onClickRefillPunch() {
-        Log.d("Laupet", "ClickEvent for refillCoffee");
 
         if (checkRequestPermission()) {
             Intent intent = new Intent(getActivity(), QRActivity.class);
@@ -233,9 +193,6 @@ public class CoffeeFragment extends Fragment {
     //QRscanner returns code
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        EditText etPin = (EditText) getView().findViewById(R.id.etPin);
-
-
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == SECOND_ACTIVITY_RESULT_CODE) {
@@ -287,7 +244,6 @@ public class CoffeeFragment extends Fragment {
 
                     // Check for error node in json
                     if (!error) {
-                        //:TODO Give visual feedback if OK. Green screen? Big V?
                         //Buying coffee is OK
                         int coffee = obj.getInt("coffee");
                         db.setCoffee(coffee);
@@ -296,10 +252,16 @@ public class CoffeeFragment extends Fragment {
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
+                        //showing feedback icon
+                        giveFeedback(true);
+
                     } else {
                         // Error when buying coffee. Get the error message
                         String errorMsg = obj.getString("error_msg");
                         Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+
+                        //showing feedback icon
+                        giveFeedback(false);
                     }
 
                 } catch (JSONException e) {
@@ -344,7 +306,7 @@ public class CoffeeFragment extends Fragment {
             public void onResponse(String response) {
                 TextView coffeNr = (TextView) getView().findViewById(R.id.txtCoffeeNr);
 
-                Log.d("Laupet", "refill Coffee punch card: " + response);
+                Log.d("Laupet", "refill Coffee punch card resonse: " + response);
 
                 try {
                     JSONObject obj = new JSONObject(response);
@@ -353,7 +315,6 @@ public class CoffeeFragment extends Fragment {
 
                     // Check for error node in json
                     if (!error) {
-                        //:TODO Give visual feedback if OK. Green screen? Big V?
                         //Buying coffee is OK
                         int coffee = obj.getInt("coffee");
                         db.setCoffee(coffee);
@@ -362,11 +323,17 @@ public class CoffeeFragment extends Fragment {
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
+                        //showing feedback icon
+                        giveFeedback(true);
 
                     } else {
                         // Error when refilling coffee card Get the error message
                         String errorMsg = obj.getString("error_msg");
                         Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+
+                        //showing feedback icon
+                        giveFeedback(false);
+
                     }
 
                 } catch (JSONException e) {
@@ -400,4 +367,25 @@ public class CoffeeFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    //Showing feedback icon and then fading out
+    private void giveFeedback(boolean success) {
+
+        if (success) {
+            imgTest.setImageResource(R.drawable.succsess);
+        } else {
+            imgTest.setImageResource(R.drawable.error);
+        }
+
+        imgTest.setVisibility(View.VISIBLE);
+
+        //Code for fading out
+        Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setStartOffset(1400); // Start fading out after 1400 milli seconds
+        fadeOut.setDuration(700); // Fadeout duration should be 700 milli seconds
+
+        imgTest.setAnimation(fadeOut);
+        imgTest.setVisibility(View.INVISIBLE);
+
+    }
 }

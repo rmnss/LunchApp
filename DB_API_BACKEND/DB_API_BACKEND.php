@@ -7,7 +7,33 @@ include "config.php"; //config
     $dbConnection->set_charset("utf8");
 
 
-getMenu($dbConnection);
+if ($_POST['action'] == "getMenu"){
+    getMenu($dbConnection);
+}
+elseif ($_POST['action'] == "getToday"){
+    getToday($dbConnection);
+    
+    
+}elseif ($_POST['action'] == "delRow"){
+  
+    delRow($dbConnection, $_POST['id']);   
+
+    
+ }elseif ($_POST['action'] == "delRowSpecial"){
+  
+    delRowSpecial($dbConnection, $_POST['id']);  
+
+}else{
+    echo("Error: POST matchet ikke en funksjon");
+}
+
+
+
+/*=========================================================
+
+                        Spørringer
+                        
+=========================================================*/
 
 //DB-API-Backend
 function getMenu($dbConnection) {
@@ -20,5 +46,64 @@ function getMenu($dbConnection) {
     //Svar fra Datbasen echoes ut som json så ajax kan hente den
     echo json_encode($data, JSON_FORCE_OBJECT);
 }
+
+
+
+
+function getToday($dbConnection) {
+    $sql = "SELECT idDRmeny, navn, serveringstid, studentPris,ansattPris, dag FROM DrMeny;";
+    $result = mysqli_query($dbConnection, $sql);
+    $data = array();
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+        $data[] = $row;
+    }
+    //Svar fra Datbasen echoes ut som json så ajax kan hente den
+    echo json_encode($data, JSON_FORCE_OBJECT);
+}
+
+
+
+/*=========================================================
+
+                        Slette
+                        
+=========================================================*/
+
+    
+
+
+function delRow($dbConnection, $id) {
+    
+    if ($stmt = mysqli_prepare($dbConnection, "DELETE FROM Menu WHERE idMenu = ?")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
+
+function delRowSpecial($dbConnection, $id) {
+    
+    if ($stmt = mysqli_prepare($dbConnection, "DELETE FROM Menu WHERE idMenu = ?")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
+
+
+
+
 
 ?>
