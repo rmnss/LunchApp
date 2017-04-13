@@ -12,10 +12,10 @@ function __construct($username){
 
     
     
-    $mysql_hostname = "ekeberg.mysql.domeneshop.no";
-    $mysql_user     = "ekeberg";
-    $mysql_password = "rf4Das3YPMR3zb5";
-    $mysql_database = "ekeberg";
+    $mysql_hostname = "*******";
+    $mysql_user     = "******";
+    $mysql_password = "****";
+    $mysql_database = "*****";
     
 
     
