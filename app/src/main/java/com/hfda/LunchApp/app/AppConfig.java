@@ -23,6 +23,9 @@ public class AppConfig {
 
     public static String URL_BUY_COFFEE = "https://home.hbv.no/884670/android/buycoffee.php";
 
+    public static String URL_OPENING = "https://home.hbv.no/884670/android/openingHours.php";
+
+
 
 
 }

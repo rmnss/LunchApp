@@ -7,89 +7,77 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="Coffe punch card"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="Coffee:"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/txtCoffeeNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="000"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
+        <Button
+            android:id="@+id/btnQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCoffeeNr"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="142dp"
+            android:text="Buy Coffee" />
+
+        <Button
+            android:id="@+id/btnRefill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnQR"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:text="Refill punch card" />
+
+        <EditText
+            android:id="@+id/etPin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCoffeeNr"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="57dp"
+            android:ems="10"
+            android:hint="Please enter Pin"
+            android:inputType="numberPassword"
+            android:textAlignment="center"
+            android:visibility="invisible" />
 
 
-
-
-
-    <TextView
-        android:text="Coffe punch card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:id="@+id/textView2"
-        android:textStyle="normal|bold"
-        android:textSize="24sp" />
-
-    <TextView
-        android:text="Coffee:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textStyle="normal|bold"
-        android:textSize="24sp"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
-
-    <TextView
-        android:id="@+id/txtCoffeeNr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:text="000"
-        android:textStyle="normal|bold"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Buy Coffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnQR"
-        android:layout_marginTop="142dp"
-        android:layout_below="@+id/txtCoffeeNr"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Refill punch card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:id="@+id/btnRefill"
-        android:layout_below="@+id/btnQR"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberPassword"
-        android:ems="10"
-        android:layout_below="@+id/txtCoffeeNr"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
-        android:id="@+id/etPin"
-        android:hint="Please enter Pin"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        />
-
-
-
-
-</RelativeLayout>
-
-
-
-
+    </RelativeLayout>
 
 
 </FrameLayout>

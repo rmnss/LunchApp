@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:icon="@drawable/ic_donut_small_black_24dp"
+    <item
         android:id="@+id/Setting"
+        android:icon="@drawable/ic_donut_small_black_24dp"
         android:title="Settings"
-        app:showAsAction="ifRoom"
-        >
+        app:showAsAction="always">
 
     </item>
 

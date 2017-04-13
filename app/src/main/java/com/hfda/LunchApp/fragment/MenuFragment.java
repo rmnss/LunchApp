@@ -45,7 +45,8 @@ public class MenuFragment extends Fragment {
         return view;
     }
 
-//Get menu from mySQL
+
+    //Get menu from mySQL
     private void getMenu() {
         // Tag used to cancel the request
         String tag_string_req = "req_menu";
@@ -92,18 +93,7 @@ public class MenuFragment extends Fragment {
                 Toast.makeText(getActivity().getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
             }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<>();
-                params.put("email", "test");
-                params.put("password", "test");
-
-                return params;
-            }
-        };
+        });
 
         // Adding request to request queue
         Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
