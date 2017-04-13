@@ -3,6 +3,8 @@ package com.hfda.LunchApp.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MenuFragment extends Fragment {
-
+public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout swipeLayout;
 
 
     private List<Menu> menuList = new ArrayList<>();
@@ -52,6 +54,28 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_menu, container, false);
 
+
+
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+/*
+        swipeLayout.setColorSchemeColors(android.R.color.background_dark,
+                android.R.color.holo_red_dark,
+                android.R.color.holo_blue_dark,
+                android.R.color.holo_orange_dark);
+
+
+*/
+
+
+
+
+
+
+
+
+
+
         //Getting menu items from mySQL and putting them in arraylist
         getMenu();
 
@@ -68,6 +92,52 @@ public class MenuFragment extends Fragment {
 
         return view;
     }
+
+
+
+
+    @Override
+    public void onRefresh() {
+        //new myTask().execute();
+        Log.d("Laupet","Refresh");
+
+
+        menuList.clear();
+        mAdapter.notifyDataSetChanged();
+
+
+        getMenu();
+        swipeLayout.setRefreshing(false);
+
+    }
+
+
+
+
+
+
+
+
+    @Override
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 

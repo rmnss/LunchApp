@@ -36,7 +36,7 @@ $(function (){
            
             //#Liste: ID på tabellen som skal fylles
             //id og Navn er kolonnenavn fra databasen
-           $("#liste").append(
+           $("#listeMenu").append(
             '<tr  id="' + object[index]["idMenu"] + '" class="rad">' +
                 '<td>' + object[index]["idMenu"] + '</td>' +
                 '<td contenteditable="true">' + object[index]["kategori"] + '</td>' +  
@@ -50,7 +50,7 @@ $(function (){
     '</td>' +
                
     '<td>' +
-               '<span id ="'+ object[index]["idMenu"] +'-d" class="table-save glyphicon glyphicon glyphicon-floppy-disk save-row-today">'+
+               '<span id ="'+ object[index]["idMenu"] +'" class="table-save glyphicon glyphicon glyphicon-floppy-disk save-row-menu">'+
                '</span>' +
     '</td>' +
                
