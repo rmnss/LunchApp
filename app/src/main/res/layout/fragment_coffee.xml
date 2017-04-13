@@ -56,7 +56,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/imageView2"
-                        android:text="x 000"
                         android:textSize="30sp"
                         android:textStyle="normal|bold" />
                 </RelativeLayout>
@@ -75,21 +74,7 @@
             android:textAlignment="center"
             android:visibility="invisible" />
 
-        <Button
-            android:id="@+id/btnRefill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Refill punch card"
-            android:layout_below="@+id/btnQR"
-            android:layout_centerHorizontal="true" />
 
-        <Button
-            android:id="@+id/btnQR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgTest"
-            android:layout_centerHorizontal="true"
-            android:text="Buy Coffee" />
 
         <ImageView
             android:id="@+id/imgTest"
@@ -103,6 +88,33 @@
             android:scaleType="fitCenter"
             android:visibility="invisible"
             app:srcCompat="@drawable/succsess" />
+
+        <ImageButton
+            android:id="@+id/btnQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="100dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@color/colorBackground"
+            app:srcCompat="@drawable/kkaffe"
+            android:layout_marginStart="45dp"
+            android:layout_below="@+id/imgTest"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:id="@+id/btnRefill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="100dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@color/colorBackground"
+            app:srcCompat="@drawable/kaffep"
+            android:layout_below="@+id/imgTest"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp" />
+
 
     </RelativeLayout>
 
