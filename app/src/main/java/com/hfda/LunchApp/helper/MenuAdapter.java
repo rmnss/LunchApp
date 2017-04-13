@@ -21,6 +21,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
         TextView category;
 
 
+
+
+
         MyViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.type);
