@@ -86,7 +86,7 @@ public class CoffeeFragment extends Fragment {
 
         //Setting number of coffee to the screen
         int coffee = db.getCoffee();
-        coffeNr.setText(Integer.toString(coffee));
+        coffeNr.setText("x " + Integer.toString(coffee));
 
         // listner for pin EditText. This to automatically submit when 4 numbers have been written
         etPin.addTextChangedListener(new TextWatcher() {
@@ -318,7 +318,7 @@ public class CoffeeFragment extends Fragment {
                         int coffee = obj.getInt("coffee");
                         db.setCoffee(coffee);
 
-                        coffeNr.setText(Integer.toString(coffee));
+                        coffeNr.setText("x " + Integer.toString(coffee));
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
