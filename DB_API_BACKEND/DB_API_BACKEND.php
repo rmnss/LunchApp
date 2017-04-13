@@ -22,6 +22,19 @@ elseif ($_POST['action'] == "getToday"){
  }elseif ($_POST['action'] == "delRowSpecial"){
   
     delRowSpecial($dbConnection, $_POST['id']);  
+    
+    }elseif ($_POST['action'] == "saveRow"){
+  
+    $idmenu = $_POST['idmenu'];
+    $navn = $_POST['navn'];  
+    $serveringstid = $_POST['serveringstid'];  
+    $studentpris = $_POST['studentpris'];  
+    $ansattpris = $_POST['ansattpris'];  
+    $dag = $_POST['dag'];
+    
+    
+    saveRow($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $ansattpris, $dag); 
+   
 
 }else{
     echo("Error: POST matchet ikke en funksjon");
@@ -31,7 +44,7 @@ elseif ($_POST['action'] == "getToday"){
 
 /*=========================================================
 
-                        Spørringer
+                        Querry
                         
 =========================================================*/
 
@@ -65,7 +78,7 @@ function getToday($dbConnection) {
 
 /*=========================================================
 
-                        Slette
+                        Delete
                         
 =========================================================*/
 
@@ -99,6 +112,34 @@ function delRowSpecial($dbConnection, $id) {
         
     }
 }
+
+
+/*=========================================================
+
+                        Insert
+                        
+=========================================================*/
+
+
+
+function saveRow ($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $ansattpris, $dag){
+    
+ if ($stmt = mysqli_prepare($dbConnection, "UPDATE DrMeny SET navn= ?, serveringstid= ?, studentPris= ?, ansattPris=? WHERE idDRmeny= ?;")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "sssss", $navn, $serveringstid, $studentpris, $ansattpris, $idmenu);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
+
+
+    
+//slutt
 
 
 

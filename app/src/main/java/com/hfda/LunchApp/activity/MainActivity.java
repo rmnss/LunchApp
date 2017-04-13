@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     ListView lv;
-    Fragment fragment;
+
 
     DrawerLayout drawerLayout;
     private ActionBarDrawerToggle abDrawerToggle;

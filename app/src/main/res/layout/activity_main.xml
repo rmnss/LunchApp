@@ -4,12 +4,13 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/drawer_layout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.hfda.LunchApp.activity.MainActivity">
+tools:context="com.hfda.LunchApp.activity.MainActivity"
+    >
 
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dddddd"
+    android:background="@color/colorBackground"
     android:id="@+id/main_content">
 
 </FrameLayout>
@@ -20,24 +21,12 @@ tools:context="com.hfda.LunchApp.activity.MainActivity">
     android:id="@+id/drawerleft"
     android:layout_gravity="start"
     android:entries="@array/meny"
-    android:background="#228877"
-
+    android:background="@color/colorPrimaryDark"
 
     >
 
-</ListView>
-
-<!--
-<ListView
-    android:layout_width="240dp"
-    android:layout_height="match_parent"
-    android:id="@+id/drawerright"
-    android:layout_gravity="right"
-    android:entries="@array/festivals"
-    android:background="#228877"
-    >
 
 </ListView>
--->
+
 
 </android.support.v4.widget.DrawerLayout>

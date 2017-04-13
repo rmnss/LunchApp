@@ -3,11 +3,11 @@
 
     <string-array name="meny">
 
-        <item>Hjem</item>
-        <item>Meny</item>
-        <item>Dagens Rett</item>
-        <item>Kaffekort </item>
-        <item>Logg ut </item>
+        <item>Home</item>
+        <item>Menu</item>
+        <item>Todays Specials</item>
+        <item>Coffee Card </item>
+        <item>Log Out </item>
     </string-array>
 
     <string name="open_drawer">Open Drawer</string>
