@@ -145,12 +145,6 @@ var td = tr.getElementsByTagName("td");
         var ansattPris = td[5].innerHTML
         
         
-        //alert(idmenu);
-         alert(kategori);
-         alert(merke);
-         alert(type);
-         alert(studentPris);
-         alert(ansattPris);
        
 /*
         
