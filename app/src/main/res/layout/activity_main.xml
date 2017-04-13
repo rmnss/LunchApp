@@ -21,6 +21,8 @@ tools:context="com.hfda.LunchApp.activity.MainActivity">
     android:layout_gravity="start"
     android:entries="@array/meny"
     android:background="#228877"
+
+
     >
 
 </ListView>

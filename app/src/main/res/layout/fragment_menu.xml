@@ -4,17 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.hfda.LunchApp.fragment.MenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tvMeny"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text=""
-        android:textSize="30dp"/>
-    </ScrollView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+        />
 
 
 </FrameLayout>
