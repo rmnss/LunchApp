@@ -38,12 +38,12 @@ $(function (){
             //id og Navn er kolonnenavn fra databasen
            $("#liste").append(
             '<tr  id="' + object[index]["idDRmeny"] + '" class="rad">' +
-                '<td>' + object[index]["idDRmeny"] + '</td>' +
-                '<td contenteditable="true">' + object[index]["navn"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["serveringstid"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["studentPris"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["ansattPris"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["dag"] + '</td>' +  
+                '<td id = "id">' + object[index]["idDRmeny"] + '</td>' +
+                '<td contenteditable="true" id = "navn">' + object[index]["navn"] + '</td>' +  
+                '<td contenteditable="true" id = "serveringstid">' + object[index]["serveringstid"] + '</td>' +  
+                '<td contenteditable="true" id = "studentPris">' + object[index]["studentPris"] + '</td>' +  
+                '<td contenteditable="true" id = "ansattPris">' + object[index]["ansattPris"] + '</td>' +  
+                '<td id = "dag">' + object[index]["dag"] + '</td>' +  
      '<td>' +
                '<span id ="'+ object[index]["idDRmeny"] +'" class="table-save glyphicon glyphicon-floppy-disk save-row">'+
                '</span>' +
