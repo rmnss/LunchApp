@@ -50,7 +50,6 @@ import static com.hfda.LunchApp.activity.MainActivity.MY_PERMISSIONS_REQUEST_CAM
 public class CoffeeFragment extends Fragment {
 
     private LunchDBhelper db;
-    private String scanType;
     private String qrString;
     private EditText etPin;
     private TextView coffeNr;
@@ -200,7 +199,7 @@ public class CoffeeFragment extends Fragment {
 
                 //Getting values from qr activity
                 qrString = data.getStringExtra("keyName");
-                scanType = data.getStringExtra("scanType");
+                String scanType = data.getStringExtra("scanType");
 
                 //checking if the user want to buy a coffee or refill the coffee punch card
                 if (scanType.equals("buy")) {

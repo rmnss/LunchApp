@@ -1,8 +1,6 @@
 package com.hfda.LunchApp.fragment;
 
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,45 +20,17 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-
-
-
-
-
-
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.hfda.LunchApp.R;
-import com.hfda.LunchApp.app.AppConfig;
-import com.hfda.LunchApp.app.AppController;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SpecialFragment extends Fragment {
 
-    String allergi;
-    String menu;
-
+    private String allergi;
+    private String menu;
+    private String idMeny;
 
 
     public SpecialFragment() {
@@ -73,9 +43,7 @@ public class SpecialFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         getDrMenu();
-
 
         return inflater.inflate(R.layout.fragment_special, container, false);
     }
@@ -109,6 +77,10 @@ public class SpecialFragment extends Fragment {
                         JSONObject row = jObj.getJSONObject(i);
 
 
+                        //getting idmeny
+                        idMeny = row.getString("idDRmeny");
+
+                        //building the string
                         menu += "Dagens rett: " + row.getString("navn") + "\n " +
                                 "Serveres klokken: " + row.getString("serveringstid") + "\n " +
                                 "Student pris: " + row.getString("studentPris") + "\n\n " +
@@ -120,23 +92,9 @@ public class SpecialFragment extends Fragment {
 
                     }
 
-
-                    Log.d("Laupet", "hei: " + allergi);
                     r+= allergi;
 
-                    Log.d("Laupet", "hei: " + allergi);
-
-
                     menyListe.setText(r);
-
-
-
-
-
-
-
-
-
 
 
                 } catch (JSONException e) {
@@ -192,7 +150,6 @@ public class SpecialFragment extends Fragment {
                         Log.d("Laupet", allergi);
 
 
-                        //)
                     }
 
                     menyListe.setText(menu + allergi);
@@ -217,7 +174,7 @@ public class SpecialFragment extends Fragment {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("id", "3");
+                params.put("id", idMeny);
                 return params;
             }
         };

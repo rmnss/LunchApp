@@ -17,27 +17,41 @@ var $EXPORT = $('#export');
 =========================================================*/
     
      $(document).on('click','.save-row',function(){
-        //alert(document.getElementById(".save-row").rows[1].cells[2].innerHTML);
-        
+
         $id = this.id;
+             
          
          
+var tr = document.getElementById($id);
+var td = tr.getElementsByTagName("td");
          
          
-var t = document.getElementById("table");
-var trs = t.getElementsByTagName("tr");
-var tds = null;
+        var idmenu = td[0].innerHTML
+        var navn = td[1].innerHTML
+        var serveringstid = td[2].innerHTML
+        var studentpris = td[3].innerHTML
+        var ansattpris = td[4].innerHTML
+        var dag = td[5].innerHTML
+        
+        alert(idmenu);
+        alert(navn);
+        alert(serveringstid);
+        alert(studentpris);
+        alert(ansattpris);
+        alert(dag);
+        
 
-
-    
            
             $.ajax({
                 type: 'POST',
                 url: 'DB_API_BACKEND.php',
-                data: {action: 'saveRow', id: $id},
+                data: {action: 'saveRow', idmenu, navn, serveringstid, studentpris, ansattpris, dag},
+             
+                
                 success: function(data) {
                     
-                    alert($id);
+                
+                   // alert($valgtRad);
                     
                     
                   
@@ -50,12 +64,11 @@ var tds = null;
                     console.log("Details: " + desc + "\nError:" + err);
                 }
             });
-            
+           
+     
                
     });
-    
-    
-    
+
 
     
     

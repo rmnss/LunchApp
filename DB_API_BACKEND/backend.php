@@ -60,7 +60,7 @@
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
           <td>
-               <span id = new class= "table-up glyphicon glyphicon glyphicon-floppy-disk save-row">
+               <span id = new class= "table-up glyphicon glyphicon glyphicon-floppy-disk save-row-today">
                </span>
     </td>
       </tr>
