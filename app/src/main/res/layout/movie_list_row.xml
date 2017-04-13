@@ -31,6 +31,15 @@
         android:textColor="#111111"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price"
+        android:textSize="16sp" />
 
 </RelativeLayout>

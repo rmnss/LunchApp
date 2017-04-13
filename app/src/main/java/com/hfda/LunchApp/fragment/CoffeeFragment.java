@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,7 +87,7 @@ public class CoffeeFragment extends Fragment {
 
         //Setting number of coffee to the screen
         int coffee = db.getCoffee();
-        coffeNr.setText(Integer.toString(coffee));
+        coffeNr.setText("x " + Integer.toString(coffee));
 
         // listner for pin EditText. This to automatically submit when 4 numbers have been written
         etPin.addTextChangedListener(new TextWatcher() {
@@ -106,7 +107,7 @@ public class CoffeeFragment extends Fragment {
 
 
         //Clickevent for button refill
-        final Button btnBuy = (Button) view.findViewById(R.id.btnQR);
+        final ImageButton btnBuy = (ImageButton) view.findViewById(R.id.btnQR);
         btnBuy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onClickBuyCoffe1();
@@ -114,7 +115,7 @@ public class CoffeeFragment extends Fragment {
         });
 
         //Clickevent for button refill
-        final Button btnRefill = (Button) view.findViewById(R.id.btnRefill);
+        final ImageButton btnRefill = (ImageButton) view.findViewById(R.id.btnRefill);
         btnRefill.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onClickRefillPunch();
@@ -318,7 +319,7 @@ public class CoffeeFragment extends Fragment {
                         int coffee = obj.getInt("coffee");
                         db.setCoffee(coffee);
 
-                        coffeNr.setText(Integer.toString(coffee));
+                        coffeNr.setText("x " + Integer.toString(coffee));
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
