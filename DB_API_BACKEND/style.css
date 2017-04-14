@@ -4,6 +4,12 @@ body{
 }
 
 
+.knapp{
+    color: #fff; 
+    background-color:#ff9d00;
+    margin-right: 1em;
+    
+}
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {

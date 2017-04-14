@@ -27,12 +27,15 @@
             <h1>Allergier</h1>  
             
             
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">  
+
+    
             <?php
             include 'allergiesTable.php';
             include 'footer.php'; 
             ?>
 
-            
+     </div>           
             
             
         </div>

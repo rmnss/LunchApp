@@ -3,8 +3,11 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    
+    
+    
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 
 
     
@@ -12,31 +15,18 @@
     
 <body>
     
-
- 
-  
-  <ul>
-    <li>Trykk på cellene for å redigere, enkelte celler vil ikke være mulig å redigere grunnet sikkerhet</li>
-    <li>Click on a cell to edit, some cells may not be changed for security reasons</li> 
-  </ul>
-  
     
 
     
-    
+    <div class ="content">
   <div id="table" class="table-editable">
-    <span class="table-add glyphicon glyphicon-plus"></span>
+      
     <table class="table table-hover table-responsive " id ="listAllergies">
         <thead>
       <tr>
         <th>navn</th>
         <th>allergi</th>
         <th>dag</th>
-          <th>idDrmeny</th>
-          <th>allergier_idAlergier</th>
-          <th>allergier_idAlergier</th>
-        <th>drmeny_idDRmeny</th>
-        <th>idAlergier</th>
       </tr>
         </thead>
         <tbody id="listeBody">
@@ -60,11 +50,21 @@
         </tbody>
     </table>
   
-  
-  <button id="export-btn" class="btn btn-primary">Export Data</button>
-  <p id="export"></p>
+  <?php
+include "dropdown.php";     
+?>
+      
+      
+      
+      
+      
+<button type="button" class="btn btn-primary save-btn">Lagre</button>
+      
+      
+      
+
 </div>
-    
+ </div>   
 
     
 

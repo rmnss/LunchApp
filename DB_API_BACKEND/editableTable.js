@@ -326,6 +326,63 @@ $('.table-add').click(function () {
     
 });
     
+    
+     /*--------------------------------------------
+    
+            Add alergies
+    
+    ----------------------------------------------*/
+    
+    
+    
+        
+    $(document).on('click','.save-btn',function(){
+        
+        
+        //$id = this.id;
+        
+        
+        
+        
+        $dish = $('#dish :selected').text();
+        $allergies = $('#allergies :selected').text();
+        
+        
+         //$id = $(this).children(":selected").attr("id");
+        
+        //ar id = $(this).find('option:selected').attr('id');
+        
+        
+        var allergier_idAlergier = $('#allergies option:selected').attr('id');
+        
+        var drmeny_idDRmeny = $('#dish option:selected').attr('id');
+        
+        
+    
+                        window.location.reload();
+    
+           
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'addAllergies',  allergier_idAlergier, drmeny_idDRmeny},
+                success: function(data) {
+                    
+                   
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+            
+               
+    });
+    
+    
 
     
     
@@ -344,7 +401,7 @@ $('.table-add').click(function () {
         
         //sletter tr taggen. går i hierarki  td -> tr
         var elementDelete = $(this).parent().parent();
-        elementDelete.fadeOut(2000);
+        elementDelete.fadeOut(1000);
       
     
            
@@ -369,11 +426,16 @@ $('.table-add').click(function () {
     
     
     
-    /*----------------------
     
-    Deleting today's special
     
-    ------------------------*/
+    
+    
+    
+    /*--------------------------------------------------------------------------------------------------------------
+    
+    Deleting today's special (NOT IN USE, due to the fact the app only supports one week intervall.
+    
+    ----------------------------------------------------------------------------------------------------------------*/
     
      $(document).on('click','.delete-row-special',function(){
         
@@ -400,12 +462,74 @@ $('.table-add').click(function () {
                
     });
     
+    
+    
+/*--------------------------------------------------------------------------------------------------------------
+    
+    Deleting allergies ( have a relation with todays special.)
+    
+----------------------------------------------------------------------------------------------------------------*/
+     $(document).on('click','.delete-row-allergies',function(){
+        
+        
+        var idAlergier = this.id;
+        
+        
+        //sletter tr taggen. går i hierarki  td -> tr
+        var elementDelete = $(this).parent().parent();
+         
+        //gir respons til brukeren 
+        elementDelete.fadeOut(1000);
+      
+         
 
+         
+         
+         
+         
+         
+         var idDrmeny = $(this).closest('tr').attr('id');
+     
+         
+           
+         
+         
+         
+         
+         
+    
+         
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'delAllergy', idAlergier, idDrmeny},
+                success: function(data) {
+                    
+                   
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+            
+            
+               
+    });
+    
+    
+    
+
+    
+    
 
     
 /*==================================================================================================================
 
-change position of table rows not used here, but saved for later project
+change position of table rows not used here, but saved for later project (NOT IN USE, need this for another project)
                         
 ==================================================================================================================*/    
 
@@ -422,7 +546,7 @@ $('.table-down').click(function () {
 
 /*==================================================================================================================
 
-                    exporting table as JSON
+                    exporting table as JSON (NOT IN USE, need this for another project)
                         
 ==================================================================================================================*/
 jQuery.fn.pop = [].pop;
