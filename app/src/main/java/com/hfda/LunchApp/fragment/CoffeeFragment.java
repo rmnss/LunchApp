@@ -117,7 +117,7 @@ public class CoffeeFragment extends Fragment {
         final ImageButton btnBuy = (ImageButton) view.findViewById(R.id.btnQR);
         btnBuy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onClickBuyCoffe1();
+                onClickBuyCoffe();
             }
         });
 
@@ -174,7 +174,7 @@ public class CoffeeFragment extends Fragment {
 
 
     //Onclickevent for qr buy coffee
-    public void onClickBuyCoffe1() {
+    public void onClickBuyCoffe() {
 
         if (checkRequestPermission()) {
             Intent intent = new Intent(getActivity(), QRActivity.class);

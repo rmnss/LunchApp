@@ -39,7 +39,6 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
     private List<Menu> menuList = new ArrayList<>();
-    private RecyclerView recyclerView;
     private MenuAdapter mAdapter;
 
 
@@ -69,7 +68,8 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         getMenu();
 
         //setting up the recyclerView
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+
         mAdapter = new MenuAdapter(menuList);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -88,7 +88,6 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onRefresh() {
         //new myTask().execute();
-        Log.d("Laupet","Refresh");
 
 
         menuList.clear();
@@ -96,7 +95,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
         getMenu();
-        swipeLayout.setRefreshing(false);
+
 
     }
 
@@ -161,6 +160,9 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
                     //Notifies the adapter to update the list
                     mAdapter.notifyDataSetChanged();
+
+                    //Tells the swipelayout that the refresh is done
+                    swipeLayout.setRefreshing(false);
 
                 } catch (JSONException e) {
                     // JSON error

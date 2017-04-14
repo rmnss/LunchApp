@@ -14,12 +14,18 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
+import com.hfda.LunchApp.objectClass.Menu;
+import com.hfda.LunchApp.objectClass.TodaysSpecial;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,9 +35,12 @@ import android.view.ViewGroup;
 
 public class SpecialFragment extends Fragment {
 
+    private ArrayList<TodaysSpecial> todaysSpecialList = new ArrayList<>();
+
     private String allergi;
     private String menu;
     private String idMeny;
+    private TodaysSpecial currentDish;
 
 
     public SpecialFragment() {
@@ -46,6 +55,19 @@ public class SpecialFragment extends Fragment {
 
         getDrMenu();
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Todays Special");
+
+
+
+
+        //getting todays weekday
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        String dayOfTheWeek = sdf.format(d);
+        Log.d("Laupet",dayOfTheWeek);
+
+
+
+
 
         return inflater.inflate(R.layout.fragment_special, container, false);
     }
@@ -64,39 +86,28 @@ public class SpecialFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 Log.d("Laupet", "Menu Response: " + response);
-                String r = "";
-
-
 
                 try {
-
-                   // TextView menyListe = (TextView)getView().findViewById(R.id.tvSpecials);
                     JSONArray jObj = new JSONArray(response);
 
-                    menu = "";
 
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject row = jObj.getJSONObject(i);
 
-
-                        //getting idmeny
-                        idMeny = row.getString("idDRmeny");
-
-                        //building the string
-                        menu += "Dagens rett: " + row.getString("navn") + "\n " +
-                                "Serveres klokken: " + row.getString("serveringstid") + "\n " +
-                                "Student pris: " + row.getString("studentPris") + "\n\n " +
-                                "Allergi: \n";
+                        //getting values from json
+                        String id = row.getString("idDRmeny");
+                        String name = row.getString("navn");
+                        String servingTime = row.getString("serveringstid");
+                        String price = row.getString("studentPris");
+                        String serveDay = row.getString("dag");
 
 
-
-                        getDrMenuAllergy();
+                        TodaysSpecial dish = new TodaysSpecial(id, name, servingTime, price, serveDay);
+                        todaysSpecialList.add(dish);
 
                     }
 
-                    r+= allergi;
-
-                   // menyListe.setText(r);
+                    getDrMenuAllergy();
 
 
                 } catch (JSONException e) {
@@ -117,44 +128,56 @@ public class SpecialFragment extends Fragment {
         }) ;
 
         // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
 
 
+
+
+
+
+
+
+
+
+
     public void getDrMenuAllergy() {
         // Tag used to cancel the request
-        String tag_string_req = "req_menu";
+        String tag_string_req = "req_allergies";
 
 
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_DR_MENU_ALLERGI, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d("Laupet", "Menu Response: " + response);
-                String r = "";
-
+                Log.d("Laupet", "Allergy Response: " + response);
 
 
                 try {
-
-                   // TextView menyListe = (TextView)getView().findViewById(R.id.tvSpecials);
                     JSONArray jObjall = new JSONArray(response);
 
+                    ArrayList<String> allergies2 = new ArrayList<>();
 
-                    allergi = "";
+
                     for (int i = 0; i < jObjall .length(); i++) {
                         JSONObject row = jObjall .getJSONObject(i);
 
 
-                        allergi += row.getString("allergi") + "\n ";
-                        Log.d("Laupet", allergi);
+                        String menuID = row.getString("menuID");
+                        String allergi = row.getString("allergi");
 
+
+                        //checking what Today's-menu the allergy belongs to
+                        for (TodaysSpecial dish: todaysSpecialList) {
+                            if(menuID.equals(dish.getId())){
+                                dish.addAllergy(allergi);
+                                Log.d("Laupet","Added: " + dish.getName() + " - " + allergi);
+                            }
+                        }
 
                     }
 
-                  //  menyListe.setText(menu + allergi);
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
@@ -166,23 +189,13 @@ public class SpecialFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Laupet", "menu Error: " + error.getMessage());
+                Log.e("Laupet", "Allergy Error: " + error.getMessage());
                 Toast.makeText(getActivity().getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
             }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<>();
-                params.put("id", idMeny);
-                return params;
-            }
-        };
+        }) ;
 
         // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

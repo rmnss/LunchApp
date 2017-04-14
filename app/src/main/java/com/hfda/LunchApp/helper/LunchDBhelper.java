@@ -10,8 +10,8 @@ import android.util.Log;
 
 public class LunchDBhelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "android_api";
-    private static final int DB_VERSION = 2;
+    private static final String DB_NAME = "HSN_LUNCH_APP";
+    private static final int DB_VERSION = 1;
 
     public LunchDBhelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
