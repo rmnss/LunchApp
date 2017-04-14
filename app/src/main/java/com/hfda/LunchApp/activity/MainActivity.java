@@ -35,7 +35,6 @@ import com.hfda.LunchApp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     //Må være i første acitivity. Camera
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
@@ -44,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ActionBarDrawerToggle abDrawerToggle;
     private DrawerLayout drawerLayout;
-    private String mActivityTitle;
+    //private String mActivityTitle;
+
     private SessionManager session;
     private LunchDBhelper db;
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // find the drawer layout from view
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mActivityTitle = getTitle().toString();
+        //mActivityTitle = getTitle().toString();
 
         //Enable the drawer indicator:
         setupDrawer();
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction(0, fragment);//Sender plassering og variabel til fragmentTransaction()
     }
 
-    //helper method:
+    //Helper method:
     private void setupDrawer() {
         //Drawer Toggle:
         abDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         drawerLayout.addDrawerListener(abDrawerToggle);//FROM set... TO add...
         Log.d("Remi", "Fy fasken, ETTER");
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -169,10 +168,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //Lukker naviagation drawer når noe har blitt valgt:
     public void selectItem(int position) {
-        drawerLayout.closeDrawer(Gravity.START);
+        drawerLayout.closeDrawer(Gravity.LEFT);
     }
 
-    //sjekker kameratillatelser, hvis kameraet ikke er tillat vil den spørre om det:
+    //sjekker kameratillatelser, HVIS kameraet ikke er tillat vil den spørre om det:
     private boolean checkRequestPermission() {
         int camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();

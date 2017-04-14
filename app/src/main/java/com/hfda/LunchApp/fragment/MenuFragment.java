@@ -33,6 +33,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hfda.LunchApp.R.string.menuAction;
+
 
 public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout swipeLayout;
@@ -40,8 +42,6 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private List<Menu> menuList = new ArrayList<>();
     private MenuAdapter mAdapter;
-
-
 
 
     public MenuFragment() {
@@ -52,9 +52,9 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Menu");
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(menuAction);
 
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
@@ -83,8 +83,6 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
 
-
-
     @Override
     public void onRefresh() {
         //new myTask().execute();
@@ -100,33 +98,12 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
 
-
-
-
-
-
-
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
 
 
     //Get menu from mySQL
@@ -148,10 +125,10 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         JSONObject row = jObj.getJSONObject(i);
 
                         //Getting info from mySQL
-                        String merke =  row.getString("merke");
-                        String type =  row.getString("type");
-                        String pris =  row.getString("studentPris");
-                        String kategori =  row.getString("kategori");
+                        String merke = row.getString("merke");
+                        String type = row.getString("type");
+                        String pris = row.getString("studentPris");
+                        String kategori = row.getString("kategori");
 
                         //creating objects of data from mySQL
                         Menu menuItem = new Menu(merke, type, pris, kategori);

@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
+import static com.hfda.LunchApp.R.string.coffeeAction;
 import static com.hfda.LunchApp.activity.MainActivity.MY_PERMISSIONS_REQUEST_CAMERA;
 
 
@@ -71,7 +72,8 @@ public class CoffeeFragment extends Fragment {
 
         //getActivity().getActionBar().setTitle("Coffee Card");
        // ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Coffee Card");
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Coffee Card");
+
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(coffeeAction);
 
         coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
         etPin = (EditText) view.findViewById(R.id.etPin);

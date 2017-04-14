@@ -69,7 +69,7 @@
             android:layout_below="@+id/llCoffee"
             android:layout_centerHorizontal="true"
             android:ems="10"
-            android:hint="Please enter Pin"
+            android:hint="@string/edit_enter_pin"
             android:inputType="numberPassword"
             android:textAlignment="center"
             android:visibility="invisible" />

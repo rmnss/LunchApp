@@ -13,11 +13,24 @@
     <string name="drawer_close">Close navigation drawer</string>
 
 
+    <!--Language: -->
 
+    <!--Fragments-->
+    <string name="coffeeAction">Coffe Card</string>
+    <string name="homeAction">Home</string>
+    <string name="menuAction">Menu</string>
+    <string name="specialAction">Today\'s Special</string>
+
+    <!--Rest-->
     <string name="CoffePunchCard">Coffee Punch Card</string>
+    <string name="btn_Login">Log In</string>
+    <string name="btn_reg_new_user">Register new user</string>
+    <string name="edit_enter_username">Enter username</string>
+    <string name="edit_enter_password">Enter password</string>
+    <string name="btn_register">Register</string>
+    <string name="edit_enter_pin">Please enter Pin</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- NEW -->
+    <string name="openingHours">Opening Hours</string>
 
 </resources>

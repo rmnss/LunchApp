@@ -12,7 +12,7 @@
     tools:context="com.hfda.LunchApp.activity.LoginActivity">
 
     <Button
-        android:text="Login"
+        android:text="@string/btn_Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -23,7 +23,7 @@
         android:onClick="loginClick" />
 
     <Button
-        android:text="Register new user"
+        android:text="@string/btn_reg_new_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="39dp"
@@ -41,7 +41,7 @@
         android:layout_marginTop="86dp"
         android:textAlignment="center"
         android:id="@+id/txtUsername"
-        android:hint="Enter username"
+        android:hint="@string/edit_enter_username"
 
         />
 
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/txtPassword"
-        android:hint="Enter password"
+        android:hint="@string/edit_enter_password"
 
         android:ems="10"
         android:layout_below="@+id/txtUsername"

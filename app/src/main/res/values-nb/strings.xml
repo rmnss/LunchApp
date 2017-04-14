@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="meny">
+        <item>Hjem</item>
+        <item>Meny</item>
+        <item>Dagens Spesial</item>
+        <item>Kaffekort</item>
+        <item>Logg Ut</item>
+    </string-array>
+
+    <!--Språk:-->
+
+    <!--Fragments:-->
+    <string name="coffeeAction">Coffee Card</string>
+    <string name="homeAction">Hjem</string>
+    <string name="menuAction">Meny</string>
+    <string name="specialAction">Dagens Spesial</string>
+
+    <string name="CoffePunchCard">Kaffekort</string>
+    <string name="btn_Login">Logg inn</string>
+    <string name="btn_reg_new_user">Registrer ny bruker</string>
+    <string name="edit_enter_username">Skriv Brukernavn</string>
+    <string name="edit_enter_password">Skriv Passord</string>
+    <string name="btn_register">Registrer</string>
+    <string name="edit_enter_pin">Vennligst fyll inn pinkode</string>
+
+    <!-- NEW -->
+    <string name="openingHours">Åpningstider</string>
+</resources>
