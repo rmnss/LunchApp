@@ -14,50 +14,49 @@ import com.hfda.LunchApp.objectClass.TodaysSpecial;
 
 import java.util.List;
 
-class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
+class RVAdapter extends RecyclerView.Adapter<RVAdapter.TodaysSpecialViewHolder>{
 
-    List<TodaysSpecial> persons;
+    List<TodaysSpecial> todaySpecial;
 
-    RVAdapter(List<TodaysSpecial> persons){
-        this.persons = persons;
+    RVAdapter(List<TodaysSpecial> tSpecial){
+        this.todaySpecial = tSpecial;
     }
 
 
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+    public static class TodaysSpecialViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView servingDay;
         TextView dishName;
         TextView serveTime;
         TextView price;
-        ImageView personPhoto;
+        ImageView dishPhoto;
 
-        PersonViewHolder(View itemView) {
+        TodaysSpecialViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv1);
             servingDay = (TextView)itemView.findViewById(R.id.tvDay1);
             dishName = (TextView)itemView.findViewById(R.id.tvDish1);
             serveTime = (TextView)itemView.findViewById(R.id.tvTime1);
             price = (TextView)itemView.findViewById(R.id.tvPrice1);
-            personPhoto = (ImageView)itemView.findViewById(R.id.ivMat1);
+            dishPhoto = (ImageView)itemView.findViewById(R.id.ivMat1);
         }
     }
 
 
     @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public TodaysSpecialViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.todays_special, viewGroup, false);
-        return new PersonViewHolder(v);
+        return new TodaysSpecialViewHolder(v);
     }
 
 
-
     @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.servingDay.setText(persons.get(i).getServeDay());
-        personViewHolder.dishName.setText(persons.get(i).getName());
-        personViewHolder.serveTime.setText(persons.get(i).getServingTime());
-        personViewHolder.price.setText("Kroner " + persons.get(i).getPrice() + ",-");
-        personViewHolder.personPhoto.setImageResource(R.drawable.spag);
+    public void onBindViewHolder(TodaysSpecialViewHolder todaysSpecialViewHolder, int i) {
+        todaysSpecialViewHolder.servingDay.setText(todaySpecial.get(i).getServeDay());
+        todaysSpecialViewHolder.dishName.setText(todaySpecial.get(i).getName());
+        todaysSpecialViewHolder.serveTime.setText(todaySpecial.get(i).getServingTime());
+        todaysSpecialViewHolder.price.setText("Kroner " + todaySpecial.get(i).getPrice() + ",-");
+        todaysSpecialViewHolder.dishPhoto.setImageResource(R.drawable.spag);
     }
 
 
@@ -69,7 +68,7 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
     @Override
     public int getItemCount() {
-        return persons.size();
+        return todaySpecial.size();
     }
 
 

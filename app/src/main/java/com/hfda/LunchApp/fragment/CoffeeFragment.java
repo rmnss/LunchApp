@@ -96,6 +96,9 @@ public class CoffeeFragment extends Fragment {
 
         //Setting number of coffee to the screen
         int coffee = db.getCoffee();
+
+
+
         coffeNr.setText("x " + Integer.toString(coffee));
 
         // listner for pin EditText. This to automatically submit when 4 numbers have been written

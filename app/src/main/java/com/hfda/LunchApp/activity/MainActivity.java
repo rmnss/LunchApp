@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     //Logg Out:
-    private void logoutUser() {
+    public void logoutUser() {
         session.setLogin(false);
         db.deleteUsers();
         // Launching the login activity
