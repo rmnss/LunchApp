@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    >
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/oolorCardView">
+
+            <TextView
+                android:id="@+id/tvDay1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/tvDish1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tvDay1"
+                android:layout_below="@+id/tvDay1"
+                android:layout_marginTop="10dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tvTime1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tvDish1"
+                android:layout_below="@+id/tvDish1"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/tvPrice1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tvTime1"
+                android:layout_below="@+id/tvTime1"
+                android:layout_marginTop="15dp" />
+
+            <ImageView
+                android:id="@+id/ivMat1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="35dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="200dp"
+                android:scaleType="fitCenter"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+</LinearLayout>

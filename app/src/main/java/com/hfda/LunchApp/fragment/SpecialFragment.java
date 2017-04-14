@@ -2,6 +2,9 @@ package com.hfda.LunchApp.fragment;
 
 
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +17,8 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
+import com.hfda.LunchApp.helper.DividerItemDecoration;
+import com.hfda.LunchApp.helper.MenuAdapter;
 import com.hfda.LunchApp.objectClass.Menu;
 import com.hfda.LunchApp.objectClass.TodaysSpecial;
 
@@ -54,25 +59,54 @@ public class SpecialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_special, container, false);
 
         getDrMenu();
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(specialAction);
 
 
 
-
+/*
         //getting todays weekday
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         String dayOfTheWeek = sdf.format(d);
         Log.d("Laupet",dayOfTheWeek);
 
+*/
 
 
-
-
-        return inflater.inflate(R.layout.fragment_special, container, false);
+        return view;
     }
+
+
+
+
+
+
+    @Override
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
 
 
 
@@ -180,6 +214,37 @@ public class SpecialFragment extends Fragment {
 
                     }
 
+
+
+
+
+
+                    Log.d("Laupet","FIXER RV");
+                    RecyclerView rv = (RecyclerView)getView().findViewById(R.id.rv);
+                    LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
+                    rv.setLayoutManager(llm);
+
+
+
+                    Log.d("Laupet","RV: " + rv);
+                    TodaysSpecial dish = todaysSpecialList.get(2);
+
+
+                    Log.d("Laupet","DISH: " + dish.getName());
+                    RVAdapter adapter = new RVAdapter(todaysSpecialList);
+                    rv.setAdapter(adapter);
+
+
+                    Log.d("Laupet","RV FERDIG");
+
+
+
+
+
+
+
+
+
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
@@ -202,6 +267,13 @@ public class SpecialFragment extends Fragment {
     }
 
 
+
+
+    public void printToScreen(){
+
+
+
+    }
 
 
 

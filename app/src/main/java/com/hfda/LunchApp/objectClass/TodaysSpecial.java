@@ -19,7 +19,7 @@ public class TodaysSpecial {
         this.name = name;
         this.servingTime = servingTime;
         this.price = price;
-        ServeDay = serveDay;
+        ServeDay = serveDay.substring(0,1).toUpperCase() + serveDay.substring(1).toLowerCase();
     }
 
 
