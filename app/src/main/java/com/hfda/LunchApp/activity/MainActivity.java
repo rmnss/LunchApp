@@ -34,19 +34,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     //Må være i første acitivity. Camera
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     ListView lv;
-
-
-
-
-
-
-
-
 
     private ActionBarDrawerToggle abDrawerToggle;
     private DrawerLayout drawerLayout;
@@ -65,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         // find the drawer layout from view
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
 
         //Enable the drawer indicator:
@@ -93,12 +85,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void setupDrawer() {
         //Drawer Toggle:
         abDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
-                R.string.drawer_open, R.string.drawer_close){
+                R.string.drawer_open, R.string.drawer_close) {
             @Override//Called when a drawer has settled in a completely open state.
             public void onDrawerOpened(View drawerView) {
                 supportInvalidateOptionsMenu();
                 super.onDrawerOpened(drawerView);
             }
+
             @Override//Called when a drawer has settled in a completely closed state.
             public void onDrawerClosed(View view) {
                 supportInvalidateOptionsMenu();
@@ -138,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment fragment;
-        switch(position){
+        switch (position) {
             case 1:
                 fragment = new MenuFragment();
                 fragmentTransaction(position, fragment);
@@ -161,19 +154,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     //Endrer tittel og fragment i forhold til knappetrykk samt henter variabler fra onItemClick():
-    public void fragmentTransaction(int position, Fragment fragment){
+    public void fragmentTransaction(int position, Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_content,fragment);
+        ft.replace(R.id.main_content, fragment);
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
 
-        getSupportActionBar().setTitle(getResources().getStringArray(R.array.meny)[position]);
+        //getSupportActionBar().setTitle(getResources().getStringArray(R.array.meny)[position]);
         selectItem(position);
     }
 
     //Lukker naviagation drawer når noe har blitt valgt:
-    public void selectItem( int position){
+    public void selectItem(int position) {
         drawerLayout.closeDrawer(Gravity.LEFT);
     }
 

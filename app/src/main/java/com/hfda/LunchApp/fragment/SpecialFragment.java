@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hfda.LunchApp.R;
+import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 
@@ -44,6 +45,7 @@ public class SpecialFragment extends Fragment {
         // Inflate the layout for this fragment
 
         getDrMenu();
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Todays Special");
 
         return inflater.inflate(R.layout.fragment_special, container, false);
     }

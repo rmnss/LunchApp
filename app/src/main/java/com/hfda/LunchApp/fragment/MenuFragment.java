@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hfda.LunchApp.R;
+import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.DividerItemDecoration;
@@ -54,7 +55,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_menu, container, false);
 
-
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Menu");
 
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
@@ -63,19 +64,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 android.R.color.holo_red_dark,
                 android.R.color.holo_blue_dark,
                 android.R.color.holo_orange_dark);
-
-
 */
-
-
-
-
-
-
-
-
-
-
         //Getting menu items from mySQL and putting them in arraylist
         getMenu();
 
