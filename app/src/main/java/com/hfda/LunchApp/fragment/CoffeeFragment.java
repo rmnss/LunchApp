@@ -248,7 +248,7 @@ public class CoffeeFragment extends Fragment {
                         int coffee = obj.getInt("coffee");
                         db.setCoffee(coffee);
 
-                        coffeNr.setText(Integer.toString(coffee));
+                        coffeNr.setText("x" + Integer.toString(coffee));
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
 
