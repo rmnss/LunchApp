@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends AppCompatActivity {
 
     private Button btnRegister;
     private CheckBox chkStudent;
@@ -45,11 +45,14 @@ public class RegisterActivity extends Activity {
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
         txtEmail = (EditText) findViewById(R.id.txtNewEmail);
-        txtPassword = (EditText) findViewById(R.id.txtNewPassword);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
         chkStudent = (CheckBox) findViewById(R.id.chkStudent);
 
         //creates session manager
         session = new SessionManager(getApplicationContext());
+
+        getSupportActionBar().setTitle("Register new user"); //TODO: Add to strings
+
 
         //check if user is alerady logged in. This should not happen in this activity,
         // but we check for safety
@@ -108,7 +111,7 @@ public class RegisterActivity extends Activity {
                     if (!error) {
 
                         // User successfully stored in MySQL
-                        Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User successfully registered. You can now log in!", Toast.LENGTH_LONG).show();
 
                         //Send user to loginactivity
                         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);

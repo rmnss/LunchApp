@@ -3,6 +3,7 @@ package com.hfda.LunchApp.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ActionBarDrawerToggle abDrawerToggle;
     private DrawerLayout drawerLayout;
     private String mActivityTitle;
-
     private SessionManager session;
     private LunchDBhelper db;
 
