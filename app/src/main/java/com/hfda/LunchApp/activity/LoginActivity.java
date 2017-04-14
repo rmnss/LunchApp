@@ -1,6 +1,4 @@
 package com.hfda.LunchApp.activity;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -21,10 +18,10 @@ import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.helper.LunchDBhelper;
 import com.hfda.LunchApp.helper.SessionManager;
-
+import static com.hfda.LunchApp.R.string.login;
+import static com.hfda.LunchApp.R.string.cred;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +49,7 @@ public class LoginActivity extends AppCompatActivity{
         btnRegister = (Button) findViewById(R.id.btnNewUser);
 
 
-        getSupportActionBar().setTitle("Login"); //TODO: Add to strings
+        getSupportActionBar().setTitle(login);
 
 
         //Checks session for login data.
@@ -97,7 +94,7 @@ public class LoginActivity extends AppCompatActivity{
 
                 } else {
                     //Show error too user
-                    Toast.makeText(getApplicationContext(),"Please enter credentials!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),cred, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -133,7 +130,7 @@ public class LoginActivity extends AppCompatActivity{
 
             @Override
             public void onResponse(String response) {
-                Log.d("Laupet", "Login Response: " + response.toString());
+                Log.d("Laupet", "Login Response: " + response);
                 hideDialog();
 
                 try {
@@ -191,7 +188,7 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", password);
 

@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,13 +18,11 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -37,19 +33,19 @@ import com.hfda.LunchApp.activity.QRActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.LunchDBhelper;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static android.app.Activity.RESULT_OK;
 import static com.hfda.LunchApp.R.string.coffeeAction;
+import static com.hfda.LunchApp.R.string.allowCamera;
+import static com.hfda.LunchApp.R.string.success;
 import static com.hfda.LunchApp.activity.MainActivity.MY_PERMISSIONS_REQUEST_CAMERA;
-
 
 
 public class CoffeeFragment extends Fragment {
@@ -81,7 +77,10 @@ public class CoffeeFragment extends Fragment {
 
 
         //Creates database handler
+        Log.d("Laupet","Før DB");
         db = new LunchDBhelper(getActivity().getApplicationContext());
+        Log.d("Laupet","Etter DB");
+
 
         //Checks permissions on camera
         checkRequestPermission();
@@ -95,8 +94,19 @@ public class CoffeeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Setting number of coffee to the screen
+try {
+
+
         int coffee = db.getCoffee();
+
+
         coffeNr.setText("x " + Integer.toString(coffee));
+}catch (Exception e){
+    Log.d("Laupet",e.getMessage());
+    Toast.makeText(getActivity().getApplicationContext(),"Woops! The space koala dropped the flux capacitor! :(",Toast.LENGTH_LONG).show();
+    ((MainActivity)getActivity()).logoutUser();
+
+}
 
         // listner for pin EditText. This to automatically submit when 4 numbers have been written
         etPin.addTextChangedListener(new TextWatcher() {
@@ -183,7 +193,7 @@ public class CoffeeFragment extends Fragment {
             intent.putExtra("scanType", "buy");
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
-            Toast.makeText(getActivity(), "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), allowCamera, Toast.LENGTH_LONG).show();
     }
 
     //Onclickevent for qr refill coffee card
@@ -195,7 +205,7 @@ public class CoffeeFragment extends Fragment {
 
             startActivityForResult(intent, SECOND_ACTIVITY_RESULT_CODE);
         } else
-            Toast.makeText(getActivity(), "Godkjenn kamera-appen og trykk igjen", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), allowCamera, Toast.LENGTH_LONG).show();
     }
 
 
@@ -259,7 +269,7 @@ public class CoffeeFragment extends Fragment {
 
                         coffeNr.setText("x" + Integer.toString(coffee));
 
-                        Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), success, Toast.LENGTH_LONG).show();
 
                         //showing feedback icon
                         giveFeedback(true);
@@ -330,7 +340,7 @@ public class CoffeeFragment extends Fragment {
 
                         coffeNr.setText("x " + Integer.toString(coffee));
 
-                        Toast.makeText(getActivity().getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), success, Toast.LENGTH_LONG).show();
 
                         //showing feedback icon
                         giveFeedback(true);

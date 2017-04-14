@@ -121,11 +121,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }*/
 
         // Activate the navigation drawer toggle
-        if (abDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
+        return abDrawerToggle.onOptionsItemSelected(item) || abDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 
     //Case for alle mulighter man kan trykke på i navigation drawer:
@@ -168,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //Lukker naviagation drawer når noe har blitt valgt:
     public void selectItem(int position) {
-        drawerLayout.closeDrawer(Gravity.LEFT);
+        drawerLayout.closeDrawer(Gravity.START);
     }
 
     //sjekker kameratillatelser, HVIS kameraet ikke er tillat vil den spørre om det:
@@ -187,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     //Logg Out:
-    private void logoutUser() {
+    public void logoutUser() {
         session.setLogin(false);
         db.deleteUsers();
         // Launching the login activity

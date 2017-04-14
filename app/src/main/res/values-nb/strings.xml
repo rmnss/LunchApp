@@ -3,18 +3,26 @@
     <string-array name="meny">
         <item>Hjem</item>
         <item>Meny</item>
-        <item>Dagens Spesial</item>
+        <item>Dagens Rett</item>
         <item>Kaffekort</item>
         <item>Logg Ut</item>
+    </string-array>
+
+    <string-array name="week">
+        <item>Mandag</item>
+        <item>Tirsdag</item>
+        <item>Onsdag</item>
+        <item>Torsdag </item>
+        <item>Fredag </item>
     </string-array>
 
     <!--Språk:-->
 
     <!--Fragments:-->
-    <string name="coffeeAction">Coffee Card</string>
+    <string name="coffeeAction">Kaffekort</string>
     <string name="homeAction">Hjem</string>
     <string name="menuAction">Meny</string>
-    <string name="specialAction">Dagens Spesial</string>
+    <string name="specialAction">Dagens Rett</string>
 
     <string name="CoffePunchCard">Kaffekort</string>
     <string name="btn_Login">Logg inn</string>
@@ -25,5 +33,23 @@
     <string name="edit_enter_pin">Vennligst fyll inn pinkode</string>
 
     <!-- NEW -->
-    <string name="openingHours">Åpningstider</string>
+
+    <string name="openingHours"><b>Åpningstider</b></string>
+    <string name="login">Innlogging</string>
+    <string name="register">Registrer</string>
+    <string name="successfullReg">Bruker registrert. Du kan nå logge inn!</string>
+    <string name="allInfo">Vennligst fyll inn alle feltene!</string>
+    <string name="cred">Vennligst fyll inn all informasjon!</string>
+    <string name="allowCamera">Godkjenn kamera-appen og trykk igjen</string>
+    <string name="success">Suksess!</string>
+    <string name="mon">Mandag</string>
+    <string name="tue">Tirsdag</string>
+    <string name="wed">Onsdag</string>
+    <string name="thu">Torsdag</string>
+    <string name="fri">Fredag</string>
+    <string name="sat">Lørdag</string>
+    <string name="sun">Søndag</string>
+    <string name="lunchApp">Lunch-App</string>
+    <string name="student">Student</string>
+
 </resources>

@@ -18,26 +18,25 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//import static com.hfda.LunchApp.R.string.homeAction;
-
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
+import static com.hfda.LunchApp.R.string.fri;
 import static com.hfda.LunchApp.R.string.homeAction;
+import static com.hfda.LunchApp.R.string.mon;
+import static com.hfda.LunchApp.R.string.sat;
+import static com.hfda.LunchApp.R.string.sun;
+import static com.hfda.LunchApp.R.string.thu;
+import static com.hfda.LunchApp.R.string.tue;
+import static com.hfda.LunchApp.R.string.wed;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
 
-
+    Integer day;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -86,10 +85,27 @@ public class HomeFragment extends Fragment {
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject row = jObj.getJSONObject(i);
 
-                        r +=  row.getString("day").substring(0,1).toUpperCase() + row.getString("day").substring(1).toLowerCase() + "\n" + row.getString("openingHours") + "\n\n";
+
+                        if(row.getString("day").equals("monday")){
+                           day = mon;
+                        }else if(row.getString("day").equals("tuesday")){
+                            day = tue;
+                        }else if(row.getString("day").equals("wednesday")){
+                            day = wed;
+                        }else if(row.getString("day").equals("thursday")){
+                            day = thu;
+                        }else if(row.getString("day").equals("friday")){
+                            day = fri;
+                        }else if(row.getString("day").equals("saturday")){
+                            day = sat;
+                        }else if(row.getString("day").equals("sunday")){
+                            day = sun;
+                        }
+
+                        r +=  getString(day) + "\n" + row.getString("openingHours") + "\n\n";
 
                         Log.d("Laupet", r);
-                        tvOpening.setText("Opening hours" + "\n\n" + r);
+                        tvOpening.setText(r);
                     }
 
                 } catch (JSONException e) {

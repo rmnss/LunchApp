@@ -15,12 +15,13 @@
             android:id="@+id/tvDag"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
+            android:layout_below="@+id/tvOpening"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textAlignment="center"/>
 
         <ImageView
+            android:contentDescription="Logo"
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,11 +34,20 @@
             android:id="@+id/tvLunch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35dp"
-            android:text="Lunch-App"
+            android:textSize="35sp"
+            android:text="@string/lunchApp"
             android:layout_below="@id/imageView"
             android:layout_marginTop="-45dp"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tvOpening"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvLunch"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/openingHours" />
 
     </RelativeLayout>
 

@@ -1,6 +1,5 @@
 package com.hfda.LunchApp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -19,14 +17,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
-import com.hfda.LunchApp.helper.LunchDBhelper;
 import com.hfda.LunchApp.helper.SessionManager;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
+import static com.hfda.LunchApp.R.string.register;
+import static com.hfda.LunchApp.R.string.successfullReg;
+import static com.hfda.LunchApp.R.string.allInfo;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -46,14 +45,14 @@ public class RegisterActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
-        txtEmail = (EditText) findViewById(R.id.txtNewEmail);
+        txtEmail = (EditText) findViewById(R.id.txtNewUsername);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         chkStudent = (CheckBox) findViewById(R.id.chkStudent);
 
         //creates session manager
         session = new SessionManager(getApplicationContext());
 
-        getSupportActionBar().setTitle("Register new user"); //TODO: Add to strings
+        getSupportActionBar().setTitle(register);
 
 
         //check if user is alerady logged in. This should not happen in this activity,
@@ -87,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                     newUser(email, password, intStudent);
                 }else{
                     Toast.makeText(getApplicationContext(),
-                            "Please enter all information above", Toast.LENGTH_LONG).show();
+                            allInfo, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -105,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.d("Laupet", "Register Response: " + response.toString());
+                Log.d("Laupet", "Register Response: " + response);
 
                 try {
                     JSONObject jObj = new JSONObject(response);
@@ -113,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (!error) {
 
                         // User successfully stored in MySQL
-                        Toast.makeText(getApplicationContext(), "User successfully registered. You can now log in!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), successfullReg, Toast.LENGTH_LONG).show();
 
                         //Send user to loginactivity
                         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
@@ -136,15 +135,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Laupet", "Registration Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 
             @Override
             protected Map<String, String> getParams() {
                 // Posting params to register url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", password);
                 params.put("student", String.valueOf(student));

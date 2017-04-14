@@ -80,6 +80,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
 
             cursor2.close();
         }
+
         return coffee;
     }
 
