@@ -2,11 +2,9 @@ package com.hfda.LunchApp.fragment;
 
 
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,21 +15,15 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
-import com.hfda.LunchApp.helper.DividerItemDecoration;
-import com.hfda.LunchApp.helper.MenuAdapter;
-import com.hfda.LunchApp.objectClass.Menu;
+import com.hfda.LunchApp.helper.TodaySpecialAdapter;
 import com.hfda.LunchApp.objectClass.TodaysSpecial;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -231,7 +223,7 @@ public class SpecialFragment extends Fragment {
 
 
                     Log.d("Laupet","DISH: " + dish.getName());
-                    RVAdapter adapter = new RVAdapter(todaysSpecialList);
+                    TodaySpecialAdapter adapter = new TodaySpecialAdapter(todaysSpecialList);
                     rv.setAdapter(adapter);
 
 

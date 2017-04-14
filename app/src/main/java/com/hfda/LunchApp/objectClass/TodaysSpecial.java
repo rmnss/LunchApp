@@ -9,7 +9,8 @@ public class TodaysSpecial {
     private String name;
     private String servingTime;
     private String price;
-    private String ServeDay;
+    private String serveDay;
+    private String picture;
     private ArrayList<String> allergies = new ArrayList<>();
 
 
@@ -19,7 +20,7 @@ public class TodaysSpecial {
         this.name = name;
         this.servingTime = servingTime;
         this.price = price;
-        ServeDay = serveDay.substring(0,1).toUpperCase() + serveDay.substring(1).toLowerCase();
+        this.serveDay = serveDay.substring(0,1).toUpperCase() + serveDay.substring(1).toLowerCase();
     }
 
 
@@ -41,15 +42,16 @@ public class TodaysSpecial {
     }
 
     public String getServeDay() {
-        return ServeDay;
+        return serveDay;
     }
 
     public ArrayList<String> getAllergies() {
         return allergies;
     }
 
-
-
+    public String getPicture() {
+        return picture;
+    }
 
     public void addAllergy(String allergy) {
         this.allergies.add(allergy);

@@ -1,4 +1,4 @@
-package com.hfda.LunchApp.fragment;
+package com.hfda.LunchApp.helper;
 
 
 import android.support.v7.widget.CardView;
@@ -14,16 +14,16 @@ import com.hfda.LunchApp.objectClass.TodaysSpecial;
 
 import java.util.List;
 
-class RVAdapter extends RecyclerView.Adapter<RVAdapter.TodaysSpecialViewHolder>{
+public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapter.TodaysSpecialViewHolder>{
 
-    List<TodaysSpecial> todaySpecial;
+    private List<TodaysSpecial> todaySpecial;
 
-    RVAdapter(List<TodaysSpecial> tSpecial){
+    public TodaySpecialAdapter(List<TodaysSpecial> tSpecial){
         this.todaySpecial = tSpecial;
     }
 
 
-    public static class TodaysSpecialViewHolder extends RecyclerView.ViewHolder {
+    static class TodaysSpecialViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView servingDay;
         TextView dishName;
