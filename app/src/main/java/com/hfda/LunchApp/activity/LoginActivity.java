@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity{
 
 
     private EditText inputEmail;
@@ -48,6 +48,9 @@ public class LoginActivity extends Activity {
         inputPassword = (EditText) findViewById(R.id.txtPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnNewUser);
+
+
+        getSupportActionBar().setTitle("Login"); //TODO: Add to strings
 
 
         //Checks session for login data.

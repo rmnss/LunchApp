@@ -8,50 +8,68 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorBackground"
     tools:context="com.hfda.LunchApp.activity.RegisterActivity">
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:id="@+id/txtNewEmail"
+        android:hint="Enter username"
+
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="86dp"
+        android:textAlignment="center"
+
+        />
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="34dp"
-        android:id="@+id/txtNewPassword"
-        android:layout_below="@+id/txtNewEmail"
-        android:layout_alignStart="@+id/txtNewEmail"
         android:hint="Enter password"
-        android:textAlignment="center" />
+        android:id="@+id/txtPassword"
+
+        android:ems="10"
+        android:layout_below="@+id/txtNewEmail"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+
+        />
+
 
     <CheckBox
         android:text="Student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chkStudent"
-        android:layout_marginEnd="25dp"
-        android:layout_below="@+id/txtNewPassword"
-        android:layout_alignEnd="@+id/btnRegister"
-        android:layout_marginTop="51dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="33dp"
-        android:id="@+id/txtNewEmail"
-        android:hint="Enter email"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="58dp" />
+        android:layout_below="@+id/txtPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        android:textColor="?android:attr/textColorSecondary" />
+
 
     <Button
         android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnRegister"
-        android:layout_below="@+id/chkStudent"
+
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp" />
+        android:layout_marginBottom="100dp"
+
+        />
+
+
 
 </RelativeLayout>
