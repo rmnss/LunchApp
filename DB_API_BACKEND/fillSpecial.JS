@@ -48,6 +48,12 @@ $(function (){
                '<span id ="'+ object[index]["idDRmeny"] +'" class="table-save glyphicon glyphicon-floppy-disk save-row">'+
                '</span>' +
     '</td>' +
+     
+     '<td>' +
+               '<span id = "popsave-'+ object[index]["idDRmeny"] +'" style = "display:none;background-color:#f1f1f1; color:green;" class="table-save glyphicon glyphicon-ok-sign">'+
+               '</span>' +
+    '</td>' +
+                          
                
             '</tr>');
         });

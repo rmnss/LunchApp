@@ -1,3 +1,30 @@
+body{
+    
+    background-color: #f1f1f1 !important;
+}
+
+
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #ff9d00;
+    color:#fff;
+}
+
+
+.navbar #nav > .active > a {
+    color: #ff9d00 !important;
+}
+
+
+
+ul.nav a:hover { background-color: #ff9d00 !important;
+color:#fff;
+}
+
+
+
+
 
 .table-editable {
   position: relative;
@@ -48,3 +75,25 @@
     color: #0b0;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
