@@ -34,7 +34,7 @@ if ($_POST['action'] == "getMenu"){
     
     
 /*-----------------------
-        Today's special
+    Today's special 
  -----------------------*/
  }elseif ($_POST['action'] == "delRowSpecial"){
   
@@ -51,6 +51,22 @@ if ($_POST['action'] == "getMenu"){
     
     
     saveRow($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $ansattpris, $dag); 
+    
+    
+    
+    /*-----------------------
+    Deleting Allergy
+ -----------------------*/
+    
+    
+    }elseif ($_POST['action'] == "delAllergy"){
+  
+    $allergiID = $_POST['idAlergier'];
+    $drID = $_POST['idDrmeny'];  
+  
+    
+    
+    delAllergy($dbConnection, $allergiID, $drID); 
     
     
     /*-----------------------
@@ -84,11 +100,28 @@ if ($_POST['action'] == "getMenu"){
     
     saveRowMenuCreateRow($dbConnection, $kategori, $merke, $type, $studentPris, $ansattPris); 
     
+    
+    
+/*---------------------------------------------------------------------
+    Creating new row in db for allergies with relation "drMeny"
+---------------------------------------------------------------------*/
+    
+    }elseif ($_POST['action'] == "addAllergies"){
+  
+
+    $idA = $_POST['allergier_idAlergier'];  
+    $idD = $_POST['drmeny_idDRmeny'];  
+    
+    addAllergies($dbConnection, $idA, $idD); 
+    
    
 
 }else{
+    
     echo("Error: POST matchet ikke en funksjon");
+    
 }
+
 
 
 
@@ -111,6 +144,7 @@ function getMenu($dbConnection) {
     //Svar fra Datbasen echoes ut som json så ajax kan hente den
     echo json_encode($data, JSON_FORCE_OBJECT);
 }
+
 
 
 
@@ -178,6 +212,22 @@ function delRowSpecial($dbConnection, $id) {
         
     }
 }
+
+
+function delAllergy($dbConnection, $allergiID, $drID) {
+    
+    if ($stmt = mysqli_prepare($dbConnection, "DELETE FROM Allergier_has_DrMeny WHERE allergier_idAlergier = ? AND drmeny_idDRmeny = ?")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "ss", $allergiID, $drID);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
+
+
 
 
 /*=========================================================
@@ -248,6 +298,20 @@ function saveRowMenuCreateRow ($dbConnection, $kategori, $merke, $type, $student
     }
 }
 
+
+
+function addAllergies ($dbConnection, $idA, $idD){
+    
+ if ($stmt = mysqli_prepare($dbConnection, "INSERT INTO Allergier_has_DrMeny (allergier_idAlergier, drmeny_idDRmeny) values (?, ?);")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "ss", $idA, $idD);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
 
 
 
