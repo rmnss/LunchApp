@@ -34,7 +34,20 @@ var td = tr.getElementsByTagName("td");
         var dag = td[5].innerHTML
         
        
+        
 
+    
+      // gir respons når raden trykket på
+    $("#" + $id).fadeOut("slow");
+    $("#" + $id).fadeIn("slow");
+         
+          $("#popsave-" +$id).fadeIn(20);
+          $("#popsave-" +$id).fadeOut(4000);
+         
+         
+         
+         
+        
            
             $.ajax({
                 type: 'POST',
@@ -45,7 +58,7 @@ var td = tr.getElementsByTagName("td");
                 success: function(data) {
                     
                 
-                    
+
                   
                     
                     
@@ -61,6 +74,71 @@ var td = tr.getElementsByTagName("td");
                
     });
     
+    /*--------------------------------------------
+    
+                        Saving Allergies
+    
+    ----------------------------------------------*/
+    
+     $(document).on('click','.save-row-allergies',function(){
+
+        $id = this.id;
+         
+         alert($id);
+             
+         
+         
+var tr = document.getElementById($id);
+var td = tr.getElementsByTagName("td");
+         
+         
+        var idmenu = td[0].innerHTML
+        var navn = td[1].innerHTML
+        var serveringstid = td[2].innerHTML
+        var studentpris = td[3].innerHTML
+        var ansattpris = td[4].innerHTML
+        var dag = td[5].innerHTML
+        
+       
+        
+
+    
+      // gir respons når raden trykket på
+    $("#" + $id).fadeOut("slow");
+    $("#" + $id).fadeIn("slow");
+         
+          $("#popsave-" +$id).fadeIn(20);
+          $("#popsave-" +$id).fadeOut(4000);
+         
+         
+         
+         
+        /*
+           
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveRow', idmenu, navn, serveringstid, studentpris, ansattpris, dag},
+             
+                
+                success: function(data) {
+                    
+                
+
+                  
+                    
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+           
+     */
+               
+    });
     
     
     
@@ -91,7 +169,20 @@ var td = tr.getElementsByTagName("td");
         var ansattPris = td[5].innerHTML
         
         
+         
+// gir respons når raden trykket på
+    $("#" + $id).fadeOut("slow");
+    $("#" + $id).fadeIn("slow");
+         
+          $("#popsave-" +$id).fadeIn(20);
+          $("#popsave-" +$id).fadeOut(4000);
+        
        
+         
+         
+         
+         
+         
 
         
             $.ajax({
@@ -253,8 +344,8 @@ $('.table-add').click(function () {
         
         //sletter tr taggen. går i hierarki  td -> tr
         var elementDelete = $(this).parent().parent();
-        elementDelete.remove();
-       
+        elementDelete.fadeOut(2000);
+      
     
            
             $.ajax({

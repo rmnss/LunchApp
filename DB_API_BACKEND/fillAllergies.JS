@@ -11,7 +11,7 @@ $(function (){
    $.ajax({
        type: 'POST',
        url: 'DB_API_BACKEND.php',
-       data: { 'action' : 'getMenu' },
+       data: { 'action' : 'getAllergies' },
        success: function(data) {
            //console.log('success', data); //Enable denne for debuging
            fillTable(data);
@@ -19,6 +19,7 @@ $(function (){
        error: function(xhr, desc, err) {
             console.log(xhr);
             console.log("Details: " + desc + "\nError:" + err);
+           alert("feil i api");
         }
    });
     
@@ -40,26 +41,27 @@ $(function (){
            
             //#Liste: ID på tabellen som skal fylles
             //id og Navn er kolonnenavn fra databasen
-           $("#listeMenu").append(
-            '<tr  id="' + object[index]["idMenu"] + '" class="rad">' +
-                '<td>' + object[index]["idMenu"] + '</td>' +
-                '<td contenteditable="true">' + object[index]["kategori"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["merke"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["type"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["studentPris"] + '</td>' +  
-                '<td contenteditable="true">' + object[index]["ansattPris"] + '</td>' +  
+           $("#listAllergies").append(
+            '<tr  id="' + object[index]["idAlergier"] + '" class="rad">' +
+                '<td contenteditable="true">' + object[index]["navn"] + '</td>' +
+                '<td contenteditable="true">' + object[index]["allergi"] + '</td>' +  
+                '<td contenteditable="true">' + object[index]["dag"] + '</td>' +  
+                '<td contenteditable="true">' + object[index]["idDrmeny"] + '</td>' +  
+                '<td contenteditable="true">' + object[index]["allergier_idAlergier"] + '</td>' +  
+               '<td contenteditable="true">' + object[index]["drmeny_idDRmeny"] + '</td>' +  
+               '<td contenteditable="true">' + object[index]["idAlergier"] + '</td>' +  
     '<td>' +
-               '<span id ="'+ object[index]["idMenu"] +'" class="table-remove glyphicon glyphicon-remove delete-row">'+
+               '<span id ="'+ object[index]["idAlergier"] +'" class="table-remove glyphicon glyphicon-remove delete-row-allergies">'+
                '</span>' +
     '</td>' +
                
     '<td>' +
-               '<span id ="'+ object[index]["idMenu"] +'" class="table-save glyphicon glyphicon glyphicon-floppy-disk save-row-menu">'+
+               '<span id ="'+ object[index]["idAlergier"] +'" class="table-save glyphicon glyphicon glyphicon-floppy-disk save-row-allergies">'+
                '</span>' +
     '</td>' +
     
     '<td>' +
-               '<span id = "popsave-'+ object[index]["idMenu"] +'" style = "display:none;background-color:#f1f1f1; color:green;" class="table-save glyphicon glyphicon-ok-sign">'+
+               '<span id = "popsave-'+ object[index]["idAlergier"] +'" style = "display:none;background-color:#f1f1f1; color:green;" class="table-save glyphicon glyphicon-ok-sign">'+
                '</span>' +
     '</td>' +
                

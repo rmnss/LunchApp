@@ -26,17 +26,17 @@
     
   <div id="table" class="table-editable">
     <span class="table-add glyphicon glyphicon-plus"></span>
-    <table class="table table-hover table-responsive " id ="listeMenu">
+    <table class="table table-hover table-responsive " id ="listAllergies">
         <thead>
       <tr>
-        <th>idMenu</th>
-        <th>kategori</th>
-        <th>merke</th>
-          <th>type</th>
-          <th>studentPris</th>
-          <th>ansattPris</th>
-        <th></th>
-        <th></th>
+        <th>navn</th>
+        <th>allergi</th>
+        <th>dag</th>
+          <th>idDrmeny</th>
+          <th>allergier_idAlergier</th>
+          <th>allergier_idAlergier</th>
+        <th>drmeny_idDRmeny</th>
+        <th>idAlergier</th>
       </tr>
         </thead>
         <tbody id="listeBody">
@@ -50,7 +50,7 @@
           <td contenteditable="true">type</td>
         <td contenteditable="true">ansattPris</td>
         <td>
-          <span class="table-remove glyphicon glyphicon-remove"></span>
+          <span class="table-remove glyphicon glyphicon-remove-allergies"></span>
         </td>
           <td>
                <span id = 101010 class= "table-save glyphicon glyphicon-floppy-disk save-row-menu-new">
@@ -80,7 +80,7 @@
     
     
 <script src="editableTable.js"></script>
-<script src="fillMenu.js"></script>
+<script src="fillAllergies.JS"></script>
 
     
     

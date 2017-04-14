@@ -4,7 +4,8 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+
+
 
     
 </head>
@@ -15,8 +16,8 @@
  
   
   <ul>
-    <li>An editable table that exports a hash array. Dynamically compiles rows from headers</li> 
-    <li>Simple / powerful features such as add row, remove row, move row up/down.</li>
+    <li>Trykk på cellene for å redigere, enkelte celler vil ikke være mulig å redigere grunnet sikkerhet</li> 
+    <li>Click on a cell to edit, some cells may not be changed for security reasons</li>
   </ul>
   
 
@@ -24,7 +25,9 @@
     
     
   <div id="table" class="table-editable">
-    <table class="table table-hover table-responsive" id ="liste">
+      
+       <div id="myAlert" class="alert success fade" data-alert="alert">This is the alert.</div>
+    <table class="table table-hover table-responsive " id ="liste">
         <thead>
       <tr>
         <th>idDRmeny</th>

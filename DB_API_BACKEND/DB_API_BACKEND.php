@@ -7,22 +7,35 @@ include "config.php"; //config
     $dbConnection->set_charset("utf8");
 
 
+
+
+
+/*=========================================================
+
+            Checking post and runs right FUNction
+                        
+=========================================================*/
+
+
+
 if ($_POST['action'] == "getMenu"){
     getMenu($dbConnection);
-}
-elseif ($_POST['action'] == "getToday"){
+    
+}elseif ($_POST['action'] == "getToday"){
     getToday($dbConnection);
+    
+}elseif ($_POST['action'] == "getAllergies"){
+    getAllergies($dbConnection);
     
     
 }elseif ($_POST['action'] == "delRow"){
-  
     delRow($dbConnection, $_POST['id']);   
 
     
     
-      /*-----------------------
+/*-----------------------
         Today's special
-    -----------------------*/
+ -----------------------*/
  }elseif ($_POST['action'] == "delRowSpecial"){
   
     delRowSpecial($dbConnection, $_POST['id']);  
@@ -83,11 +96,11 @@ elseif ($_POST['action'] == "getToday"){
 
 /*=========================================================
 
-                        Querry
+                        Queries
                         
 =========================================================*/
 
-//DB-API-Backend
+//Menu
 function getMenu($dbConnection) {
     $sql = "SELECT idMenu, kategori,  merke, type, studentPris, ansattPris FROM Menu;";
     $result = mysqli_query($dbConnection, $sql);
@@ -101,7 +114,7 @@ function getMenu($dbConnection) {
 
 
 
-
+//Todays special
 function getToday($dbConnection) {
     $sql = "SELECT idDRmeny, navn, serveringstid, studentPris,ansattPris, dag FROM DrMeny;";
     $result = mysqli_query($dbConnection, $sql);
@@ -113,6 +126,20 @@ function getToday($dbConnection) {
     echo json_encode($data, JSON_FORCE_OBJECT);
 }
 
+
+
+//Allergies 
+function getAllergies($dbConnection) {
+    $sql = "SELECT navn,allergi,dag,idDrmeny, allergier_idAlergier, drmeny_idDRmeny, idAlergier FROM DrMeny, Allergier_has_DrMeny, Allergier
+WHERE idDrmeny = drmeny_idDRmeny AND allergier_idAlergier = idalergier";
+    $result = mysqli_query($dbConnection, $sql);
+    $data = array();
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+        $data[] = $row;
+    }
+    //Svar fra Datbasen echoes ut som json så ajax kan hente den
+    echo json_encode($data, JSON_FORCE_OBJECT);
+}
 
 
 /*=========================================================
