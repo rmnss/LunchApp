@@ -2,6 +2,7 @@ package com.hfda.LunchApp.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lv = (ListView) findViewById(R.id.drawerleft);
         lv.setOnItemClickListener(this);
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //Lukker naviagation drawer når noe har blitt valgt:
     public void selectItem(int position) {
-        drawerLayout.closeDrawer(Gravity.LEFT);
+        drawerLayout.closeDrawer(Gravity.START);
     }
 
     //sjekker kameratillatelser, hvis kameraet ikke er tillat vil den spørre om det:

@@ -70,7 +70,7 @@ public class SpecialFragment extends Fragment {
 
                 try {
 
-                    TextView menyListe = (TextView)getView().findViewById(R.id.lstView);
+                   // TextView menyListe = (TextView)getView().findViewById(R.id.tvSpecials);
                     JSONArray jObj = new JSONArray(response);
 
                     menu = "";
@@ -96,7 +96,7 @@ public class SpecialFragment extends Fragment {
 
                     r+= allergi;
 
-                    menyListe.setText(r);
+                   // menyListe.setText(r);
 
 
                 } catch (JSONException e) {
@@ -139,7 +139,7 @@ public class SpecialFragment extends Fragment {
 
                 try {
 
-                    TextView menyListe = (TextView)getView().findViewById(R.id.lstView);
+                   // TextView menyListe = (TextView)getView().findViewById(R.id.tvSpecials);
                     JSONArray jObjall = new JSONArray(response);
 
 
@@ -154,7 +154,7 @@ public class SpecialFragment extends Fragment {
 
                     }
 
-                    menyListe.setText(menu + allergi);
+                  //  menyListe.setText(menu + allergi);
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
