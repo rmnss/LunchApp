@@ -20,7 +20,9 @@
         <li class="nav nav nav-item">
         <a class="nav nav-link" href="todaysspecialList.php">Todays Special</a></li>
         <li class="nav nav-item">
-        <a class="nav-link" href="allergier.php">Allergier</a></li>
+        <a class="nav nav-link" href="allergier.php">Allergier</a></li>
+        <li class="nav nav-item">
+        <a class="nav nav-link"  href="bildeInput.php">Last opp bilde</a></li>
         </ul>
             
               
