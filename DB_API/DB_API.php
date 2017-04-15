@@ -175,7 +175,8 @@ function getDrMenu() {
     
  //======Fetching Menu employees======
 function getMenuEmployee() {
-    $sql = "SELECT idDRmeny, navn, serveringstid, ansattPris, dag FROM DrMeny WHERE dag = DAYNAME(NOW());";
+    //$sql = "SELECT idDRmeny, navn, serveringstid, ansattPris, dag FROM DrMeny WHERE dag = DAYNAME(NOW());";
+    $sql = "SELECT idMenu, merke, type, ansattPris, kategori FROM Menu order by kategori desc;";
     $result = mysqli_query($this->dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -189,7 +190,9 @@ function getMenuEmployee() {
     
 //======Fetching DrMeny employees======
 function getDrMenyEmployee() {
-    $sql = "SELECT idMenu, merke, type, ansattPris, kategori FROM Menu";
+    //$sql = "SELECT idMenu, merke, type, ansattPris, kategori FROM Menu";
+    $sql = "SELECT idDRmeny, navn, serveringstid, ansattPris, dag, picture FROM DrMeny ORDER BY FIELD(dag,'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY');";
+
     $result = mysqli_query($this->dbConnection, $sql);
 
     $data = array();
@@ -357,6 +360,40 @@ function setCoffee($coffee, $uuid){
 
     
   //DIV  
+    
+function setStudentStatus($isStudent, $uuid){
+    
+    $sql = "UPDATE users
+            SET student = ?
+            WHERE unique_id = ?";
+    
+    if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
+        mysqli_stmt_bind_param($stmt, "ss" ,$isStudent, $uuid);
+        
+        //execute query
+        $result = mysqli_stmt_execute($stmt);
+        
+        
+        // check for successful store
+        $sql = "SELECT student 
+                FROM users 
+                WHERE unique_id = ?";
+        
+        $stmt = $this->dbConnection->prepare($sql);
+        $stmt->bind_param("s", $uuid);
+        $stmt->execute();
+        $user = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        return $user["student"];
+    }
+}
+    
+    
+    
+    
+    
+    
 function getOpeningHours() {
     $sql = "SELECT openingHours, day, announcement FROM OpeningHours;";
     $result = mysqli_query($this->dbConnection, $sql);
