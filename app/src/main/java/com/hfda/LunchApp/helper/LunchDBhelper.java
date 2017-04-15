@@ -17,8 +17,6 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("Laupet", "onCreate Database method was called ");
@@ -36,7 +34,6 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         Log.d("Laupet", "Database created");
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldversion, int newversion) {
         Log.d("Loggg", "onUpgrade Database method was called");
@@ -47,7 +44,6 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         //create database
         onCreate(db);
     }
-
 
     public void addUser(String email, String uid, Integer coffee, Integer student) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -65,8 +61,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         Log.d("Laupet", "New user inserted into sqlite: " + id);
     }
 
-
-    public Integer getCoffee(){
+    public Integer getCoffee() {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor2 = db.rawQuery("SELECT coffee from user", null);
@@ -84,8 +79,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         return coffee;
     }
 
-
-    public String getUuid(){
+    public String getUuid() {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor2 = db.rawQuery("SELECT uid from user", null);
@@ -102,8 +96,7 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         return uuid;
     }
 
-
-    public boolean getStudent(){
+    public boolean getStudent() {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor2 = db.rawQuery("SELECT student from user", null);
@@ -120,29 +113,23 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         return student;
     }
 
-
-
-
-    public void setCoffee(Integer coffee){
+    public void setCoffee(Integer coffee) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL("UPDATE user SET coffee=" + coffee);
 
-        Log.d("Laupet" ,"Coffee changed in sqlLite");
-
+        Log.d("Laupet", "Coffee changed in sqlLite");
     }
 
-
-    public void setStudent(int isStudent){
+    public void setStudent(int isStudent) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL("UPDATE user SET student=" + isStudent);
 
-        Log.d("Laupet" ,"Student status changed in sqlLite");
+        Log.d("Laupet", "Student status changed in sqlLite");
     }
-
 
     //deleting user from sqlLite DB. this happens when the user logs out
     public void deleteUsers() {

@@ -13,18 +13,14 @@ public class TodaysSpecial {
     private String picture;
     private ArrayList<String> allergies = new ArrayList<>();
 
-
-
     public TodaysSpecial(String id, String name, String servingTime, String price, String serveDay, String picture) {
         this.id = id;
         this.name = name;
         this.servingTime = servingTime;
         this.price = price;
-        this.serveDay = serveDay.substring(0,1).toUpperCase() + serveDay.substring(1).toLowerCase();
+        this.serveDay = serveDay.substring(0, 1).toUpperCase() + serveDay.substring(1).toLowerCase();
         this.picture = picture;
     }
-
-
 
     public String getId() {
         return id;
@@ -57,7 +53,5 @@ public class TodaysSpecial {
     public void addAllergy(String allergy) {
         this.allergies.add(allergy);
     }
-
-
 
 }

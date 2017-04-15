@@ -3,7 +3,6 @@ package com.hfda.LunchApp.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,21 +35,14 @@ import java.util.List;
 
 import static com.hfda.LunchApp.R.string.menuAction;
 
-
 public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout swipeLayout;
-
 
     private List<Menu> menuList = new ArrayList<>();
     private MenuAdapter mAdapter;
     private LunchDBhelper db;
     private String apiURL;
     private String price;
-
-    public MenuFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,12 +55,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
-/*
-        swipeLayout.setColorSchemeColors(android.R.color.background_dark,
-                android.R.color.holo_red_dark,
-                android.R.color.holo_blue_dark,
-                android.R.color.holo_orange_dark);
-*/
+
         //Getting menu items from mySQL and putting them in arraylist
         getMenu();
 
@@ -83,33 +70,22 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-
         return view;
     }
-
 
     @Override
     public void onRefresh() {
         //new myTask().execute();
-
-
         menuList.clear();
         mAdapter.notifyDataSetChanged();
 
-
         getMenu();
-
-
     }
-
 
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
-
 
     //Get menu from mySQL
     private void getMenu() {
@@ -120,19 +96,16 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         apiURL = AppConfig.URL_MENU;
         price = "studentPris";
 
-        if(!db.getStudent()){
+        if (!db.getStudent()) {
             apiURL = AppConfig.URL_MENU_EMPLOYEE;
             price = "ansattPris";
         }
-
-
 
         StringRequest strReq = new StringRequest(Request.Method.POST, apiURL, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d("Laupet", "Menu Response: " + response);
-
 
                 try {
                     JSONArray jObj = new JSONArray(response);
@@ -175,7 +148,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         });
 
         // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
+        Log.d("Laupet", "getInstance:" + strReq + " - " + tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

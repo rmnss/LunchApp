@@ -1,7 +1,6 @@
 package com.hfda.LunchApp.app;
 
 
-
 public class AppConfig {
     // Server user login url
     public static String URL_LOGIN = "https://home.hbv.no/884670/android/login.php";
@@ -30,8 +29,6 @@ public class AppConfig {
     public static String URL_OPENING = "https://home.hbv.no/884670/android/openingHours.php";
 
     public static String URL_SET_STUDENT = "https://home.hbv.no/884670/android/setStudentStatus.php";
-
-
 
 
 }

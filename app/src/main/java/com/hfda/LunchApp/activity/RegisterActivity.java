@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -18,10 +19,13 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.SessionManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import static com.hfda.LunchApp.R.string.register;
 import static com.hfda.LunchApp.R.string.successfullReg;
 import static com.hfda.LunchApp.R.string.allInfo;
@@ -57,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //check if user is alerady logged in. This should not happen in this activity,
         // but we check for safety
-        if (session.isLoggedIn()){
+        if (session.isLoggedIn()) {
             //User is logged in, send him to main activity
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
@@ -75,16 +79,16 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean student = chkStudent.isChecked();
                 Integer intStudent;
 
-                if (student){
+                if (student) {
                     intStudent = 1;
-                }else{
+                } else {
                     intStudent = 0;
                 }
 
 
                 if (!email.isEmpty() && !password.isEmpty()) {
                     newUser(email, password, intStudent);
-                }else{
+                } else {
                     Toast.makeText(getApplicationContext(),
                             allInfo, Toast.LENGTH_LONG).show();
                 }
@@ -93,8 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
-    public void newUser(final String email, final String password, final Integer student){
+    public void newUser(final String email, final String password, final Integer student) {
 
         // Tag used to cancel the request
         String tag_string_req = "req_register";
@@ -115,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), successfullReg, Toast.LENGTH_LONG).show();
 
                         //Send user to loginactivity
-                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     } else {

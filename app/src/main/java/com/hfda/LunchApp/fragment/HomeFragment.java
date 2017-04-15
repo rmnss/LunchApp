@@ -1,8 +1,5 @@
 package com.hfda.LunchApp.fragment;
 
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,13 +18,10 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
 
 import static com.hfda.LunchApp.R.id.imageView;
 import static com.hfda.LunchApp.R.string.fri;
@@ -39,15 +33,9 @@ import static com.hfda.LunchApp.R.string.thu;
 import static com.hfda.LunchApp.R.string.tue;
 import static com.hfda.LunchApp.R.string.wed;
 
-
 public class HomeFragment extends Fragment {
 
     Integer day;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,15 +45,13 @@ public class HomeFragment extends Fragment {
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(homeAction);
 
         return view;
-
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("Laupet", "On View Created");
         getOpening();
-
-        ImageView logo = (ImageView)view.findViewById(imageView);
     }
 
     //Get menu from mySQL
@@ -73,14 +59,12 @@ public class HomeFragment extends Fragment {
         // Tag used to cancel the request
         String tag_string_req = "req_opening";
 
-
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_OPENING, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d("Laupet", "Opening Hours Response: " + response);
                 String r = "";
-
 
 
                 try {
@@ -93,24 +77,24 @@ public class HomeFragment extends Fragment {
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject row = jObj.getJSONObject(i);
 
-
-                        if(row.getString("day").equals("monday")){
-                           day = mon;
-                        }else if(row.getString("day").equals("tuesday")){
+                        //checks the day from the database and refers to a string to change the name of the day depending on language
+                        if (row.getString("day").equals("monday")) {
+                            day = mon;
+                        } else if (row.getString("day").equals("tuesday")) {
                             day = tue;
-                        }else if(row.getString("day").equals("wednesday")){
+                        } else if (row.getString("day").equals("wednesday")) {
                             day = wed;
-                        }else if(row.getString("day").equals("thursday")){
+                        } else if (row.getString("day").equals("thursday")) {
                             day = thu;
-                        }else if(row.getString("day").equals("friday")){
+                        } else if (row.getString("day").equals("friday")) {
                             day = fri;
-                        }else if(row.getString("day").equals("saturday")){
+                        } else if (row.getString("day").equals("saturday")) {
                             day = sat;
-                        }else if(row.getString("day").equals("sunday")){
+                        } else if (row.getString("day").equals("sunday")) {
                             day = sun;
                         }
 
-                        r +=  getString(day) + "\n" + row.getString("openingHours") + "\n\n";
+                        r += getString(day) + "\n" + row.getString("openingHours") + "\n\n";
 
                         Log.d("Laupet", r);
                         tvOpening.setText(r);
@@ -134,7 +118,7 @@ public class HomeFragment extends Fragment {
         });
 
         // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
+        Log.d("Laupet", "getInstance:" + strReq + " - " + tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

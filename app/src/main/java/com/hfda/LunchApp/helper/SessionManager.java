@@ -11,14 +11,11 @@ public class SessionManager {
     Context _context;
     SharedPreferences.Editor editor;
 
-
     int PRIVATE_MODE = 0;
 
     private static final String PREF_NAME = "LunchApp";
 
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
-
-
 
     public SessionManager(Context context) {
         this._context = context;
@@ -26,8 +23,7 @@ public class SessionManager {
         editor = sharedPref.edit();
     }
 
-
-    public void setLogin (boolean isLoggedIn){
+    public void setLogin(boolean isLoggedIn) {
 
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
 

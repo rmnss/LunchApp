@@ -3,12 +3,11 @@ package com.hfda.LunchApp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.hfda.LunchApp.R;
 import com.google.zxing.Result;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QRActivity extends Activity implements ZXingScannerView.ResultHandler {
@@ -41,9 +40,7 @@ public class QRActivity extends Activity implements ZXingScannerView.ResultHandl
         intent.putExtra("scanType", scanType);
         setResult(RESULT_OK, intent);
         finish();
-
     }
-
 
     @Override
     public void onPause() {
@@ -56,7 +53,4 @@ public class QRActivity extends Activity implements ZXingScannerView.ResultHandl
         super.onResume();
         mScannerView.startCamera();
     }
-
-
-
 }

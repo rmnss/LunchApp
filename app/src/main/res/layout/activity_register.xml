@@ -11,7 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hfda.LunchApp.activity.RegisterActivity">
 
-
     <EditText
         android:id="@+id/txtNewUsername"
         android:layout_width="wrap_content"
@@ -24,7 +23,6 @@
         android:inputType="textPersonName"
         android:textAlignment="center" />
 
-
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="wrap_content"
@@ -35,17 +33,13 @@
         android:ems="10"
         android:hint="@string/edit_enter_password"
         android:inputType="textPassword"
-        android:textAlignment="center"
-
-        />
-
+        android:textAlignment="center" />
 
     <CheckBox
         android:id="@+id/chkStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtPassword"
-
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/student"
@@ -59,6 +53,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
         android:text="@string/btn_register" />
-
 
 </RelativeLayout>

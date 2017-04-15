@@ -7,7 +7,6 @@ public class Menu {
     private String price; //Storing as string as we're not going to calculate with this number
     private String category;
 
-
     public Menu(String manufacturer, String name, String price, String category) {
         this.manufacturer = manufacturer;
         this.name = name;

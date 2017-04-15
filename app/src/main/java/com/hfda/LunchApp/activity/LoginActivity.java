@@ -1,4 +1,5 @@
 package com.hfda.LunchApp.activity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -25,7 +26,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
 
     private EditText inputEmail;
@@ -63,7 +64,7 @@ public class LoginActivity extends AppCompatActivity{
         pDialog.setCancelable(false);
 
 
-        if (session.isLoggedIn()){
+        if (session.isLoggedIn()) {
             Log.d("Laupet", "User is logged in");
 
             // User is already logged in. Send to main activity
@@ -71,10 +72,9 @@ public class LoginActivity extends AppCompatActivity{
             startActivity(intent);
             finish();
 
-        }else{
+        } else {
             Log.d("Laupet", "User is not logged in");
         }
-
 
 
         // Login button Click Event
@@ -94,12 +94,11 @@ public class LoginActivity extends AppCompatActivity{
 
                 } else {
                     //Show error too user
-                    Toast.makeText(getApplicationContext(),cred, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), cred, Toast.LENGTH_LONG).show();
                 }
 
             }
         });
-
 
 
         // Register button Click Event
@@ -111,16 +110,13 @@ public class LoginActivity extends AppCompatActivity{
         });
 
 
-
     }//OnCreate done
-
 
 
     //Checks login against mySQL
     private void checkLogin(final String email, final String password) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
-
 
 
         pDialog.setMessage("Logging in ...");
@@ -197,7 +193,7 @@ public class LoginActivity extends AppCompatActivity{
         };
 
         // Adding request to request queue
-        Log.d("Laupet", "getInstance:" + strReq + " - " +  tag_string_req);
+        Log.d("Laupet", "getInstance:" + strReq + " - " + tag_string_req);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
@@ -211,28 +207,18 @@ public class LoginActivity extends AppCompatActivity{
             pDialog.dismiss();
     }
 
-
-
-
-
-
-
-
-
-    public void loginClick(){
+    public void loginClick() {
         Log.d("Laupet", "LoginClicked");
         Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(loginIntent);
         finish();
     }
 
-    public void registerClick(){
+    public void registerClick() {
         Log.d("Laupet", "RegisterClicked");
         Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
     }
-
-
 }
 
 

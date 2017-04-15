@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.objectClass.Menu;
+
 import java.util.List;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> {
@@ -20,10 +22,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
         TextView manufacturer;
         TextView category;
 
-
-
-
-
         MyViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.type);
@@ -32,7 +30,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
             category = (TextView) view.findViewById(R.id.category);
         }
     }
-
 
     public MenuAdapter(List<Menu> menuList) {
         this.menuList = menuList;

@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,14 +34,15 @@ import com.hfda.LunchApp.activity.QRActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.LunchDBhelper;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import static android.app.Activity.RESULT_OK;
 import static com.hfda.LunchApp.R.string.coffeeAction;
 import static com.hfda.LunchApp.R.string.allowCamera;
@@ -60,9 +62,8 @@ public class CoffeeFragment extends Fragment {
     private static final int SECOND_ACTIVITY_RESULT_CODE = 0;
 
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_coffee, container, false);
 
@@ -91,14 +92,14 @@ public class CoffeeFragment extends Fragment {
         //this will crash if the lsqlite data is broken/session data is broken.
         //we force the user to log in again to rebuild the session data from mySQL.
         try {
-        //Setting number of coffee to the screen
-        int coffee = db.getCoffee();
-        coffeNr.setText("x " + Integer.toString(coffee));
+            //Setting number of coffee to the screen
+            int coffee = db.getCoffee();
+            coffeNr.setText("x " + Integer.toString(coffee));
 
-        }catch (Exception e){
-            Log.d("Laupet",e.getMessage());
-            Toast.makeText(getActivity().getApplicationContext(),"Woops! It seems that the sessiondata is broken. Please log in again",Toast.LENGTH_LONG).show();
-            ((MainActivity)getActivity()).logoutUser();
+        } catch (Exception e) {
+            Log.d("Laupet", e.getMessage());
+            Toast.makeText(getActivity().getApplicationContext(), "Woops! It seems that the sessiondata is broken. Please log in again", Toast.LENGTH_LONG).show();
+            ((MainActivity) getActivity()).logoutUser();
         }
 
         // listner for pin EditText. This to automatically submit when 4 numbers have been written

@@ -43,10 +43,7 @@
         android:gravity="center_horizontal"
         android:hint="@string/edit_enter_username"
         android:inputType="textPersonName"
-        android:textAlignment="center"
-
-
-        />
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/txtPassword"
@@ -61,8 +58,6 @@
         android:gravity="center_horizontal"
         android:hint="@string/edit_enter_password"
         android:inputType="textPassword"
-        android:textAlignment="center"
+        android:textAlignment="center" />
 
-
-        />
 </RelativeLayout>

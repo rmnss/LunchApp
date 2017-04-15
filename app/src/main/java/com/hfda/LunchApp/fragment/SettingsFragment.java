@@ -19,19 +19,18 @@ import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.LunchDBhelper;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import static com.hfda.LunchApp.R.string.settingsAction;
 
 public class SettingsFragment extends Fragment {
 
     private LunchDBhelper db;
-
-    public SettingsFragment(){
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,12 +43,13 @@ public class SettingsFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("Laupet", "On View Created");
 
-        CheckBox cbStudent = (CheckBox)view.findViewById(R.id.cbStudent);
+        CheckBox cbStudent = (CheckBox) view.findViewById(R.id.cbStudent);
 
         //setting checkbox state based on SqlLite data
         boolean isStudent = db.getStudent();
@@ -58,29 +58,23 @@ public class SettingsFragment extends Fragment {
         //onclick listener for checkbox
         cbStudent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-               @Override
-               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                   int studentStatus;
-                   if(isChecked){
-                       studentStatus = 1;
-                   }else{
-                       studentStatus = 0;
-                   }
+                                                 @Override
+                                                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                     int studentStatus;
+                                                     if (isChecked) {
+                                                         studentStatus = 1;
+                                                     } else {
+                                                         studentStatus = 0;
+                                                     }
+                                                     //getting uuid for the logged in user.
+                                                     String uuid = db.getUuid();
 
-                   //getting uuid for the logged in user.
-                   String uuid = db.getUuid();
-
-                   //change status in mySQL and SQlLite
-                   setStudentStatus(uuid, studentStatus);
-               }
-        }
+                                                     //change status in mySQL and SQlLite
+                                                     setStudentStatus(uuid, studentStatus);
+                                                 }
+                                             }
         );
     }
-
-
-
-
-
 
     //setting studentStatus in mySQL and then sqlLite
     private void setStudentStatus(final String uuid, final int studentStatus) {
@@ -144,10 +138,4 @@ public class SettingsFragment extends Fragment {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
-
-
-
-
-
-
 }
