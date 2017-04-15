@@ -31,7 +31,10 @@ if (isset($_POST['uuid']) && isset($_POST['qrString'])) {
 
             $newCoffee = $db->setCoffee($coffee-1, $uuid);
 
-            echo($buy["coffee"]);
+           // echo($newCoffee);
+            
+            
+            //echo($buy["coffee"]);
             $response["error"] = FALSE;
             $response["coffee"] = $newCoffee;
             echo json_encode($response);

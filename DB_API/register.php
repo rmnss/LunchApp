@@ -22,7 +22,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['student
     if ($db->isUserExisted($email)) {
         // user already existed
         $response["error"] = TRUE;
-        $response["error_msg"] = "User already existed with " . $email;
+        $response["error_msg"] = 'Username already exists with: "' . $email .'"';
         echo json_encode($response);
         
         

@@ -4,9 +4,8 @@ $db = new DB_API();
 
 // json response array
 //$response = array("error" => FALSE);
-
 // get the user by email and password
-$menu = $db->getDrMeny();
+$menu = $db->getDrMenu();
 
 echo json_encode($menu, JSON_PRETTY_PRINT);
 
