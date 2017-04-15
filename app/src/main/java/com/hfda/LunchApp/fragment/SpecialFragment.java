@@ -16,6 +16,7 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
+import com.hfda.LunchApp.helper.LunchDBhelper;
 import com.hfda.LunchApp.helper.TodaySpecialAdapter;
 import com.hfda.LunchApp.objectClass.TodaysSpecial;
 
@@ -37,10 +38,11 @@ import static com.hfda.LunchApp.R.string.specialAction;
 public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private ArrayList<TodaysSpecial> todaysSpecialList = new ArrayList<>();
-
-    SwipeRefreshLayout swipeLayout;
-    TodaySpecialAdapter adapter;
-    RecyclerView rv;
+    private SwipeRefreshLayout swipeLayout;
+    private TodaySpecialAdapter adapter;
+    private RecyclerView rv;
+    private LunchDBhelper db;
+    private String priceType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         View view = inflater.inflate(R.layout.fragment_special, container, false);
 
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(specialAction);
+        db = new LunchDBhelper(getActivity().getApplicationContext());
 
         //getting data from mySQL to populate the cardViews
         getDrMenu();
@@ -56,12 +59,13 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container_special);
         swipeLayout.setOnRefreshListener(this);
 
+        /*
         //getting todays weekday
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         String dayOfTheWeek = sdf.format(d);
         Log.d("Laupet", dayOfTheWeek);
-
+        */
         return view;
     }
 
@@ -92,7 +96,18 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         // Tag used to cancel the request
         String tag_string_req = "req_menu";
 
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_DR_MENU, new Response.Listener<String>() {
+
+        String apiURL = AppConfig.URL_DR_MENU;
+        priceType = "studentPris";
+
+        if (!db.getStudent()) {
+            apiURL = AppConfig.URL_DR_MENU_EMPLOYEE;
+            priceType = "ansattPris";
+        }
+
+
+
+        StringRequest strReq = new StringRequest(Request.Method.POST, apiURL, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -109,7 +124,7 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         String id = row.getString("idDRmeny");
                         String name = row.getString("navn");
                         String servingTime = row.getString("serveringstid");
-                        String price = row.getString("studentPris");
+                        String price = row.getString(priceType);
                         String serveDay = row.getString("dag");
                         String picture = row.getString("picture");
 

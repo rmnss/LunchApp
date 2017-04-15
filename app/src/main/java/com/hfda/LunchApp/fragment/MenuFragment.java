@@ -41,7 +41,6 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private List<Menu> menuList = new ArrayList<>();
     private MenuAdapter mAdapter;
     private LunchDBhelper db;
-    private String apiURL;
     private String price;
 
     @Override
@@ -93,7 +92,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         String tag_string_req = "req_menu";
 
 
-        apiURL = AppConfig.URL_MENU;
+        String apiURL = AppConfig.URL_MENU;
         price = "studentPris";
 
         if (!db.getStudent()) {
