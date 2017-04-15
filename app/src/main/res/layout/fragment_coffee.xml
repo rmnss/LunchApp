@@ -98,9 +98,10 @@
             android:adjustViewBounds="true"
             android:background="@color/colorBackground"
             app:srcCompat="@drawable/kkaffe"
-            android:layout_marginStart="45dp"
-            android:layout_below="@+id/imgTest"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="30dp"/>
 
         <ImageButton
             android:id="@+id/btnRefill"
@@ -111,9 +112,9 @@
             android:adjustViewBounds="true"
             android:background="@color/colorBackground"
             app:srcCompat="@drawable/kaffep"
-            android:layout_below="@+id/imgTest"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp" />
+            android:layout_marginEnd="50dp"
+            android:layout_alignTop="@+id/btnQR"
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>
