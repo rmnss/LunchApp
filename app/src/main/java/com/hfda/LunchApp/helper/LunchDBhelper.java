@@ -114,6 +114,24 @@ public class LunchDBhelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean getStudent(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor2 = db.rawQuery("SELECT student from user", null);
+
+        boolean student = false;
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            student = cursor2.getInt(0) > 0;
+
+            cursor2.close();
+        }
+        return student;
+    }
+
+
     //deleting user from sqlLite DB. this happens when the user logs out
     public void deleteUsers() {
         SQLiteDatabase db = this.getWritableDatabase();

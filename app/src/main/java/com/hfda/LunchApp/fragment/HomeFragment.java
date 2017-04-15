@@ -39,9 +39,7 @@ import static com.hfda.LunchApp.R.string.thu;
 import static com.hfda.LunchApp.R.string.tue;
 import static com.hfda.LunchApp.R.string.wed;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class HomeFragment extends Fragment {
 
     Integer day;
@@ -68,14 +66,6 @@ public class HomeFragment extends Fragment {
         getOpening();
 
         ImageView logo = (ImageView)view.findViewById(imageView);
-
-
-
-
-
-
-
-
     }
 
     //Get menu from mySQL

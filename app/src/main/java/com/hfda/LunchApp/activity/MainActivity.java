@@ -23,6 +23,7 @@ import android.widget.ListView;
 import com.hfda.LunchApp.fragment.CoffeeFragment;
 import com.hfda.LunchApp.fragment.HomeFragment;
 import com.hfda.LunchApp.fragment.MenuFragment;
+import com.hfda.LunchApp.fragment.SettingsFragment;
 import com.hfda.LunchApp.fragment.SpecialFragment;
 import com.hfda.LunchApp.helper.LunchDBhelper;
 import com.hfda.LunchApp.helper.SessionManager;
@@ -102,9 +103,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         };
 
         abDrawerToggle.setDrawerIndicatorEnabled(true);
-        Log.d("Remi", "Fy fasken, FØR");
         drawerLayout.addDrawerListener(abDrawerToggle);//FROM set... TO add...
-        Log.d("Remi", "Fy fasken, ETTER");
     }
 
     @Override
@@ -143,6 +142,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 fragmentTransaction(position, fragment);
                 break;
             case 4:
+                fragment = new SettingsFragment();
+                fragmentTransaction(position, fragment);
+                break;
+            case 5:
                 logoutUser();
                 break;
             default:
