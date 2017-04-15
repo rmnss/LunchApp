@@ -15,12 +15,13 @@ public class TodaysSpecial {
 
 
 
-    public TodaysSpecial(String id, String name, String servingTime, String price, String serveDay) {
+    public TodaysSpecial(String id, String name, String servingTime, String price, String serveDay, String picture) {
         this.id = id;
         this.name = name;
         this.servingTime = servingTime;
         this.price = price;
         this.serveDay = serveDay.substring(0,1).toUpperCase() + serveDay.substring(1).toLowerCase();
+        this.picture = picture;
     }
 
 

@@ -57,16 +57,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/tvTime1"
                 android:layout_below="@+id/tvPrice1"
-                android:layout_marginTop="15dp" />
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"/>
 
             <ImageView
                 android:id="@+id/ivMat1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
                 android:adjustViewBounds="true"
                 android:maxWidth="200dp"
                 android:scaleType="fitCenter"

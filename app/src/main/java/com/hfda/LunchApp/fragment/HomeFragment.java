@@ -1,12 +1,15 @@
 package com.hfda.LunchApp.fragment;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +21,15 @@ import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+
+import static com.hfda.LunchApp.R.id.imageView;
 import static com.hfda.LunchApp.R.string.fri;
 import static com.hfda.LunchApp.R.string.homeAction;
 import static com.hfda.LunchApp.R.string.mon;
@@ -58,6 +66,16 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.d("Laupet", "On View Created");
         getOpening();
+
+        ImageView logo = (ImageView)view.findViewById(imageView);
+
+
+
+
+
+
+
+
     }
 
     //Get menu from mySQL

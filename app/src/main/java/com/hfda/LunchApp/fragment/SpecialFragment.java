@@ -2,6 +2,7 @@ package com.hfda.LunchApp.fragment;
 
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.TodaySpecialAdapter;
 import com.hfda.LunchApp.objectClass.TodaysSpecial;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,14 +34,17 @@ import static com.hfda.LunchApp.R.string.specialAction;
 
 
 
-public class SpecialFragment extends Fragment {
+public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener  {
 
     private ArrayList<TodaysSpecial> todaysSpecialList = new ArrayList<>();
 
+    SwipeRefreshLayout swipeLayout;
+    TodaySpecialAdapter adapter;
     private String allergi;
     private String menu;
     private String idMeny;
     private TodaysSpecial currentDish;
+    RecyclerView rv;
 
 
     public SpecialFragment() {
@@ -58,6 +63,13 @@ public class SpecialFragment extends Fragment {
 
 
 
+
+
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container_special);
+        swipeLayout.setOnRefreshListener(this);
+
+
+
 /*
         //getting todays weekday
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -72,7 +84,19 @@ public class SpecialFragment extends Fragment {
     }
 
 
+    @Override
+    public void onRefresh() {
+        //new myTask().execute();
 
+
+        todaysSpecialList.clear();
+        adapter.notifyDataSetChanged();
+
+
+       getDrMenu();
+
+
+    }
 
 
 
@@ -82,7 +106,10 @@ public class SpecialFragment extends Fragment {
 
 
 
-
+//Setting up the recycleView with cardview
+        rv = (RecyclerView)getView().findViewById(R.id.rv);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
+        rv.setLayoutManager(llm);
 
 
 
@@ -128,9 +155,12 @@ public class SpecialFragment extends Fragment {
                         String servingTime = row.getString("serveringstid");
                         String price = row.getString("studentPris");
                         String serveDay = row.getString("dag");
+                        String picture = row.getString("picture");
 
 
-                        TodaysSpecial dish = new TodaysSpecial(id, name, servingTime, price, serveDay);
+
+
+                        TodaysSpecial dish = new TodaysSpecial(id, name, servingTime, price, serveDay, picture);
                         todaysSpecialList.add(dish);
 
                     }
@@ -203,39 +233,20 @@ public class SpecialFragment extends Fragment {
                                 Log.d("Laupet","Added: " + dish.getName() + " - " + allergi);
                             }
                         }
-
                     }
 
 
 
-
-
-
-                    Log.d("Laupet","FIXER RV");
-                    RecyclerView rv = (RecyclerView)getView().findViewById(R.id.rv);
-                    LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
-                    rv.setLayoutManager(llm);
-
-
-
-                    Log.d("Laupet","RV: " + rv);
-                    TodaysSpecial dish = todaysSpecialList.get(2);
-
-
-                    Log.d("Laupet","DISH: " + dish.getName());
-                    TodaySpecialAdapter adapter = new TodaySpecialAdapter(todaysSpecialList);
+                    adapter = new TodaySpecialAdapter(todaysSpecialList, getContext());
                     rv.setAdapter(adapter);
 
 
-                    Log.d("Laupet","RV FERDIG");
 
+                    //Notifies the adapter to update the list
+                    adapter.notifyDataSetChanged();
 
-
-
-
-
-
-
+                    //Tells the swipelayout that the refresh is done
+                    swipeLayout.setRefreshing(false);
 
                 } catch (JSONException e) {
                     // JSON error
