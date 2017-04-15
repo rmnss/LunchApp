@@ -1,24 +1,33 @@
 package com.hfda.LunchApp.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.activity.MainActivity;
-
-import static com.hfda.LunchApp.R.id.imageView;
-import static com.hfda.LunchApp.R.string.homeAction;
+import com.hfda.LunchApp.app.AppConfig;
+import com.hfda.LunchApp.app.AppController;
+import com.hfda.LunchApp.helper.LunchDBhelper;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
 import static com.hfda.LunchApp.R.string.settingsAction;
 
-
 public class SettingsFragment extends Fragment {
+
+    private LunchDBhelper db;
 
     public SettingsFragment(){
         // Required empty public constructor
@@ -31,6 +40,8 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(settingsAction);
 
+        db = new LunchDBhelper(getActivity().getApplicationContext());
+
         return view;
     }
     @Override
@@ -38,9 +49,105 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.d("Laupet", "On View Created");
 
+        CheckBox cbStudent = (CheckBox)view.findViewById(R.id.cbStudent);
 
+        //setting checkbox state based on SqlLite data
+        boolean isStudent = db.getStudent();
+        cbStudent.setChecked(isStudent);
 
+        //onclick listener for checkbox
+        cbStudent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+               @Override
+               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                   int studentStatus;
+                   if(isChecked){
+                       studentStatus = 1;
+                   }else{
+                       studentStatus = 0;
+                   }
+
+                   //getting uuid for the logged in user.
+                   String uuid = db.getUuid();
+
+                   //change status in mySQL and SQlLite
+                   setStudentStatus(uuid, studentStatus);
+               }
+        }
+        );
     }
+
+
+
+
+
+
+    //setting studentStatus in mySQL and then sqlLite
+    private void setStudentStatus(final String uuid, final int studentStatus) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_setStudent";
+
+
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_SET_STUDENT, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d("Laupet", "Set studentStatus: " + response);
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+
+                    boolean error = obj.getBoolean("error");
+
+                    // Check for error node in json
+                    if (!error) {
+                        //setting status is okay
+                        int studentStatus = obj.getInt("studentStatus");
+
+                        //set changes to SqlLite
+                        db.setStudent(studentStatus);
+
+
+                    } else {
+                        // Error when setting student. Get the error message
+                        String errorMsg = obj.getString("error_msg");
+                        Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Log.d("Laupet", "JSONEXception" + e.getMessage());
+                    Toast.makeText(getActivity().getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Laupet", "setStudent Error: " + error.getMessage());
+                Toast.makeText(getActivity().getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("uuid", uuid);
+                params.put("studentStatus", Integer.toString(studentStatus));
+                return params;
+            }
+        };
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+
+
+
+
 
 }

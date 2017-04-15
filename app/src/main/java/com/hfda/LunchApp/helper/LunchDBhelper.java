@@ -84,17 +84,6 @@ public class LunchDBhelper extends SQLiteOpenHelper {
         return coffee;
     }
 
-    public void setCoffee(Integer coffee){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.execSQL("UPDATE user SET coffee=" + coffee);
-
-        Log.d("Laupet" ,"Coffee changed in sqlLite");
-
-    }
-
-
 
     public String getUuid(){
 
@@ -129,6 +118,29 @@ public class LunchDBhelper extends SQLiteOpenHelper {
             cursor2.close();
         }
         return student;
+    }
+
+
+
+
+    public void setCoffee(Integer coffee){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("UPDATE user SET coffee=" + coffee);
+
+        Log.d("Laupet" ,"Coffee changed in sqlLite");
+
+    }
+
+
+    public void setStudent(int isStudent){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("UPDATE user SET student=" + isStudent);
+
+        Log.d("Laupet" ,"Student status changed in sqlLite");
     }
 
 

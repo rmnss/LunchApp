@@ -25,6 +25,8 @@ public class AppConfig {
 
     public static String URL_OPENING = "https://home.hbv.no/884670/android/openingHours.php";
 
+    public static String URL_SET_STUDENT = "https://home.hbv.no/884670/android/setStudentStatus.php";
+
 
 
 
