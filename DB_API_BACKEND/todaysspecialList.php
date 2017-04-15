@@ -23,6 +23,8 @@
         <a style = "color: #fff; background-color:#ff9d00;" class="nav nav-link active" href="todaysspecialList.php">Todays Special</a></li>
         <li class="nav nav-item">
         <a class="nav-link" href="allergier.php">Allergier</a></li>
+            <li class="nav nav-item">
+        <a class="nav nav-link"  href="bildeInput.php">Last opp bilde</a></li>
     </ul>
             <h1>Todays special</h1>  
             

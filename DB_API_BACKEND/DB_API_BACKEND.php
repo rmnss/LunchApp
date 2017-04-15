@@ -69,6 +69,20 @@ if ($_POST['action'] == "getMenu"){
     delAllergy($dbConnection, $allergiID, $drID); 
     
     
+/*-----------------------
+            updating picture
+ -----------------------*/
+    
+     }elseif ($_POST['action'] == "addPicture"){
+  
+    $id = $_POST['drmeny_idDRmeny'];
+    $pictureLink = $_POST['id'];  
+  
+    
+    
+    addPicture($dbConnection, $id, $pictureLink); 
+    
+    
     /*-----------------------
             Menu elements
     -----------------------*/
@@ -271,6 +285,24 @@ function saveRowMenu ($dbConnection, $idmenu, $kategori, $merke, $type, $student
     }
 }
 
+
+
+/*-----------------------
+        Picture
+-----------------------*/
+
+function  addPicture($dbConnection, $id, $pictureLink){
+    
+ if ($stmt = mysqli_prepare($dbConnection, "UPDATE DrMeny SET picture = ? WHERE idDRmeny = ?;")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "ss", $pictureLink ,$id);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
 
 
 

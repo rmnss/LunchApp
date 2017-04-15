@@ -383,6 +383,64 @@ $('.table-add').click(function () {
     });
     
     
+    
+    
+       /*--------------------------------------------
+    
+            Add picture
+    
+    ----------------------------------------------*/
+    
+    
+    
+        
+    $(document).on('click','.savepicture-btn',function(){
+        
+        
+        $id = this.id;
+        
+       
+        
+        
+        
+        
+    
+        
+         
+
+        
+        
+        var drmeny_idDRmeny = $('#dish option:selected').attr('id');
+         alert(drmeny_idDRmeny);
+        
+                
+              alert($id);
+        
+    
+                       
+
+           
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'addPicture',  id: $id, drmeny_idDRmeny},
+                success: function(data) {
+                    
+                   
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+            
+            
+               
+    });
+    
 
     
     

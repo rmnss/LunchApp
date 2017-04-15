@@ -144,7 +144,7 @@ public function checkhashSSHA($salt, $password) {
     
  //======Fetching Menu students======
 function getMenu() {
-    $sql = "SELECT idMenu, merke, type, studentPris, kategori FROM Menu";
+    $sql = "SELECT idMenu, merke, type, studentPris, kategori FROM Menu order by kategori desc";
     $result = mysqli_query($this->dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -158,7 +158,8 @@ function getMenu() {
     
 //======Fetching DrMeny students======
 function getDrMenu() {
-    $sql = "SELECT idDRmeny, navn, serveringstid, studentPris, dag FROM DrMeny WHERE dag = DAYNAME(NOW());";
+    //$sql = "SELECT idDRmeny, navn, serveringstid, studentPris, dag FROM DrMeny WHERE dag = DAYNAME(NOW());";
+    $sql = "SELECT idDRmeny, navn, serveringstid, studentPris, dag, picture FROM DrMeny ORDER BY FIELD(dag,'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY');";
     
     $result = mysqli_query($this->dbConnection, $sql);
 
@@ -238,9 +239,10 @@ function getMenuAllergier($id) {
     
     
 //get allergies for dailymenu
-function getDrMenyAllergier($id) {
+function getDrMenyAllergier() {
     
-    $sql = "SELECT Allergier.allergi FROM Allergier, Allergier_has_DrMeny where allergier_idAlergier = idAlergier AND drmeny_idDRmeny = ?";
+    //$sql = "SELECT Allergier.allergi FROM Allergier, Allergier_has_DrMeny where allergier_idAlergier = idAlergier AND drmeny_idDRmeny = ?";
+    $sql = "SELECT Allergier.allergi, allergier_idAlergier as AllergyID, drmeny_idDRmeny as menuID FROM Allergier, Allergier_has_DrMeny where allergier_idAlergier = idAlergier order by menuid";
     
     if ($stmt = mysqli_prepare ($this->dbConnection, $sql)){    
     mysqli_stmt_bind_param($stmt, "s" ,$id);
@@ -346,7 +348,7 @@ function setCoffee($coffee, $uuid){
         $user = $stmt->get_result()->fetch_assoc();
         $stmt->close();
 
-        return $user;
+        return $user["coffee"];
     }
 }
      
@@ -356,7 +358,7 @@ function setCoffee($coffee, $uuid){
     
   //DIV  
 function getOpeningHours() {
-    $sql = "SELECT åpningstider, dag, announcement FROM Åpningstider;";
+    $sql = "SELECT openingHours, day, announcement FROM OpeningHours;";
     $result = mysqli_query($this->dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
