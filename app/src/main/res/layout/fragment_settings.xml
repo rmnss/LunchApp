@@ -1,0 +1,55 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hfda.LunchApp.fragment.SettingsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:text="Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSave"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="56dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etCurrentPassword"
+            android:hint="Enter current @string/edit_enter_password"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etNewPassword"
+            android:layout_marginTop="31dp"
+            android:hint="Enter new @string/edit_enter_password"
+            android:layout_below="@+id/etCurrentPassword"
+            android:layout_alignStart="@+id/etCurrentPassword" />
+
+        <CheckBox
+            android:text="Show student prices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cbStudent"
+            android:layout_above="@+id/etCurrentPassword"
+            android:layout_alignEnd="@+id/btnSave"
+            android:layout_marginBottom="39dp"
+            android:textColor="?android:attr/textColorSecondary" />
+
+    </RelativeLayout>
+
+</FrameLayout>

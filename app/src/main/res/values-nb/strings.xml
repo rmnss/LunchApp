@@ -5,6 +5,7 @@
         <item>Meny</item>
         <item>Dagens Rett</item>
         <item>Kaffekort</item>
+        <item>Innstillinger</item>
         <item>Logg Ut</item>
     </string-array>
 
@@ -23,6 +24,7 @@
     <string name="homeAction">Hjem</string>
     <string name="menuAction">Meny</string>
     <string name="specialAction">Dagens Rett</string>
+    <string name="settingsAction">Innstillinger</string>
 
     <string name="CoffePunchCard">Kaffekort</string>
     <string name="btn_Login">Logg inn</string>

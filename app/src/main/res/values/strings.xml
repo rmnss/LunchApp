@@ -6,6 +6,7 @@
         <item>Menu</item>
         <item>Today\'s Specials</item>
         <item>Coffee Card </item>
+        <item>Settings</item>
         <item>Log Out </item>
     </string-array>
 
@@ -28,6 +29,7 @@
     <string name="homeAction">Home</string>
     <string name="menuAction">Menu</string>
     <string name="specialAction">Today\'s Special</string>
+    <string name="settingsAction">Settings</string>
 
     <!--Rest-->
     <string name="CoffePunchCard">Coffee Punch Card</string>
@@ -58,7 +60,8 @@
     <string name="lunchApp">Lunch-App</string>
     <string name="student">Student</string>
 
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
