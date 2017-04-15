@@ -64,15 +64,14 @@ public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapte
         todaysSpecialViewHolder.price.setText("Kroner " + todaySpecial.get(i).getPrice() + ",-");
 
 
-        //getting allergies
+        //building allergy string and printing to screen
         String allergies = "Allergier:";
         ArrayList<String> allergiesList = todaySpecial.get(i).getAllergies();
-        int teller = 0;
+        int teller = 1;
         for (String allergy : allergiesList) {
-            Log.d("Laupet", "Allergi: " + allergy);
             allergies += " " + allergy;
 
-            if(allergiesList.size()>1 && allergiesList.size() > teller){
+            if(allergiesList.size()> teller){
                 allergies += ", ";
                 teller ++;
             }
@@ -83,7 +82,6 @@ public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapte
         //setting picture
         Picasso.with(context)
                 .load(todaySpecial.get(i).getPicture())
-                //.resize(200,100)
                 .into(todaysSpecialViewHolder.dishPhoto);
     }
 
@@ -98,11 +96,5 @@ public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapte
     public int getItemCount() {
         return todaySpecial.size();
     }
-
-
-
-
-
-
 
 }

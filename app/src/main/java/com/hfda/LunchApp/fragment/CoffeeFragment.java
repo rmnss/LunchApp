@@ -66,9 +66,6 @@ public class CoffeeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_coffee, container, false);
 
-        //getActivity().getActionBar().setTitle("Coffee Card");
-       // ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Coffee Card");
-
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(coffeeAction);
 
         coffeNr = (TextView) view.findViewById(R.id.txtCoffeeNr);
@@ -77,9 +74,7 @@ public class CoffeeFragment extends Fragment {
 
 
         //Creates database handler
-        Log.d("Laupet","Før DB");
         db = new LunchDBhelper(getActivity().getApplicationContext());
-        Log.d("Laupet","Etter DB");
 
 
         //Checks permissions on camera
@@ -93,20 +88,18 @@ public class CoffeeFragment extends Fragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //this will crash if the lsqlite data is broken/session data is broken.
+        //we force the user to log in again to rebuild the session data from mySQL.
+        try {
         //Setting number of coffee to the screen
-try {
-
-
         int coffee = db.getCoffee();
-
-
         coffeNr.setText("x " + Integer.toString(coffee));
-}catch (Exception e){
-    Log.d("Laupet",e.getMessage());
-    Toast.makeText(getActivity().getApplicationContext(),"Woops! The space koala dropped the flux capacitor! :(",Toast.LENGTH_LONG).show();
-    ((MainActivity)getActivity()).logoutUser();
 
-}
+        }catch (Exception e){
+            Log.d("Laupet",e.getMessage());
+            Toast.makeText(getActivity().getApplicationContext(),"Woops! It seems that the sessiondata is broken. Please log in again",Toast.LENGTH_LONG).show();
+            ((MainActivity)getActivity()).logoutUser();
+        }
 
         // listner for pin EditText. This to automatically submit when 4 numbers have been written
         etPin.addTextChangedListener(new TextWatcher() {
@@ -164,8 +157,6 @@ try {
             //starting refill coffee card process
             refillCoffee(uuid, qrString, pin);
         }
-
-
     }
 
 

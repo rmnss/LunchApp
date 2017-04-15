@@ -24,7 +24,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -40,10 +42,6 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     SwipeRefreshLayout swipeLayout;
     TodaySpecialAdapter adapter;
-    private String allergi;
-    private String menu;
-    private String idMeny;
-    private TodaysSpecial currentDish;
     RecyclerView rv;
 
 
@@ -53,31 +51,28 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_special, container, false);
 
-        getDrMenu();
+
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(specialAction);
 
+        //getting data from mySQL to populate the cardViews
+        getDrMenu();
 
-
-
-
+        //creating refresh Swipe layout and connecting it to the recycler view
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container_special);
         swipeLayout.setOnRefreshListener(this);
 
 
 
-/*
         //getting todays weekday
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         String dayOfTheWeek = sdf.format(d);
         Log.d("Laupet",dayOfTheWeek);
 
-*/
 
 
         return view;
@@ -86,16 +81,13 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-        //new myTask().execute();
 
-
+        //clears the list and tells the recycler view to update/empty
         todaysSpecialList.clear();
         adapter.notifyDataSetChanged();
 
-
-       getDrMenu();
-
-
+        //getting updated data from mySQL
+        getDrMenu();
     }
 
 
@@ -104,29 +96,11 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
-//Setting up the recycleView with cardview
-        rv = (RecyclerView)getView().findViewById(R.id.rv);
+        //Setting up the recycleView with cardview
+        rv = (RecyclerView)view.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
         rv.setLayoutManager(llm);
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -165,6 +139,7 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
                     }
 
+                    //getting allergies to the menues, and adding them as arraylist to the objects
                     getDrMenuAllergy();
 
 
@@ -188,12 +163,6 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
-
-
-
-
-
-
 
 
 
@@ -230,17 +199,15 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         for (TodaysSpecial dish: todaysSpecialList) {
                             if(menuID.equals(dish.getId())){
                                 dish.addAllergy(allergi);
-                                Log.d("Laupet","Added: " + dish.getName() + " - " + allergi);
                             }
                         }
                     }
 
 
 
+                    //giving the recycleview an adapter connected to the todays specials
                     adapter = new TodaySpecialAdapter(todaysSpecialList, getContext());
                     rv.setAdapter(adapter);
-
-
 
                     //Notifies the adapter to update the list
                     adapter.notifyDataSetChanged();
@@ -268,20 +235,4 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
-
-
-
-
-    public void printToScreen(){
-
-
-
-    }
-
-
-
-
-
-
-
 }
