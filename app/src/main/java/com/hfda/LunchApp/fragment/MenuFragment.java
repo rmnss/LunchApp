@@ -23,6 +23,7 @@ import com.hfda.LunchApp.activity.MainActivity;
 import com.hfda.LunchApp.app.AppConfig;
 import com.hfda.LunchApp.app.AppController;
 import com.hfda.LunchApp.helper.DividerItemDecoration;
+import com.hfda.LunchApp.helper.LunchDBhelper;
 import com.hfda.LunchApp.helper.MenuAdapter;
 import com.hfda.LunchApp.objectClass.Menu;
 
@@ -42,7 +43,9 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private List<Menu> menuList = new ArrayList<>();
     private MenuAdapter mAdapter;
-
+    private LunchDBhelper db;
+    private String apiURL;
+    private String price;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -55,6 +58,8 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(menuAction);
+
+        db = new LunchDBhelper(getActivity().getApplicationContext());
 
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
@@ -111,7 +116,18 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         // Tag used to cancel the request
         String tag_string_req = "req_menu";
 
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_MENU, new Response.Listener<String>() {
+
+        apiURL = AppConfig.URL_MENU;
+        price = "studentPris";
+
+        if(!db.getStudent()){
+            apiURL = AppConfig.URL_MENU_EMPLOYEE;
+            price = "ansattPris";
+        }
+
+
+
+        StringRequest strReq = new StringRequest(Request.Method.POST, apiURL, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -127,7 +143,7 @@ public class MenuFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         //Getting info from mySQL
                         String merke = row.getString("merke");
                         String type = row.getString("type");
-                        String pris = row.getString("studentPris");
+                        String pris = row.getString(price);
                         String kategori = row.getString("kategori");
 
                         //creating objects of data from mySQL
