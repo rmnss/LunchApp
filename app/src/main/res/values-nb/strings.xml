@@ -53,5 +53,10 @@
     <string name="sun">Søndag</string>
     <string name="lunchApp">Lunch-App</string>
     <string name="student">Student</string>
+    <string name="changePasswordText"><b>Bytt passordet ditt:</b></string>
+    <string name="currentPassword">Nåværende passord</string>
+    <string name="newPassword">Nytt passord</string>
+    <string name="studentPrices">Vis studentpriser</string>
+    <string name="buttonSave">Lagre</string>
 
 </resources>

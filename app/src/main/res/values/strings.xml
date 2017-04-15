@@ -60,8 +60,11 @@
     <string name="lunchApp">Lunch-App</string>
     <string name="student">Student</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="changePasswordText"><b>Change your password:</b></string>
+    <string name="currentPassword">Current password</string>
+    <string name="newPassword">New password</string>
+    <string name="studentPrices">Show student prices</string>
+    <string name="buttonSave">Save</string>
 
 
 </resources>

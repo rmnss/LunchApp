@@ -75,7 +75,6 @@
             android:visibility="invisible" />
 
 
-
         <ImageView
             android:id="@+id/imgTest"
             android:layout_width="wrap_content"
@@ -93,28 +92,28 @@
             android:id="@+id/btnQR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="100dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@color/colorBackground"
-            app:srcCompat="@drawable/kkaffe"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_marginBottom="30dp"
             android:layout_marginStart="50dp"
-            android:layout_marginBottom="30dp"/>
+            android:adjustViewBounds="true"
+            android:background="@color/colorBackground"
+            android:maxWidth="100dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/kkaffe" />
 
         <ImageButton
             android:id="@+id/btnRefill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="100dp"
-            android:scaleType="fitCenter"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/btnQR"
+            android:layout_marginEnd="50dp"
             android:adjustViewBounds="true"
             android:background="@color/colorBackground"
-            app:srcCompat="@drawable/kaffep"
-            android:layout_marginEnd="50dp"
-            android:layout_alignTop="@+id/btnQR"
-            android:layout_alignParentEnd="true" />
+            android:maxWidth="100dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/kaffep" />
 
 
     </RelativeLayout>
