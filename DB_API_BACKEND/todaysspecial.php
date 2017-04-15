@@ -58,8 +58,7 @@
     </table>
   </div>
   
-  <button id="export-btn" class="btn btn-primary">Export Data</button>
-  <p id="export"></p>
+
 </div>
     
 

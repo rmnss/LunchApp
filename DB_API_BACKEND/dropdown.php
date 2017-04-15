@@ -14,9 +14,9 @@ include "config.php"; //config
     $data = array();
 
 
+echo("<h2>Har måltidet allergier, legg det til her:</h2>");
 
-echo("<h3>Dish</h3>");
-    echo '<select button class="btn dropdown-toggle knapp" type="button" data-toggle="dropdown" name= "Dish" id="dish">';
+    echo '<select button class="btn  btn-md col-md-3 knapp" type="button" data-toggle="dropdown" name= "Dish" id="dish">';
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
     echo "<option id = '". $row['idDRmeny'] . "' value='" . $row['navn'] . "'>" . $row['navn'] . "</option>";
         
@@ -24,17 +24,12 @@ echo("<h3>Dish</h3>");
     }
 echo "</select>";
 
-
-
-
-
-
  $sql = "SELECT  allergi, idAlergier FROM Allergier;";
     $result = mysqli_query($dbConnection, $sql);
     $data = array();
 
-echo("<h3>Allergier</h3>");
-    echo '<select button class="btn dropdown-toggle knapp" type="button" data-toggle="dropdown" name= "Allergies" id = "allergies">';
+
+    echo '<select button class="btn knapp btn-md col-md-3"" type="button" data-toggle="dropdown" name= "Allergies" id = "allergies">';
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
          echo "<option id = '". $row['idAlergier'] . "'value='" . $row['allergi'] . "'>" . $row['allergi'] . "</option>";
         

@@ -13,6 +13,8 @@
     </head>
     
     <body>
+        
+        
         <div class="container">
             
             
@@ -29,17 +31,28 @@
             <h1>Allergier</h1>  
             
             
-    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">  
+
 
     
             <?php
             include 'allergiesTable.php';
+        ?>
+        
+       
+
+            
+            
+ 
+
+
+            
+            
+          <?php
             include 'footer.php'; 
             ?>
-
-     </div>           
-            
-            
-        </div>
+  
+             </div>
+        
+       
     </body>
 </html>  

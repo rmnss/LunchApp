@@ -18,7 +18,7 @@
     
 
     
-    <div class ="content">
+
   <div id="table" class="table-editable">
       
     <table class="table table-hover table-responsive " id ="listAllergies">
@@ -50,21 +50,23 @@
         </tbody>
     </table>
   
+<div class = "form-group"> 
+    
+     <div class="col-md-push-3">
+
+      
   <?php
 include "dropdown.php";     
 ?>
-      
-      
-      
-      
-      
-<button type="button" class="btn btn-primary save-btn">Lagre</button>
-      
-      
-      
+
+<button type="button" class="btn btn-primary save-btn col-md-3">Lagre</button>
+    
+    
+    </div>
+</div>      
 
 </div>
- </div>   
+
 
     
 
