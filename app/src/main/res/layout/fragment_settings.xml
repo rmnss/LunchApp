@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,61 +9,111 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <CheckBox
-            android:id="@+id/cbStudent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/etCurrentPassword"
-            android:layout_below="@+id/etNewPassword"
-            android:layout_marginTop="67dp"
-            android:text="@string/studentPrices"
-            android:textColor="?android:attr/textColorSecondary" />
 
-        <EditText
-            android:id="@+id/etCurrentPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvChangePassword"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
-            android:ellipsize="start"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:hint="@string/currentPassword"
-            android:inputType="textPassword" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:cardUseCompatPadding="true">
 
-        <EditText
-            android:id="@+id/etNewPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/etCurrentPassword"
-            android:layout_below="@+id/etCurrentPassword"
-            android:layout_centerVertical="true"
-            android:ellipsize="start"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:hint="@string/newPassword"
-            android:inputType="textPassword" />
 
-        <TextView
-            android:id="@+id/tvChangePassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/changePasswordText"
-            android:textSize="18sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/oolorCardView">
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
+
+                <TextView
+                    android:id="@+id/tvChangePassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/changePasswordText"
+                    android:textSize="18sp" />
+
+
+                <EditText
+                    android:id="@+id/etCurrentPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvChangePassword"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="start"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/currentPassword"
+                    android:inputType="textPassword" />
+
+                <EditText
+                    android:id="@+id/etNewPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/etCurrentPassword"
+                    android:layout_below="@+id/etCurrentPassword"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="start"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/newPassword"
+                    android:inputType="textPassword" />
+
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etNewPassword"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/buttonSave" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etNewPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:text="@string/buttonSave" />
+            android:layout_below="@id/cv1"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/oolorCardView">
+
+
+                <TextView
+                    android:id="@+id/tvStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/changeStudentText"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/cbStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvStudent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:text="@string/studentPrices"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
 
     </RelativeLayout>
 

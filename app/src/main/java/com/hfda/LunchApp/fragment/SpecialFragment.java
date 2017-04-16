@@ -59,13 +59,7 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container_special);
         swipeLayout.setOnRefreshListener(this);
 
-        /*
-        //getting todays weekday
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        Date d = new Date();
-        String dayOfTheWeek = sdf.format(d);
-        Log.d("Laupet", dayOfTheWeek);
-        */
+
 
 
         return view;

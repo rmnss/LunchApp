@@ -2,20 +2,29 @@ package com.hfda.LunchApp.helper;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hfda.LunchApp.R;
 import com.hfda.LunchApp.objectClass.TodaysSpecial;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapter.TodaysSpecialViewHolder> {
 
@@ -35,6 +44,7 @@ public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapte
         TextView price;
         TextView allergies;
         ImageView dishPhoto;
+        RelativeLayout rl1;
 
         TodaysSpecialViewHolder(View itemView) {
             super(itemView);
@@ -45,6 +55,7 @@ public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapte
             price = (TextView) itemView.findViewById(R.id.tvPrice1);
             allergies = (TextView) itemView.findViewById(R.id.tvAllergy);
             dishPhoto = (ImageView) itemView.findViewById(R.id.ivMat1);
+            rl1 = (RelativeLayout) itemView.findViewById(R.id.rl1);
         }
     }
 
@@ -79,6 +90,18 @@ public class TodaySpecialAdapter extends RecyclerView.Adapter<TodaySpecialAdapte
         Picasso.with(context)
                 .load(todaySpecial.get(i).getPicture())
                 .into(todaysSpecialViewHolder.dishPhoto);
+
+
+
+
+        //getting todays weekday and higligtning todays special card view
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.US);
+        Date d = new Date();
+        String dayOfTheWeek = sdf.format(d);
+
+        if(todaySpecial.get(i).getServeDay().equals(dayOfTheWeek)){
+            todaysSpecialViewHolder.rl1.setBackgroundColor(ContextCompat.getColor(context, R.color.colorTodays));
+        }
     }
 
     @Override
