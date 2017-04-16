@@ -60,12 +60,16 @@
     <string name="lunchApp">Lunch-App</string>
     <string name="student">Student</string>
     <string name="changePasswordText"><b>Change your password:</b></string>
+    <string name="changeStudentText"><b>Set pricing mode:</b></string>
     <string name="currentPassword">Current password</string>
     <string name="newPassword">New password</string>
     <string name="studentPrices">Show student prices</string>
     <string name="buttonSave">Save password</string>
     <string name="toastPW">You password was changed!</string>
     <string name="toastPWError">Your password could not be changed!</string>
+    <string name="toastPriceMode">Your pricemode changed!</string>
+    <string name="toastPriceModeError">Your pricemode could not be changed!</string>
+    <string name="pictureDesc">Dish picture</string>
 
 
 

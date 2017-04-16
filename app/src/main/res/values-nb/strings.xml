@@ -54,11 +54,16 @@
     <string name="lunchApp">Lunch-App</string>
     <string name="student">Student</string>
     <string name="changePasswordText"><b>Bytt passordet ditt:</b></string>
+    <string name="changeStudentText"><b>Sett prismodus:</b></string>
     <string name="currentPassword">Nåværende passord</string>
     <string name="newPassword">Nytt passord</string>
     <string name="studentPrices">Vis studentpriser</string>
     <string name="buttonSave">Lagre passord</string>
     <string name="toastPW">Ditt passord ble endret!</string>
     <string name="toastPWError">Ditt passord kunne ikke endres!</string>
+    <string name="toastPriceMode">Din prismodus ble endret!</string>
+    <string name="toastPriceModeError">Din prismodus kunne ikke endres!</string>
+    <string name="pictureDesc">Rettbilde</string>
+
 
 </resources>

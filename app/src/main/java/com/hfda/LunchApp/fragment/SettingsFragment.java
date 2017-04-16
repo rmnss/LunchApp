@@ -32,6 +32,8 @@ import java.util.Map;
 import static com.hfda.LunchApp.R.string.settingsAction;
 import static com.hfda.LunchApp.R.string.toastPW;
 import static com.hfda.LunchApp.R.string.toastPWError;
+import static com.hfda.LunchApp.R.string.toastPriceMode;
+import static com.hfda.LunchApp.R.string.toastPriceModeError;
 
 public class SettingsFragment extends Fragment {
 
@@ -82,6 +84,7 @@ public class SettingsFragment extends Fragment {
 
                  //change status in mySQL and SQlLite
                  setStudentStatus(uuid, studentStatus);
+
              }
          }
         );
@@ -125,12 +128,13 @@ public class SettingsFragment extends Fragment {
 
                         //set changes to SqlLite
                         db.setStudent(studentStatus);
+                        Toast.makeText(getActivity().getApplicationContext(), toastPriceMode, Toast.LENGTH_LONG).show();
 
 
                     } else {
                         // Error when setting student. Get the error message
                         String errorMsg = obj.getString("error_msg");
-                        Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), toastPriceModeError, Toast.LENGTH_LONG).show();
                     }
 
                 } catch (JSONException e) {
