@@ -22,19 +22,23 @@
         <li class="nav nav-item">
         <a class="nav nav-link" href="default.php">Meny</a></li>
         <li class="nav nav-item">
-        <a style = "color: #fff; background-color:#ff9d00;" class="nav nav-link active" href="todaysspecialList.php">Todays Special</a></li>
+        <a class="nav nav-link" href="todaysspecialList.php">Todays Special</a></li>
         <li class="nav nav-item">
         <a class="nav-link" href="allergier.php">Allergier</a></li>
             <li class="nav nav-item">
         <a class="nav nav-link"  href="bildeInput.php">Last opp bilde</a></li>
              <li class="nav nav-item">
         <a class="nav nav-link"  href="qr.php">Endre QR/Passord</a></li> 
-             <li class="nav nav-item">
-        <a class="nav nav-link" href="openingHoursList.php">Åpningstider</a></li>
-    </ul>
-            <h1>Todays special</h1>  
+        <li class="nav nav-item">
+        <a style = "color: #fff; background-color:#ff9d00;" class="nav nav-link active" href="openingHourslist.php">Åpningstider</a></li>
             
-            <div class="container">
+            
+    </ul>
+            <h1>Åpningstider</h1>  
+            
+
+
+<div class="container">
 
   <ul>
     <li>Trykk på cellene for å redigere, enkelte celler vil ikke være mulig å redigere grunnet sikkerhet</li> 
@@ -48,11 +52,8 @@
         <thead>
       <tr>
         <th>#</th>
-        <th>Navn</th>
-        <th>Serveringstid</th>
-          <th>Studentpris</th>
-          <th>AnsattPris</th>
-          <th>Dag</th>
+        <th>Åpningstider</th>
+        <th>Dag</th> 
       </tr>
         </thead>
         <tbody id="listeBody">
@@ -65,6 +66,24 @@
 
 </div>
     
+
+
+    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             <?php
             
@@ -79,6 +98,11 @@
             
         </div>
     </body>
-    <script src="editableTable.js"></script>
-<script src="fillSpecial.JS"></script>
+        
+<script src="fillHours.js"></script>
+<script src="editableTable.js"></script>
+
+    
+    
+    
 </html>  

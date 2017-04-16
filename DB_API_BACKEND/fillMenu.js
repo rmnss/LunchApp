@@ -1,4 +1,4 @@
-$(function (){
+    $(function (){
 
     /*=========================================================
 
@@ -43,7 +43,7 @@ $(function (){
            $("#listeMenu").append(
             '<tr  id="' + object[index]["idMenu"] + '" class="rad">' +
                 '<td>' + object[index]["idMenu"] + '</td>' +
-                '<td contenteditable="true">' + object[index]["kategori"] + '</td>' +  
+                '<td contenteditable="true" onClick="this.select();">' + object[index]["kategori"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["merke"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["type"] + '</td>' +  
                 '<td contenteditable="true">' + object[index]["studentPris"] + '</td>' +  

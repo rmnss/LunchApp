@@ -24,6 +24,9 @@ if ($_POST['action'] == "getMenu"){
 }elseif ($_POST['action'] == "getToday"){
     getToday($dbConnection);
     
+}elseif ($_POST['action'] == "getHours"){
+    getHours($dbConnection);    
+    
 }elseif ($_POST['action'] == "getAllergies"){
     getAllergies($dbConnection);
     
@@ -51,6 +54,17 @@ if ($_POST['action'] == "getMenu"){
     
     
     saveRow($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $ansattpris, $dag); 
+    
+    
+   /*-----------------------
+    Save opening hours
+ -----------------------*/
+    }elseif ($_POST['action'] == "saveRowHours"){
+  
+    $idHours = $_POST['idÅpningstider'];
+    $hours = $_POST['openingHours'];  
+    $day = $_POST['day'];  
+   saveRowHours($dbConnection, $idHours, $hours, $day); 
     
     
     
@@ -130,11 +144,55 @@ if ($_POST['action'] == "getMenu"){
     
    
 
+
+    
+    
+/*---------------------------------------------------------------------
+    Change QR password 
+---------------------------------------------------------------------*/
+    
+    }elseif ($_POST['action'] == "savePasswordQr"){
+  
+
+    $password = $_POST['password'];  
+   
+    savePasswordQr($dbConnection, $password); 
+    
+    
+    
+/*---------------------------------------------------------------------
+    Change QR-sellString
+---------------------------------------------------------------------*/
+    
+    }elseif ($_POST['action'] == "saveSellStringQr"){
+  
+
+    $sellString = $_POST['SellString'];  
+   
+    saveSellStringQr($dbConnection, $sellString); 
+    
+    
+/*---------------------------------------------------------------------
+    Change QR-sellString
+---------------------------------------------------------------------*/
+    
+    }elseif ($_POST['action'] == "saveBuyStringQr"){
+  
+
+    $BuyString = $_POST['BuyString'];  
+   
+    saveBuyStringQr($dbConnection, $BuyString); 
+        
+    
+    
+   
+
 }else{
     
     echo("Error: POST matchet ikke en funksjon");
     
 }
+
 
 
 
@@ -175,11 +233,25 @@ function getToday($dbConnection) {
 }
 
 
+//Opening hours
+function getHours($dbConnection) {
+    $sql = "SELECT idÅpningstider, openingHours, day FROM OpeningHours;";
+    $result = mysqli_query($dbConnection, $sql);
+    $data = array();
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+        $data[] = $row;
+    }
+    //Svar fra Datbasen echoes ut som json så ajax kan hente den
+    echo json_encode($data, JSON_FORCE_OBJECT);
+}
+
+
 
 //Allergies 
 function getAllergies($dbConnection) {
     $sql = "SELECT navn,allergi,dag,idDrmeny, allergier_idAlergier, drmeny_idDRmeny, idAlergier FROM DrMeny, Allergier_has_DrMeny, Allergier
-WHERE idDrmeny = drmeny_idDRmeny AND allergier_idAlergier = idalergier";
+WHERE idDrmeny = drmeny_idDRmeny AND allergier_idAlergier = idalergier
+order by navn;";
     $result = mysqli_query($dbConnection, $sql);
     $data = array();
     while ($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -249,6 +321,56 @@ function delAllergy($dbConnection, $allergiID, $drID) {
                         Update statements
                         
 =========================================================*/
+  
+/*-----------------------
+        QR password
+    -----------------------*/
+function savePasswordQr ($dbConnection, $password){
+    if ($stmt = mysqli_prepare($dbConnection, "UPDATE Coffee SET pin = ? WHERE description = 'refill';")){
+        
+        //binder parameterne
+        mysqli_stmt_bind_param($stmt,"s", $password);
+        
+        //kjører
+        mysqli_stmt_execute($stmt);
+    }
+}
+
+
+
+
+        
+
+/*-----------------------
+        QR sellString
+    -----------------------*/
+function saveSellStringQr($dbConnection, $sellString){
+    if ($stmt = mysqli_prepare($dbConnection, "UPDATE Coffee SET qrString = ? WHERE description = 'refill';")){
+        
+        //binder parameterne
+        mysqli_stmt_bind_param($stmt,"s", $sellString);
+        
+        //kjører
+        mysqli_stmt_execute($stmt);
+    }
+}
+
+
+
+/*-----------------------
+        QR BuyString
+    -----------------------*/
+function saveBuyStringQr($dbConnection, $BuyString){
+    if ($stmt = mysqli_prepare($dbConnection, "UPDATE Coffee SET qrString = ? WHERE description = 'buy';")){
+        
+        //binder parameterne
+        mysqli_stmt_bind_param($stmt,"s", $BuyString);
+        
+        //kjører
+        mysqli_stmt_execute($stmt);
+    }
+}
+
 
 
 /*-----------------------
@@ -267,6 +389,25 @@ function saveRow ($dbConnection, $idmenu, $navn, $serveringstid, $studentpris, $
     }
 }
 
+
+
+/*-----------------------
+       Saving opening hours
+    -----------------------*/   
+    
+
+function saveRowHours($dbConnection, $idHours, $hours, $day){
+    
+ if ($stmt = mysqli_prepare($dbConnection, "UPDATE OpeningHours SET openingHours = ? WHERE idÅpningstider = ?;")) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "ss", $hours, $idHours);
+        
+        //execute query
+        mysqli_stmt_execute($stmt); 
+
+        
+    }
+}
 
 
 /*-----------------------

@@ -74,6 +74,72 @@ var td = tr.getElementsByTagName("td");
                
     });
     
+    
+    
+    /*=========================================================
+
+                    Save edited opening hours
+                        
+=========================================================*/
+    
+     $(document).on('click','.save-row-hours',function(){
+
+        $id = this.id;
+             
+         
+         
+var tr = document.getElementById($id);
+var td = tr.getElementsByTagName("td");
+         
+         
+        var idÅpningstider = td[0].innerHTML
+        var openingHours = td[1].innerHTML
+        var day = td[2].innerHTML
+       
+        
+ 
+        
+
+    
+      // gir respons når raden trykket på
+    $("#" + $id).fadeOut("slow");
+    $("#" + $id).fadeIn("slow");
+         
+          $("#popsave-" +$id).fadeIn(20);
+          $("#popsave-" +$id).fadeOut(4000);
+         
+         
+         
+         
+        
+        
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveRowHours', idÅpningstider, openingHours, day},
+             
+                
+                success: function(data) {
+                    
+                
+
+                  
+                    
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+            
+           
+     
+               
+    });
+    
+    
     /*--------------------------------------------
     
                         Saving Allergies
@@ -84,7 +150,7 @@ var td = tr.getElementsByTagName("td");
 
         $id = this.id;
          
-         alert($id);
+   
              
          
          
@@ -209,40 +275,30 @@ var td = tr.getElementsByTagName("td");
     
     
     
-  /*--------------------------------------------
+  /*----------------------------------------------------------------------------------------
     
-            Saving a new menu row
+            Saving  new password for selling coffee card
     
-    ----------------------------------------------*/
+    ------------------------------------------------------------------------------------------*/
     
-    $(document).on('click','.save-row-menu-new',function(){
-
-        $id = this.id;
-         alert($id);
+    $(document).on('click','.btn-save-Password',function(){
+ 
+        
+        
+        var password = document.getElementById('pw').value;
+     
             
          
       
-var tr = document.getElementById($id);
-var td = tr.getElementsByTagName("td");
-         
-         
-        //var idmenu = td[0].innerHTML
-        
-        alert(td[1]);
-        var kategori = td[1].innerHTML
-        var merke = td[2].innerHTML
-        var type = td[3].innerHTML
-        var studentPris = td[4].innerHTML
-        var ansattPris = td[5].innerHTML
+
         
         
        
-/*
         
             $.ajax({
                 type: 'POST',
                 url: 'DB_API_BACKEND.php',
-                data: {action: 'saveRowMenu', idmenu, kategori, merke, type, studentPris, ansattPris},
+                data: {action: 'savePasswordQr', password},
              
                 
                 success: function(data) {
@@ -256,13 +312,101 @@ var td = tr.getElementsByTagName("td");
                     console.log("Details: " + desc + "\nError:" + err);
                 }
             });
-            */
+        
            
      
                
     });
     
     
+    
+    
+    
+     /*----------------------------------------------------------------------------------------
+    
+            Saving new QR-string selling coffee card
+    
+    ------------------------------------------------------------------------------------------*/
+    
+    $(document).on('click','.btn-save-SellString',function(){
+ 
+        
+        
+        var SellString = document.getElementById('coffeecard').value;
+     
+            
+
+        
+            
+        
+       
+        
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveSellStringQr', SellString},
+             
+                
+                success: function(data) {
+                    
+
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+        
+           
+     
+               
+    });
+    
+    
+    
+      /*----------------------------------------------------------------------------------------
+    
+            Saving new QR-string buy coffee card
+    
+    ------------------------------------------------------------------------------------------*/
+    
+    $(document).on('click','.btn-save-BuyString',function(){
+ 
+        
+        
+        var BuyString = document.getElementById('buycoffee').value;
+     
+            
+
+        
+            
+        
+       
+        
+            $.ajax({
+                type: 'POST',
+                url: 'DB_API_BACKEND.php',
+                data: {action: 'saveBuyStringQr', BuyString},
+             
+                
+                success: function(data) {
+                    
+
+                    
+                   
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+        
+           
+     
+               
+    });
     
     
     
@@ -400,21 +544,13 @@ $('.table-add').click(function () {
         $id = this.id;
         
        
-        
-        
-        
-        
-    
-        
-         
 
         
-        
         var drmeny_idDRmeny = $('#dish option:selected').attr('id');
-         alert(drmeny_idDRmeny);
+         
         
-                
-              alert($id);
+             window.history.back();
+         
         
     
                        
@@ -507,7 +643,8 @@ $('.table-add').click(function () {
                 data: {action: 'delRowSpecial', id: $id},
                 success: function(data) {
                     
-                    alert($id);
+
+                    
                     
                    
                 },

@@ -3,40 +3,15 @@
 <html lang="no">
     <head>
         <title>Kantine App</title>
-        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="icon" href="bilder/coffeecup.png">
-        
         <meta charset="utf-8" />
-        
     </head>
-
-
 <body>
 
-
-
-
-
-
-
 <?PHP
-/*
-include "config.php"; //config
-
-$dbConnection = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database) 
-or die("SQL ERROR: ". mysql_error());
-$dbConnection->set_charset("utf8");
-*/
-
-
-
-
-
-
-
 //HTML kode for å sette opp input
 //echo '<input type= "file" name="filbane" />';
 
@@ -53,24 +28,24 @@ if (empty($_FILES['filbane']['name']) ) {
 
 	$filtype = $_FILES['filbane']['name']; //MIME-type til filen
 	$storrelse = $_FILES['filbane']['size']; //Størrelsen
-	if (strstr($filtype, "jpg") ){ //Vis bildet
+	//if (strstr($filtype, "jpg") ){ //Vis bildet
 		echo "<img src='$filnavn' height='200' align='right' />";
 		echo "<h3>Dette er bildet som ble lastet opp</h3>";
-	}//if
+	//}//if
     
-     include "menytilUpload.php"; 
+    include "menytilUpload.php"; 
 	//echo "<tr><td class ='nr' id = ' filename'>http://ekeberg.it/android/".$filnavn." </td></tr>";
-    echo "<button name='Dish' id = http://ekeberg.it/android/".$filnavn." type='button' class='btn btn-primary savepicture-btn'>Lagre</button>";
-    
-    
-    
-    
+    //echo "<button name='Dish' id = http://ekeberg.it/android/".$filnavn." type='button' class='btn btn-primary savepicture-btn'>Lagre</button>";
 
-        
-        
-        
-        
-    
+	//Sender brukeren tilbake til backend
+    //echo '<button id="tilbake" class="btn btn-primary savepicture-btn">ferdig</button>';
+
+    //echo '<button id="tilbake" class="btn btn-primary onclick="goBack()">Go Back</button>';
+
+
+
+
+
 	echo "\t<li>Type: $filtype</li>\n";
 	echo "\t<li>Størrelse: $storrelse byte</li>\n";
 
@@ -87,17 +62,30 @@ if (empty($_FILES['filbane']['name']) ) {
 	echo "\n</ul>";
 }//else, ferdig med å kopiere og vise info om fil
 
+echo "<button name='Dish' id = http://ekeberg.it/android/".$filnavn." type='button' class='btn btn-primary savepicture-btn'>Lagre</button>";
 
+	//Sender brukeren tilbake til backend
+    //echo '<button id="tilbake" class="btn btn-primary savepicture-btn">ferdig</button>';
 
-
-
-       
-
+    echo '<button id="tilbake" class="btn btn-primary onclick="goBack()">Tilbake</button>';
 ?>
-  
-
-    
-    
      </body>
     <script src="editableTable.js"></script>
+
+
+
+    <!--Sender brukeren tilbake til backend-->
+   <script type="text/javascript">
+    	document.getElementById("tilbake").onclick = function () {
+        	//location.href = "http://localhost/backendv2/bildeInput.php";
+        	window.history.back();
+    	};
+    </script>
+
+
+    <!--<script>
+		function goBack() {
+    		window.history.back();
+		}
+	</script>-->
 </html>

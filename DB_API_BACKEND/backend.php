@@ -29,12 +29,12 @@
     <table class="table table-hover table-responsive " id ="listeMenu">
         <thead>
       <tr>
-        <th>idMenu</th>
-        <th>kategori</th>
-        <th>merke</th>
-          <th>type</th>
-          <th>studentPris</th>
-          <th>ansattPris</th>
+        <th>#</th>
+        <th>Kategori</th>
+        <th>Merke</th>
+          <th>Type</th>
+          <th>Studentpris</th>
+          <th>Ansattpris</th>
         <th></th>
         <th></th>
       </tr>
