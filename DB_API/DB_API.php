@@ -22,20 +22,11 @@ function __construct($username){
     
     
     
-    
-    
-//************************//
-//  FUNctions n queries   //
-//************************//
-
-    
-    
-    
 
     
     
 //************************************************//
-// Fetching PW,E-MAIL and fixing salt             //
+// Fetching PW,E-MAIL, fixing salt, change PW     //
 //************************************************//    
     
     
@@ -125,12 +116,94 @@ function hashSSHA($password) {
 }
     
     
-public function checkhashSSHA($salt, $password) {
+function checkhashSSHA($salt, $password) {
 
     $hash = base64_encode(sha1($password . $salt, true) . $salt);
 
     return $hash;
 }
+    
+    
+function getUserByUUIDAndPassword($uuid, $password) {
+    $sql = "SELECT * FROM users WHERE unique_id = '" .$uuid ."'";
+    $result = mysqli_query($this->dbConnection, $sql);
+    
+    
+    //$user;
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+        $user = $row;
+    }
+    
+    $salt = $user["salt"];
+    $encrypted_password = $user['encrypted_password'];
+    $hash = $this->checkhashSSHA($salt, $password);
+    
+    if ($hash == $encrypted_password){
+        return $user;
+    }else{
+        return null;
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+function changePassword($uuid, $password) {
+    
+    $hash = $this->hashSSHA($password);
+    
+    $encrypted_password = $hash["encrypted"]; // encrypted password
+    $salt = $hash["salt"]; // salt
+    
+    
+    
+    //$sql = "INSERT INTO users(unique_id, email, encrypted_password, salt, student, coffee) VALUES(?, ?, ?, ?, ?, 0)";
+    
+    $sql= 
+        "UPDATE users 
+         SET encrypted_password = ?, salt = ?
+         WHERE unique_id = ?";
+    
+    
+    
+    if ($stmt = mysqli_prepare($this->dbConnection, $sql)) {
+        //bind parameters for markers
+        mysqli_stmt_bind_param($stmt, "sss", $encrypted_password, $salt, $uuid);
+
+        //execute query
+        $result = mysqli_stmt_execute($stmt);
+        
+        
+        
+        // check for successful store
+        if ($result) {
+            $stmt = $this->dbConnection->prepare("SELECT * FROM users WHERE unique_id = ?");
+            $stmt->bind_param("s", $uuid);
+            $stmt->execute();
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user;
+        } else {
+            return false;
+        }
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -290,6 +363,7 @@ function checkRefillQR($qrString, $pin){
     }
 }
     
+    
 function checkBuyQR($qrString){
     
     $sql = "SELECT * 
@@ -307,6 +381,7 @@ function checkBuyQR($qrString){
         }
     }
 }
+    
     
 function checkCoffee($uuid){
     
@@ -356,7 +431,6 @@ function setCoffee($coffee, $uuid){
 }
      
 
-    
 
     
   //DIV  
@@ -388,10 +462,6 @@ function setStudentStatus($isStudent, $uuid){
         return $user["student"];
     }
 }
-    
-    
-    
-    
     
     
 function getOpeningHours() {
