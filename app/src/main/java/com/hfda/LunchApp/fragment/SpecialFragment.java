@@ -66,6 +66,8 @@ public class SpecialFragment extends Fragment implements SwipeRefreshLayout.OnRe
         String dayOfTheWeek = sdf.format(d);
         Log.d("Laupet", dayOfTheWeek);
         */
+
+
         return view;
     }
 

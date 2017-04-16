@@ -63,7 +63,10 @@
     <string name="currentPassword">Current password</string>
     <string name="newPassword">New password</string>
     <string name="studentPrices">Show student prices</string>
-    <string name="buttonSave">Save</string>
+    <string name="buttonSave">Save password</string>
+    <string name="toastPW">You password was changed!</string>
+    <string name="toastPWError">Your password could not be changed!</string>
+
 
 
 </resources>

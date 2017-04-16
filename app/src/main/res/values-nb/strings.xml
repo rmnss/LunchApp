@@ -57,6 +57,8 @@
     <string name="currentPassword">Nåværende passord</string>
     <string name="newPassword">Nytt passord</string>
     <string name="studentPrices">Vis studentpriser</string>
-    <string name="buttonSave">Lagre</string>
+    <string name="buttonSave">Lagre passord</string>
+    <string name="toastPW">Ditt passord ble endret!</string>
+    <string name="toastPWError">Ditt passord kunne ikke endres!</string>
 
 </resources>
