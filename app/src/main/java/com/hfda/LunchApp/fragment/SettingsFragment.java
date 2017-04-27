@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.hfda.LunchApp.R.string.cred;
 import static com.hfda.LunchApp.R.string.settingsAction;
 import static com.hfda.LunchApp.R.string.toastPW;
 import static com.hfda.LunchApp.R.string.toastPWError;
@@ -98,7 +99,16 @@ public class SettingsFragment extends Fragment {
                 String currentPassword = etCurrentPassword.getText().toString();
                 String newPassword = etNewPassword.getText().toString();
 
-                changePassword(uuid, currentPassword, newPassword);
+                // Check for empty data in the form
+                if (!currentPassword.isEmpty() && !newPassword.isEmpty()) {
+
+
+                    changePassword(uuid, currentPassword, newPassword);
+
+                } else {
+                    //Show error too user
+                    Toast.makeText(getActivity().getApplicationContext(), cred, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
