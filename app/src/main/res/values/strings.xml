@@ -47,6 +47,7 @@
     <string name="register">Register</string>
     <string name="successfullReg">User successfully registered. You can now log in!</string>
     <string name="allInfo">Please enter all information above!</string>
+    <string name="moreInfo">Username and password needs to be atleast 4 characters!</string>
     <string name="cred">Please enter credentials!</string>
     <string name="allowCamera">Allow the camera app and try again</string>
     <string name="success">Success!</string>

@@ -102,7 +102,6 @@ public class SettingsFragment extends Fragment {
                 // Check for empty data in the form
                 if (!currentPassword.isEmpty() && !newPassword.isEmpty()) {
 
-
                     changePassword(uuid, currentPassword, newPassword);
 
                 } else {

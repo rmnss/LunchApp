@@ -41,6 +41,7 @@
     <string name="register">Registrer</string>
     <string name="successfullReg">Bruker registrert. Du kan nå logge inn!</string>
     <string name="allInfo">Vennligst fyll inn alle feltene!</string>
+    <string name="moreInfo">Brukernavn og passord må være minst 4 tegn!</string>
     <string name="cred">Vennligst fyll inn all informasjon!</string>
     <string name="allowCamera">Godkjenn kamera-appen og trykk igjen</string>
     <string name="success">Suksess!</string>

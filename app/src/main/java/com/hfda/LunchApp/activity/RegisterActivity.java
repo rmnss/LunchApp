@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.hfda.LunchApp.R.string.moreInfo;
 import static com.hfda.LunchApp.R.string.register;
 import static com.hfda.LunchApp.R.string.successfullReg;
 import static com.hfda.LunchApp.R.string.allInfo;
@@ -87,7 +88,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    newUser(email, password, intStudent);
+                    if(email.length() > 3 && password.length() > 3){
+                        newUser(email, password, intStudent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),
+                                moreInfo, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(),
                             allInfo, Toast.LENGTH_LONG).show();
