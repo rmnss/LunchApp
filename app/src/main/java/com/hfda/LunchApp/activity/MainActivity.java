@@ -1,6 +1,8 @@
 package com.hfda.LunchApp.activity;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -12,9 +14,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.hfda.LunchApp.fragment.CoffeeFragment;
@@ -77,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragment = new HomeFragment();//Legger til objekt av HomeFragment
         fragmentTransaction(0, fragment);//Sender plassering og variabel til fragmentTransaction()
     }
+
 
     //Helper method:
     private void setupDrawer() {
@@ -171,6 +176,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         return true;
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        FrameLayout fl = (FrameLayout) findViewById(R.id.main_content);
+        if (fl.getChildCount() == 1) {
+            super.onBackPressed();
+            if (fl.getChildCount() == 0) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Close App?")
+                        .setMessage("Do you really want to close this app?")
+                        .setPositiveButton("YES",
+                                new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        Fragment fragment;
+                                        fragment = new HomeFragment();
+                                        fragmentTransaction(0, fragment);
+                                    }
+                                }).show();
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+
 
     //Logg Out:
     public void logoutUser() {

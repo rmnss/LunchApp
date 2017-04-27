@@ -47,6 +47,13 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+
+    public void onBackPressed() {
+        Log.d("Laupet", "BACK");
+    }
+
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
